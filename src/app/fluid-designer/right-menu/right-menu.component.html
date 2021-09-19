@@ -1,0 +1,442 @@
+<ng-container *ngIf="dataService.tabs[dataService.activeTabId]['activeelement'] == '-1'">
+    <div (click)="activateSave()">
+        <div class="component">
+            <div class="title">
+                Name
+            </div>
+            <div class="settings">
+                <input type="text" class="input" name="componentTitle"
+                    [(ngModel)]="dataService.tabs[dataService.activeTabId]['componentTitle']"
+                    (value)="dataService.tabs[dataService.activeTabId]['componentTitle']">
+            </div>
+        </div>
+        <div class="component">
+            <div class="title">
+                Background
+            </div>
+            <div class="settings">
+                <div class="left">
+                    <input type='color' name="backgroundColor"
+                        [(ngModel)]="dataService.tabs[dataService.activeTabId]['backgroundColor']"
+                        (value)="dataService.tabs[dataService.activeTabId]['backgroundColor']">
+                    <input type="text" name="backgroundColortext"
+                        [(ngModel)]="dataService.tabs[dataService.activeTabId]['backgroundColor']"
+                        (value)="dataService.tabs[dataService.activeTabId]['backgroundColor']">
+                    <input type="number" min="0" max="100" name="backgroundOpacity"
+                        [(ngModel)]="dataService.tabs[dataService.activeTabId]['backgroundOpacity']"
+                        (value)="dataService.tabs[dataService.activeTabId]['backgroundOpacity']">
+                </div>
+                <div class="right" style="margin-top: -2px;"
+                    (click)="dataService.tabs[dataService.activeTabId]['backgroundVisible'] = !dataService.tabs[dataService.activeTabId]['backgroundVisible']">
+                    <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['backgroundVisible']">
+                        <app-svgassests style="position: relative;top: 9px;" [width]="12" [height]="12" [category]="'2'"
+                            [image]="'eyeopen'"></app-svgassests>
+                    </ng-container>
+                    <ng-container *ngIf="!dataService.tabs[dataService.activeTabId]['backgroundVisible']">
+                        <app-svgassests style="position: relative;top: 9px;" [width]="12" [height]="12" [category]="'2'"
+                            [image]="'eyeclose'"></app-svgassests>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="dataService.tabs[dataService.activeTabId] as tab">
+    <ng-container *ngIf="tab['elements'][tab['activeelement']] as elementdata">
+        <div (click)="activateSave()">
+            <ng-container *ngIf="elementdata.type == 'F1'">
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left" style="width: 55%;">
+                            <div class="title">
+                                Component
+                            </div>
+                        </div>
+                        <div class="right">
+                            <app-svgassests class="addpropertytosvg" *ngIf="!elementdata.mandatory"
+                                (click)="elementdata.mandatory = !elementdata.mandatory" [width]="'12'" [height]="'12'"
+                                [category]="'2'" [image]="'beforeMandatory'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" *ngIf="elementdata.mandatory"
+                                (click)="elementdata.mandatory = !elementdata.mandatory" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'star'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" *ngIf="!elementdata.readonly"
+                                (click)="elementdata.readonly = !elementdata.readonly" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'edit'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" *ngIf="elementdata.readonly"
+                                (click)="elementdata.readonly = !elementdata.readonly" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'nonedit'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" (click)="delete()" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'delete'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.desc}" [(ngModel)]="elementdata.desc"
+                            placeholder="enter the component description" (value)="elementdata.desc">
+                    </div>
+                </div>
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left">
+                            <div class="title">
+                                Label
+                            </div>
+                        </div>
+                        <div class="right" (click)="elementdata.label = !elementdata.label">
+                            <ng-container *ngIf="elementdata.label">
+                                <app-svgassests class="addpropertytosvg" [width]="12" [height]="12" [category]="'2'"
+                                    [image]="'eyeopen'"></app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="!elementdata.label">
+                                <app-svgassests class="addpropertytosvg" [width]="12" [height]="12" [category]="'2'"
+                                    [image]="'eyeclose'"></app-svgassests>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.name}" [(ngModel)]="elementdata.name"
+                            placeholder="enter the label" (value)="elementdata.name">
+                    </div>
+                    <div class="multilable">
+                        <div class="leftsmall">
+                            <div class="subtitle">
+                                Align
+                            </div>
+                        </div>
+                        <div class="right">
+                            <ng-container *ngIf="elementdata['align'] == '1'">
+                                <app-svgassests (click)="elementdata['align'] = '1'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'top-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['align'] != '1'">
+                                <app-svgassests (click)="elementdata['align'] = '1'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'top-align'"></app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['align'] == '2'">
+                                <app-svgassests (click)="elementdata['align'] = '2'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'bottom-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['align'] != '2'">
+                                <app-svgassests (click)="elementdata['align'] = '2'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'bottom-align'">
+                                </app-svgassests>
+                            </ng-container>
+
+                            <ng-container *ngIf="elementdata['label-align'] == 'left'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'left'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'left-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'left'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'left'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'left-align'"></app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] == 'center'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'center'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'center-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'center'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'center'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'center-align'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] == 'right'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'right'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'right-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'right'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'right'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'right-align'">
+                                </app-svgassests>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <div class="title">
+                        Placeholder
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.placeholder}"
+                            placeholder="enter the placeholder" [(ngModel)]="elementdata.placeholder"
+                            (value)="elementdata.placeholder">
+                    </div>
+                </div>
+                <div class="component">
+                    <div class="title">
+                        Width
+                    </div>
+                    <div class="settings">
+                        <input type="range" min="1" max="12" (value)="elementdata.width" class="input"
+                            name="{elementdata.width}" [(ngModel)]="elementdata.width" (value)="elementdata.width">
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="elementdata.type == 'H2'">
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left" style="width: 67%;">
+                            <div class="title">
+                                Component
+                            </div>
+                        </div>
+                        <div class="right">
+                            <app-svgassests class="addpropertytosvg" *ngIf="!elementdata.mandatory"
+                                (click)="elementdata.mandatory = !elementdata.mandatory" [width]="'12'" [height]="'12'"
+                                [category]="'2'" [image]="'beforeMandatory'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" *ngIf="elementdata.mandatory"
+                                (click)="elementdata.mandatory = !elementdata.mandatory" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'star'"></app-svgassests>
+                            <app-svgassests class="addpropertytosvg" (click)="delete()" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'delete'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.desc}" [(ngModel)]="elementdata.desc"
+                            placeholder="enter the component description" (value)="elementdata.desc">
+                    </div>
+                </div>
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left">
+                            <div class="title">
+                                Label
+                            </div>
+                        </div>
+                        <div class="right" (click)="elementdata.label = !elementdata.label">
+                            <ng-container *ngIf="elementdata.label">
+                                <app-svgassests class="addpropertytosvg" [width]="12" [height]="12" [category]="'2'"
+                                    [image]="'eyeopen'"></app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="!elementdata.label">
+                                <app-svgassests class="addpropertytosvg" [width]="12" [height]="12" [category]="'2'"
+                                    [image]="'eyeclose'"></app-svgassests>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.name}" [(ngModel)]="elementdata.name"
+                            placeholder="enter the label" (value)="elementdata.name">
+                    </div>
+                    <div class="settings">
+                        <div class="left" style="width: 85%;">
+                            <input type='color' name="backgroundColor" [(ngModel)]="elementdata['color']"
+                                (value)="elementdata['color']">
+                            <input type="text" name="backgroundColortext" [(ngModel)]="elementdata['color']"
+                                (value)="elementdata['color']">
+                            <input type="number" min="0" max="100" name="backgroundOpacity" style="text-align: end;"
+                                [(ngModel)]="elementdata['font-size']" (value)="elementdata['font-size']"><span
+                                style="font-size: 11px;">px</span>
+                        </div>
+                        <div class="right" style="margin-top: -2px;"
+                            (click)="dataService.tabs[dataService.activeTabId]['backgroundVisible'] = !dataService.tabs[dataService.activeTabId]['backgroundVisible']">
+                            <app-svgassests class="addpropertytosvg" style="position: relative;top: 11px;" [width]="15"
+                                [height]="15" [category]="'2'" [image]="'menu1'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="multilable">
+                        <div class="leftsmall" style="width: 50%;">
+                            <div class="subtitle">
+                                <div style="width: 80%;" (click)="elementdata['openMenu']= true">
+                                    {{elementdata['font-weight-desc']}}
+                                </div>
+                                <div (click)="elementdata['openMenu']= true">
+                                    <app-svgassests class="addpropertytosvg" style="position: relative;" [width]="10"
+                                        [height]="10" [category]="'2'" [image]="'down-arrow'"></app-svgassests>
+                                </div>
+                                <div class="fontweightcss" *ngIf="elementdata.openMenu">
+                                    <div class="menu" (click)="elementdata['font-weight'] = 100;
+                                              elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                              elementdata['font-weight-desc'] ='Thin'">Thin</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 200;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                             elementdata['font-weight-desc'] ='Light';">Light</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 300;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                             elementdata['font-weight-desc'] ='Regular'">Regular</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 400;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                             elementdata['font-weight-desc'] ='Medium'">Medium</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 600;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                             elementdata['font-weight-desc'] ='Bold'">Bold</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 700;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='normal';
+                                             elementdata['font-weight-desc'] ='Black'">Black</div>
+                                    <hr>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 100;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Thin Italic'">Thin Italic</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 200;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Light Italic'">Light Italic</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 300;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Italic'">Italic</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 400;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Medium Italic'">Medium Italic</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 600;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Bold Italic'">Bold Italic</div>
+                                    <div class="menu" (click)="elementdata['font-weight'] = 700;
+                                             elementdata['openMenu'] = false;elementdata['font-style'] ='italic';
+                                             elementdata['font-weight-desc'] ='Black Italic'">Black Italic</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <ng-container *ngIf="elementdata['label-align'] == 'left'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'left'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'left-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'left'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'left'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'left-align'"></app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] == 'center'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'center'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'center-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'center'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'center'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'center-align'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] == 'right'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'right'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'right-align-active'">
+                                </app-svgassests>
+                            </ng-container>
+                            <ng-container *ngIf="elementdata['label-align'] != 'right'">
+                                <app-svgassests (click)="elementdata['label-align'] = 'right'" class="addpropertytosvg"
+                                    [width]="15" [height]="15" [category]="'2'" [image]="'right-align'">
+                                </app-svgassests>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <div class="title">
+                        Width
+                    </div>
+                    <div class="settings">
+                        <input type="range" min="1" max="12" (value)="elementdata.width" class="input"
+                            name="{elementdata.width}" [(ngModel)]="elementdata.width" (value)="elementdata.width">
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="elementdata.type == 'H4'">
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left" style="width: 80%;">
+                            <div class="title">
+                                Component
+                            </div>
+                        </div>
+                        <div class="right">
+                            <app-svgassests class="addpropertytosvg" (click)="delete()" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'delete'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.desc}" [(ngModel)]="elementdata.desc"
+                            placeholder="enter the component description" (value)="elementdata.desc">
+                    </div>
+                    <div class="settings">
+                        <div class="left" style="width: 15%;font-size: 12px;padding: 8px 20px;color: gray;">
+                            Height
+                        </div>
+                        <div class="right" style="width: 65%;">
+                            <input type="number" min="0" max="100" name="backgroundOpacity"
+                                style="text-align: end;margin:0" [(ngModel)]="elementdata['height']"
+                                (value)="elementdata['height']"><span
+                                style="font-size: 11px;position: relative;">px</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="elementdata.type == 'H3'">
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left" style="width: 80%;">
+                            <div class="title">
+                                Component
+                            </div>
+                        </div>
+                        <div class="right">
+                            <app-svgassests class="addpropertytosvg" (click)="delete()" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'delete'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.desc}" [(ngModel)]="elementdata.desc"
+                            placeholder="enter the component description" (value)="elementdata.desc">
+                    </div>
+                    <div class="settings">
+                        <div class="left">
+                            <input type='color' name="backgroundColor" [(ngModel)]="elementdata['color']"
+                                (value)="elementdata['color']">
+                            <input type="text" name="backgroundColortext" [(ngModel)]="elementdata['color']"
+                                (value)="elementdata['color']">
+                            <input type="number" min="0" max="100" name="backgroundOpacity" style="text-align: end;"
+                                [(ngModel)]="elementdata['height']" (value)="elementdata['height']"><span
+                                style="font-size: 11px;position: relative;">px</span>
+                        </div>
+                    </div>
+                    <div class="title">
+                        Width
+                    </div>
+                    <div class="settings">
+                        <input type="range" min="1" max="12" (value)="elementdata['width']" class="input"
+                            name="{elementdata['width']}" [(ngModel)]="elementdata['width']"
+                            (value)="elementdata['width']">
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="elementdata.type == 'H5'">
+                <div class="component">
+                    <div class="multilable">
+                        <div class="left" style="width: 80%;">
+                            <div class="title">
+                                Component
+                            </div>
+                        </div>
+                        <div class="right">
+                            <app-svgassests class="addpropertytosvg" (click)="delete()" [width]="12" [height]="12"
+                                [category]="'2'" [image]="'delete'"></app-svgassests>
+                        </div>
+                    </div>
+                    <div class="settings">
+                        <input type="text" class="input" name="{elementdata.desc}" [(ngModel)]="elementdata.desc"
+                            placeholder="enter the component description" (value)="elementdata.desc">
+                    </div>
+                    <div class="settings">
+                            <div class="left">
+                                <input type='color' name="backgroundColor" [(ngModel)]="elementdata['color']"
+                                    (value)="elementdata['color']">
+                                <input type="text" name="backgroundColortext" [(ngModel)]="elementdata['color']"
+                                    (value)="elementdata['color']">
+                                <input type="number" min="0" max="100" name="backgroundOpacity" style="text-align: end;"
+                                    [(ngModel)]="elementdata['height']" (value)="elementdata['height']"><span
+                                    style="font-size: 11px;position: relative;">px</span>
+                            </div>
+                        </div>
+                    <div class="title">
+                        Width
+                    </div>
+                    <div class="settings">
+                        <input type="range" min="1" max="12" (value)="elementdata['width']" class="input"
+                            name="{elementdata['width']}" [(ngModel)]="elementdata['width']"
+                            (value)="elementdata['width']">
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+</ng-container>

@@ -1,0 +1,49 @@
+<div class="component">
+        <div class="title">
+                Form Assets
+        </div>
+        <div class="menu flexwrap ">
+                <ng-container *ngFor="let element of formAssest">
+                        <div [ngClass]="{'menuitem':element.type == 1,'fullmenuitem':element.type == 2,'typeelement':true,'drag':drag,'disabled':element.disabled}"
+                                (mousedown)="drag = true" (mouseup)="drag = false" draggable="true"
+                                (dragstart)="dragstart(element)" (dragend)="dragend(element)">
+                                <app-svgassests width="15px" height="15px" [category]="'1'" [image]="element.label">
+                                </app-svgassests>
+                                {{element.label}}
+                        </div>
+                </ng-container>
+        </div>
+</div>
+
+<div class="component">
+        <div class="title">
+                Form Elements
+        </div>
+        <div class="menu flexwrap ">
+                <ng-container *ngFor="let element of formElements">
+                        <div (mousedown)="drag = true" (mouseup)="drag = false" draggable="true"
+                                (dragstart)="dragstart(element)" (dragend)="dragend(element)"
+                                [ngClass]="{'menuitem':element.type == 1,'fullmenuitem':element.type == 2,'formelement':true,'drag':drag,'disabled':element.disabled}">
+                                <app-svgassests width="15px" height="15px" [category]="'1'" [image]="element.label">
+                                </app-svgassests>
+                                {{element.label}}
+                        </div>
+                </ng-container>
+        </div>
+</div>
+<div class="component">
+        <div class="title">
+                Html Elements
+        </div>
+        <div class="menu flexwrap">
+                <ng-container *ngFor="let element of htmlElements">
+                        <div (mousedown)="drag = true" (mouseup)="drag = false" draggable="true"
+                                (dragstart)="dragstart(element)" (dragend)="dragend(element)"
+                                [ngClass]="{'menuitem':element.type == 1,'fullmenuitem':element.type == 2,'htmlelement':true,'drag':drag,'disabled':element.disabled}">
+                                <app-svgassests width="15px" height="15px" [category]="'1'" [image]="element.label">
+                                </app-svgassests>
+                                {{element.label}}
+                        </div>
+                </ng-container>
+        </div>
+</div>

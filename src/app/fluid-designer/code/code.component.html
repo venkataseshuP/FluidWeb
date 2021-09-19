@@ -1,0 +1,14 @@
+<ng-container *ngIf="dataService.tabs[dataService.activeTabId]['activeelement'] == '-1'">
+    <div class="comment"> /* &nbsp;&nbsp;&nbsp; Enter the css here &nbsp;&nbsp;&nbsp;*/</div>
+    <ace-editor [readOnly]="false" class="textarea-class" [(text)]="dataService.tabs[dataService.activeTabId]['customcss']" [theme]="'xcodes'" [mode]="'css'"
+      [options]="options">
+    </ace-editor>
+</ng-container>
+<ng-container *ngIf="dataService.tabs[dataService.activeTabId] as tab">
+    <ng-container *ngIf="tab['elements'][tab['activeelement']] as elementdata">
+      <div class="comment"> /* &nbsp;&nbsp;&nbsp; Enter the css here &nbsp;&nbsp;&nbsp;*/</div>
+      <ace-editor #editor [readOnly]="false" class="textarea-class" [(text)]="elementdata['customcss']" [theme]="'xcodes'" [mode]="'css'"
+        [options]="options">
+      </ace-editor>
+    </ng-container>
+</ng-container>

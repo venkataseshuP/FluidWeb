@@ -1,0 +1,251 @@
+.designer{
+    width: 100%;
+    height: 87.5%;
+    display: flex;
+    position:absolute;
+    flex-wrap: nowrap;
+}
+
+.designer .left{
+    height: 100%;
+    width: 17.5%;
+    background: white;
+    border-right: 1px solid lightgray;
+}
+
+
+.designer .middle{
+    
+    width: 65%;
+    height: 100%;
+    background: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../assets/images/fluiddesigner/transparentbackground.png");
+}
+
+.designer .middle .designerspace{
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.designer .middle .transdesignerspace{
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  opacity:100% !important;
+  background: transparent !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-image: url("../../assets/images/fluiddesigner/transparentbackground.png") !important;
+}
+
+.designer .right{
+    height: 100%;
+    width: 17.5%;
+    background: white;
+    border-left: 1px solid lightgray;
+}
+
+
+.designer .left .container {
+    max-width: 80rem;
+    width: 100%;
+    height: auto;
+  }
+  
+  .designer .left .title {
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: inherit;
+    color: #252b46;
+  }
+  
+  .designer .left .main .tab {
+    width: 100%;
+    height: auto;
+  }
+  .designer .left .main .tab-menu {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+            align-items: center;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-bottom: 1.3px solid #dbdbdb;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+  }
+  .designer .left .main .tab-menu-link {
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: inherit;
+    cursor: pointer;
+    height: auto;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    color: #9194a1;
+    background: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .designer .left .main .tab-menu-link:focus{
+    outline: 0;
+  }
+
+  .designer .left .main .tab-menu-link::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+  }
+  .designer .left .main .tab-menu-link.active {
+    bottom: 0px;
+    z-index: 0;
+    overflow: hidden;
+    color: #252b46;
+    background: #ffffff;
+    padding: 0px 20px;
+  }
+  .designer .left .main .tab-bar {
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .designer .left .main .tab-bar-content {
+    display: none;
+    width: 100%;
+    min-height: 10rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .designer .left .main .tab-bar-content.active {
+    display: block;
+  }
+
+  /* right div css */
+  .designer .right .container {
+    max-width: 80rem;
+    width: 100%;
+    height: auto;
+  }
+  
+  .designer .right .title {
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: inherit;
+    color: #252b46;
+  }
+  
+  .designer .right .main .tab {
+    width: 100%;
+    height: auto;
+  }
+  .designer .right .main .tab-menu {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+            align-items: center;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-bottom: 1.3px solid #dbdbdb;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+  }
+  .designer .right .main .tab-menu-link {
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: inherit;
+    cursor: pointer;
+    height: auto;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    color: #9194a1;
+    background: #ffffff;
+    transition: all 0.3s ease;
+  }
+
+  .designer .right .main .tab-menu-link:focus{
+    outline: 0;
+  }
+
+  .designer .right .main .tab-menu-link::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+  }
+  .designer .right .main .tab-menu-link.active {
+    bottom: 0px;
+    z-index: 0;
+    overflow: hidden;
+    color: #252b46;
+    background: #ffffff;
+    padding: 0px 20px;
+  }
+  .designer .right .main .tab-bar {
+    overflow: hidden;
+    background: #ffffff;
+  }
+  .designer .right .main .tab-bar-content {
+    display: none;
+    width: 100%;
+    min-height: 10rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .designer .right .main .tab-bar-content.active {
+    display: block;
+  }
+
+
+ ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #9c9c9e;
+    border-radius: 10px; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #656568; 
+    cursor: pointer;
+  }

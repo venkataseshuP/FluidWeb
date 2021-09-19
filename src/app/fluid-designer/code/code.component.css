@@ -1,0 +1,14 @@
+.textarea-class{
+    width: 100%;
+    overflow: auto;
+    font-size: 12px;
+    z-index: 1;
+    height: calc(100% - 77px);
+    position: fixed;
+    line-height: 20px;
+}
+
+.comment{
+    font-size: 12px;
+    color: #8BC34A;
+}

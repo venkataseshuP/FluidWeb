@@ -1,0 +1,13 @@
+<div (click)="dataService.tabs[dataService.activeTabId]['activeelement'] = i;$event.stopPropagation()"
+draggable="true" (dragstart)="dragStart(i,element)"  (drop)="drop(i)"
+    (dragend)="dragEnd(element)" (dragover)="dragOver = i" (dragleave)="dragOver = '-1'"
+    [ngClass]="element.width==undefined ? 'col-5 col-sm-5 col-md-5 ' : 'col-'+element.width+' col-sm-'+element.width+' col-md-'+element.width+' '+(dataService.tabs[dataService.activeTabId]['activeelement'] == i?'active':'notactive')+' '+(dragOver == i?'dragOver':'nothing')">
+    <label>
+        <!-- <input *ngIf="!element.label" [type]="text" readonly> -->
+        <span class="mandatoryspan" *ngIf="element.mandatory && element.label">*</span>
+        <input
+            [ngStyle]="{'text-align':element['label-align'],'font-size':element['font-size']+'px','color':element['color'],'font-style':element['font-style'],'font-weight':element['font-weight']}" *ngIf="element.label" type="text"
+            placeholder="enter the label" [value]="element.name" [(ngModel)]="element.name"
+            (focus)="dataService.tabs[dataService.activeTabId]['activeelement'] = i">
+    </label>
+</div>

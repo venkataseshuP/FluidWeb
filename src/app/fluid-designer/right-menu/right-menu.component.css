@@ -1,0 +1,232 @@
+.component{
+    border-bottom: 1px solid lightgray;
+}
+
+.multilable{
+    display: flex;
+}
+
+.title{
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 10px 0px 10px;
+}
+
+.title .left{
+
+    height: 100%;
+    width: 80%;
+}
+
+.right{
+    margin-top: 4px;
+    
+}
+
+.title.right{
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.component .settings{
+    display: flex;
+    width: 100%;
+    height: 40px;
+}
+
+.component .settings .left{
+
+    height: 100%;
+    width: 80%;
+}
+
+.component .settings .left input[type='color']{
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    margin: 10px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    border-color: transparent;
+}
+
+.component .settings .right input[type='color']{
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    margin: 10px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    border-color: transparent;
+}
+
+.component .multilable{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.component .multilable .left{
+
+    height: 100%;
+    width: 80%;
+}
+
+.component .multilable .leftsmall{
+
+    height: 100%;
+    width: 25%;
+}
+
+.component .multilable .left input[type='color']{
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    margin: 10px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    border-color: transparent;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: 1px solid gray;
+
+}
+
+.component .settings .left input[type='text']{
+    border: none;
+    width: 30%;
+    padding: 0;
+    background: transparent;
+    font-size: 12px;
+    margin: 10px 0px;
+    box-shadow: none;
+}
+
+.component .settings .left input[type='number']{
+    border: none;
+    width: 30%;
+    padding: 0;
+    background: transparent;
+    font-size: 12px;
+    margin: 10px 0px;
+    box-shadow: none;
+}
+
+.component .settings .right input[type='number']{
+    border: none;
+    width: 30%;
+    padding: 0;
+    background: transparent;
+    font-size: 12px;
+    margin: 10px 0px;
+    box-shadow: none;
+}
+
+.component .settings .right{
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.component .settings .right img{
+
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 10px;
+}
+
+.component .multilable .right img{
+
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.component .multilable .right .addpropertytosvg{
+
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.input{
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    margin: 10px;
+    box-shadow: none;
+    padding: 0;
+}
+
+.full{
+    width: 100%;
+}
+
+.input:focus{
+    box-shadow: none;
+}
+
+input[type="range"]{
+    height:3px;
+    cursor: pointer;
+    
+}
+
+.subtitle{
+    font-weight: 100;
+    color: black;
+    font-size: 11px;
+    padding: 5px 10px;
+    display: flex;
+}
+
+.subtitle select{
+    width: 100%;
+    border: none;
+}
+
+.fontweightcss{
+    position: absolute;
+    top: 30%;
+    background: black;
+    color: white;
+    padding: 10px 0px;
+}
+
+.fontweightcss hr{
+    background: white;
+    margin: 10px 10px;
+}
+
+.fontweightcss .menu{
+    width: 150px;
+    padding: 5px 20px;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.fontweightcss .menu:hover{
+
+    background: white;
+    color: #4285F4;
+}
+
+
+  

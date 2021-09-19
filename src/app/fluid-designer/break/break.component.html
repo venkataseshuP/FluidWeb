@@ -1,0 +1,6 @@
+<div (click)="dataService.tabs[dataService.activeTabId]['activeelement'] = i;$event.stopPropagation()"
+draggable="true" (dragstart)="dragStart(i,element)" (drop)="drop(i)"
+    (dragend)="dragEnd(element)" (dragover)="dragOver = i" (dragleave)="dragOver = '-1'"
+    [ngClass]="'col-12 col-sm-12 col-md-12 '+(dataService.tabs[dataService.activeTabId]['activeelement'] == i?'active':'notactive')+' '+(dragOver == i?'dragOver':'nothing')">
+    <br [ngStyle]="{'margin-bottom':element['height']+'px'}">
+</div>

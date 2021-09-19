@@ -1,0 +1,30 @@
+<div id = "designer" class="container" (dragover)="dragOverElement($event)"  (drop) ="drop(-1)"
+(click)="dataService.tabs[dataService.activeTabId]['activeelement'] = '-1';dragOver = '-1'">
+    <div class="row">
+        <ng-container *ngFor=" let element of dataService.tabs[dataService.activeTabId]['elements']; let i = index">
+            <ng-container *ngIf="element.type == 'F1'">
+                <app-textbox [element]="element" [i]="i" style="width: 100%;"></app-textbox>
+            </ng-container>
+            <ng-container *ngIf="element.type == 'H2'">
+                <app-label [element]="element" [i]="i" style="width: 100%;"></app-label>
+            </ng-container>
+            <ng-container *ngIf="element.type == 'H3'">
+                <app-line [element]="element" [i]="i" style="width: 100%;"></app-line>
+            </ng-container>
+            <ng-container *ngIf="element.type == 'H4'">
+                <app-break [element]="element" [i]="i" style="width: 100%;"></app-break>
+            </ng-container>
+            <ng-container *ngIf="element.type == 'H5'">
+                    <app-space [element]="element" [i]="i" style="width: 100%;"></app-space>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+<ng-container *ngIf="addcustomcss('designer',dataService.tabs[dataService.activeTabId]['customcss'])">
+
+</ng-container>
+<div class="dropherecss" 
+    (click)="dataService.tabs[dataService.activeTabId]['activeelement'] = '-1';dragOver = '-1'"
+    [ngStyle]="{'opacity':(dragOver == '-2')?1:.5}" (dragenter)="dragOver = '-2'"  (dragover)="dragOverElement($event)"  (drop) ="drop(-1)">
+    <img src="../../../assets/images/fluiddesigner/drophere.svg">
+</div>

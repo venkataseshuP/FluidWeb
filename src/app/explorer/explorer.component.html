@@ -1,0 +1,347 @@
+<div class="loading" *ngIf="dataService.load"></div>
+<div class="surface" onselectstart='return false' click="stopemitting()">
+  <div class="mock-browser">
+    <!-- tabs html -->
+    <div class="chrome-tabs" style="--tab-content-margin: 9px">
+      <div class="chrome-tabs-content">
+        <ng-container *ngFor="let tab of dataService.tabs ; let i = index">
+          <!-- active tab html -->
+          <div class="chrome-tab" [title]="tab.desc" (click)="openTab(i)" active *ngIf="i == dataService.activeTabId"
+            [ngStyle]="{'width':(tabWidth)+'px','transform':'translate3d('+i*(tabWidth-23)+'px, 0, 0)'}"
+            draggable="true" (dragstart)="dragStart(i)" (dragend)="dragEnd(i)" (dragenter)="dragEnter(i)"
+            (drop)="dragDrop(i)" (dragover)="dragOver($event)">
+            <div class="chrome-tab-dividers"></div>
+            <div class="chrome-tab-background">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <symbol id="chrome-tab-geometry-left" viewBox="0 0 214 36">
+                    <path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z" />
+                  </symbol>
+                  <symbol id="chrome-tab-geometry-right" viewBox="0 0 214 36">
+                    <use xlink:href="#chrome-tab-geometry-left" />
+                  </symbol>
+                  <clipPath id="crop">
+                    <rect class="mask" width="100%" height="100%" x="0" />
+                  </clipPath>
+                </defs><svg width="52%" height="100%">
+                  <use xlink:href="#chrome-tab-geometry-left" width="214" height="36" class="chrome-tab-geometry" />
+                </svg>
+                <g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0">
+                    <use xlink:href="#chrome-tab-geometry-right" width="214" height="36" class="chrome-tab-geometry" />
+                  </svg></g>
+              </svg>
+            </div>
+            <div class="chrome-tab-content">
+              <div class="chrome-tab-favicon-active" [ngClass]="dataService.tabType[tab.type]"></div>
+              <div class="chrome-tab-title">{{tab.desc}}</div>
+              <div class="chrome-tab-drag-handle"></div>
+              <div class="chrome-tab-close" (click)="closeTab(i)"></div>
+            </div>
+          </div>
+          <!-- non active tab html -->
+          <div class="chrome-tab" [title]="tab.desc" (click)="openTab(i)" *ngIf="i != dataService.activeTabId"
+            [ngStyle]="{'width':(tabWidth)+'px','transform':'translate3d('+i*(tabWidth-23)+'px, 0, 0)'}"
+            draggable="true" (dragstart)="dragStart(i)" (dragend)="dragEnd(i)" (dragenter)="dragEnter(i)"
+            (drop)="dragDrop(i)" (dragover)="dragOver($event)">
+            <div class="chrome-tab-dividers"></div>
+            <div class="chrome-tab-background">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <symbol id="chrome-tab-geometry-left" viewBox="0 0 214 36">
+                    <path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z" />
+                  </symbol>
+                  <symbol id="chrome-tab-geometry-right" viewBox="0 0 214 36">
+                    <use xlink:href="#chrome-tab-geometry-left" />
+                  </symbol>
+                  <clipPath id="crop">
+                    <rect class="mask" width="100%" height="100%" x="0" />
+                  </clipPath>
+                </defs><svg width="52%" height="100%">
+                  <use xlink:href="#chrome-tab-geometry-left" width="214" height="36" class="chrome-tab-geometry" />
+                </svg>
+                <g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0">
+                    <use xlink:href="#chrome-tab-geometry-right" width="214" height="36" class="chrome-tab-geometry" />
+                  </svg></g>
+              </svg>
+            </div>
+            <div class="chrome-tab-content">
+              <div class="chrome-tab-favicon" [ngClass]="dataService.tabType[tab.type]"></div>
+              <div class="chrome-tab-title">{{tab.desc}}</div>
+              <div class="chrome-tab-drag-handle"></div>
+              <div class="chrome-tab-close" (click)="closeTab(i)"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="chrome-tabs-bottom-bar"></div>
+    </div>
+    <!-- tabs html end -->
+    <!-- search bar and buttons -->
+    <div id="main-bar">
+      <div class="button" id="back-button" title="Click to go back, don't hold for history"
+        [attr.disabled]="{'disabled':dataService.tabs[dataService.activeTabId]['tabPrev'] == false}" data-ripple>
+        <svg viewBox="0 0 16 16">
+          <path d="M16,7H3.8l5.6-5.6L8,0L0,8l8,8l1.4-1.4L3.8,9H16V7z" />
+        </svg>
+      </div>
+      <div class="button" id="forward-button" title="Click to go forward, don't hold for history"
+        [attr.disabled]="{'disabled':dataService.tabs[dataService.activeTabId]['tabNext'] == false}" data-ripple>
+        <svg viewBox="0 0 16 16">
+          <path d="M8,0L6.6,1.4L12.2,7H0v2h12.2l-5.6,5.6L8,16l8-8L8,0z" />
+        </svg>
+      </div>
+      <div class="button" id="refresh" title="Reload page" data-ripple (click)="refreshTab()">
+        <svg viewBox="0 0 16 16">
+          <path d="M13.6,2.3C12.2,0.9,10.2,0,8,0C3.6,0,0,3.6,0,8s3.6,8,8,8c3.7,0,6.8-2.5,7.7-6h-2.1c-0.8,2.3-3,4-5.6,4c-3.3,0-6-2.7-6-6
+        s2.7-6,6-6c1.7,0,3.1,0.7,4.2,1.8L9,7h7V0L13.6,2.3z" />
+        </svg>
+      </div>
+      <div id="address-bar" class="-selected">
+        <div (click)="lockTab()" id="info" class="address-bar-button -show-special" data-ripple>
+          <img src="../../assets/images/tabs/lock.svg" alt=""
+            [ngClass]="{'https':true,'hide':dataService.tabs[dataService.activeTabId]['locked'] == true}">
+          <img src="../../assets/images/tabs/unlock.svg" alt=""
+            [ngClass]="{'https':true,'hide':dataService.tabs[dataService.activeTabId]['locked'] == false}">
+
+          <!-- <svg viewBox="0 0 16 16" [ngClass]="{'error':true,'hide':tabs[dataService.activeTabId]['error'] == false}">
+            <path d="M7.2,10.4h1.6V12H7.2V10.4z M7.2,4h1.6v4.8H7.2V4z M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8c4.4,0,8-3.6,8-8S12.4,0,8,0z M8,14.4
+        c-3.5,0-6.4-2.9-6.4-6.4S4.5,1.6,8,1.6s6.4,2.9,6.4,6.4S11.5,14.4,8,14.4z" />
+          </svg> -->
+          <div class="special">{{dataService.tabType[dataService.tabs[dataService.activeTabId]['type']]}}</div>
+        </div>
+        <!-- address bar  -->
+        <div id="address">
+          <input type="text" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
+        </div>
+        <!-- address bar end -->
+        <div id="bookmark" class="address-bar-button" data-ripple
+          *ngIf="dataService.tabs[dataService.activeTabId]['path'] != '/Home'">
+          <svg viewBox="0 0 16 16" (click)="setbookmark()" *ngIf="!getBookmark()" [ngClass]="{'not-favourite':true}">
+            <path d="M16,5.8l-5.8-0.5L8,0L5.8,5.3L0,5.8l4.4,3.8l-1.3,5.6l4.9-3l4.9,3l-1.3-5.6L16,5.8z M8,10.7l-3,1.8l0.8-3.4L3.1,6.8l3.5-0.3
+        L8,3.3l1.4,3.2l3.5,0.3l-2.7,2.3l0.8,3.4L8,10.7z" />
+          </svg>
+          <svg viewBox="0 0 16 16" (click)="setbookmark()" *ngIf="getBookmark()" [ngClass]="{'favourite':true}">
+            <path d="M8,12.2l4.9,3l-1.3-5.6L16,5.8l-5.8-0.5L8,0L5.8,5.3L0,5.8l4.4,3.8l-1.3,5.6L8,12.2z" />
+          </svg>
+        </div>
+      </div>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] !='1'">
+        <div class="button extension" extension-id="1" title="Previous"
+          [attr.data-disabled]="{'data-disabled':dataService.tabs[dataService.activeTabId]['prev'] == false}"
+          data-ripple>
+          <img src="../../assets/images/tabs/prev.svg" alt="">
+        </div>
+        <div class="button extension" extension-id="2" title="Next"
+          [attr.data-disabled]="{'data-disabled':dataService.tabs[dataService.activeTabId]['next'] == false}"
+          data-ripple>
+          <img src="../../assets/images/tabs/next.svg" alt="">
+        </div>
+        <div class="button extension" extension-id="3" title="Save" *ngIf="!dataService.tabs[dataService.activeTabId]['save']"
+          [attr.data-disabled]="{'data-disabled':dataService.tabs[dataService.activeTabId]['save'] == false}"
+          data-ripple>
+          <img src="../../assets/images/tabs/save.svg" alt="">
+        </div>
+        <div class="button extension" extension-id="3" title="Save" (click)="saveTab()" *ngIf="dataService.tabs[dataService.activeTabId]['save']"
+          data-ripple>
+          <img src="../../assets/images/tabs/save.svg" alt="">
+        </div>
+        <div class="seperator"></div>
+      </ng-container>
+      <div class="button extension user" extension-id="3" title="user" (click)="SignOut()" data-ripple>
+       {{getUserFirstLetter()}}
+      </div>
+      <div class="button" id="refresh" title="Customise and Control Google Chrome" data-ripple>
+        <svg viewBox="0 0 16 16">
+          <path d="M8,4c1.1,0,2-0.9,2-2S9.1,0,8,0S6,0.9,6,2S6.9,4,8,4z M8,6C6.9,6,6,6.9,6,8s0.9,2,2,2s2-0.9,2-2S9.1,6,8,6z M8,12
+        c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S9.1,12,8,12z" />
+        </svg>
+      </div>
+    </div>
+    <!-- search bar and buttons end-->
+    <!-- explorer html -->
+    <div class="tabBody">
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '1'">
+        <div class="explorer">
+          <div class="leftMenu">
+            <ul class="directory-list">
+              <ng-container
+                *ngTemplateOutlet="recursiveListTmpl; context:{ list: dataService.explorerMenu[0].children }">
+              </ng-container>
+            </ul>
+          </div>
+          <div class="rightMenu">
+            <!-- menu bar -->
+            <div class="menubar">
+              <div class="left">
+                <div class="menu" (click)="setProperty('explorer',true)"
+                  [ngClass]="{'menu':!dataService.tabs[dataService.activeTabId]['explorer'],'menuactive':dataService.tabs[dataService.activeTabId]['explorer']}">
+                  Explorer
+                </div>
+                <div class="menu" (click)="setProperty('explorer',false)"
+                  [ngClass]="{'menu':dataService.tabs[dataService.activeTabId]['explorer'],'menuactive':!dataService.tabs[dataService.activeTabId]['explorer']}">
+                  Favourites
+                </div>
+                <div class="menu" class="menu filesCount" *ngIf="dataService.tabs[dataService.activeTabId]['explorer']">
+                  Files : {{getItems().length}}
+                </div>
+              </div>
+              <div class="right">
+                <div class="menu" (click)="setProperty('list',false)"
+                  [ngClass]="{'menuitem':dataService.tabs[dataService.activeTabId]['list'],'menuitemactive':!dataService.tabs[dataService.activeTabId]['list']}">
+                  <img src="../../assets/images/explorer/menu.svg">
+                </div>
+                <div class="menu" (click)="setProperty('list',true)"
+                  [ngClass]="{'menuitem':!dataService.tabs[dataService.activeTabId]['list'],'menuitemactive':dataService.tabs[dataService.activeTabId]['list']}">
+                  <img src="../../assets/images/explorer/line item.svg">
+                </div>
+              </div>
+            </div>
+            <!-- menu bar end -->
+            <div *ngIf="dataService.tabs[dataService.activeTabId]['explorer']" class="rightMenuBody">
+              <div *ngIf="!dataService.tabs[dataService.activeTabId]['list']" class="parent"
+                (contextmenu)="openContextmenu($event)">
+                <ng-container *ngFor="let exploreritem of getItems()">
+                  <div class='child inline-block-child'
+                    [ngClass]="{'activechild':dataService.selectedItemDetails.id == exploreritem.id }"
+                    (click)="selectchild(exploreritem)" (contextmenu)="openitemContextmenu($event,exploreritem,true)"
+                    (dblclick)="openInSameTab(exploreritem)">
+                    <img src="../../assets/images/explorer/assets.svg" *ngIf="exploreritem.type == '0'">
+                    <img src="../../assets/images/menu/folderopen.svg"
+                      *ngIf="exploreritem.type == '1' && exploreritem.children.length>0">
+                    <img src="../../assets/images/menu/folderclose.svg"
+                      *ngIf="exploreritem.type == '1' && exploreritem.children.length ==0">
+                    <img src="../../assets/images/explorer/designer.svg" *ngIf="exploreritem.type == '2'">
+                    <div class="title">
+                      <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
+                        (blur)="changeName(exploreritem,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <div *ngIf="dataService.tabs[dataService.activeTabId]['list']">
+
+              </div>
+            </div>
+            <div *ngIf="!dataService.tabs[dataService.activeTabId]['explorer']" class="rightMenuBody">
+              <div *ngIf="!dataService.tabs[dataService.activeTabId]['list']" class="parent">
+                <ng-container *ngTemplateOutlet="favList; context:{ list: dataService.explorerMenu }"></ng-container>
+              </div>
+              <div *ngIf="dataService.tabs[dataService.activeTabId]['list']">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '2'">
+        <app-fluid-designer #designer></app-fluid-designer>
+      </ng-container>
+    </div>
+    <!-- explorer html end -->
+  </div>
+</div>
+
+<ng-template #recursiveListTmpl let-list="list">
+  <ng-container *ngFor="let item of list">
+    <li (click)="openItem(item)"
+      [ngClass]="{'folderopen':(item.type == '1' && item.showChildren),'folderclose':(item.type == '1' && !item.showChildren)}">
+      <img src="../../assets/images/menu/folderopen.svg" *ngIf="item.type == '1' && item.children.length>0">
+      <img src="../../assets/images/menu/folderclose.svg" *ngIf="item.type == '1' && item.children.length ==0">
+      <img src="../../assets/images/explorer/designer.svg" *ngIf="item.type == '2'">
+
+      <span (dblclick)="open(item)" (contextmenu)="openitemContextmenu($event,item,false)"
+        [ngClass]="{'active':dataService.selectedItemDetails.id == item.id}">
+        {{ item.name }}</span>
+      <ul *ngIf="item.showChildren && item.children!= undefined && item.children.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: item.children }"></ng-container>
+      </ul>
+    </li>
+  </ng-container>
+</ng-template>
+
+<ng-template #favList let-list="list">
+  <ng-container *ngFor="let exploreritem of list">
+    <div *ngIf="exploreritem.favourite" class='child inline-block-child' (click)="selectchild(exploreritem)"
+      (dblclick)="open(exploreritem)" (contextmenu)="openitemContextmenu($event,exploreritem,false)">
+      <img src="../../assets/images/explorer/assets.svg" *ngIf="exploreritem.type == '0'">
+      <img src="../../assets/images/menu/folderopen.svg"
+        *ngIf="exploreritem.type == '1' && exploreritem.children.length>0">
+      <img src="../../assets/images/menu/folderclose.svg"
+        *ngIf="exploreritem.type == '1' && exploreritem.children.length ==0">
+      <img src="../../assets/images/explorer/designer.svg" *ngIf="exploreritem.type == '2'">
+      <div class="title">
+        <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
+          (blur)="changeName(exploreritem,$event.target.value)"></div>
+    </div>
+    <ng-container *ngTemplateOutlet="favList; context:{ list: exploreritem.children }"></ng-container>
+  </ng-container>
+</ng-template>
+
+<div class="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
+  [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/menu/add-folder.svg">
+    <span>New Folder</span>
+  </div>
+  <div class="contextlist">
+    <img src="../../assets/images/explorer/api.svg">
+    <span>New API</span>
+  </div>
+  <div class="contextlist" (click)="addNewTemplate();disableContextMenu()">
+    <img src="../../assets/images/explorer/Template.svg">
+    <span>New Template</span>
+  </div>
+  <div class="contextlist" (click)="addUIComponent();disableContextMenu()">
+    <img src="../../assets/images/explorer/designer.svg">
+    <span>New FTL Component</span>
+  </div>
+  <hr>
+  <div class="contextlist" (click)="refreshTab()">
+    <img src="">
+    <span>Refresh</span>
+  </div>
+  <div class="contextlist" (click)="setbookmark()"
+    *ngIf="dataService.tabs[dataService.activeTabId]['path'] != '/Home' && !getBookmark()">
+    <img src="../../assets/images/explorer/favourite.svg">
+    <span>Add Favourite</span>
+  </div>
+  <div class="contextlist" (click)="setbookmark()"
+    *ngIf="dataService.tabs[dataService.activeTabId]['path'] != '/Home' && getBookmark()">
+    <img src="../../assets/images/explorer/favourite.svg">
+    <span>Remove Favourite</span>
+  </div>
+  <hr>
+  <div class="contextlist">
+    <img src="">
+    <span>Import</span>
+  </div>
+</div>
+
+<div class="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="itemcontextmenu"
+  [ngStyle]="{'left.px': itemcontextmenuX, 'top.px': itemcontextmenuY}">
+  <div class="contextlist" (click)="openInSameTab(dataService.selectedItemDetails);disableitemContextMenu()">
+    <img src="../../assets/images/menu/openfolder.svg">
+    <span>Open</span>
+  </div>
+  <div class="contextlist" (click)="open(dataService.selectedItemDetails);disableitemContextMenu()">
+    <img src="../../assets/images/menu/openInNewTab.svg">
+    <span>Open in New Tab</span>
+  </div>
+  <ng-container *ngIf="dataService.selectedItemDetails.path !='/Home/Assets'">
+    <div class="contextlist" (click)="delete(dataService.selectedItemDetails);disableitemContextMenu()"
+      *ngIf="dataService.tabs[dataService.activeTabId]['explorer'] && explorerContextMenu">
+      <img src="../../assets/images/explorer/delete.svg">
+      <span>Delete</span>
+    </div>
+  </ng-container>
+  <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
+    *ngIf="!dataService.selectedItemDetails.favourite">
+    <img src="../../assets/images/explorer/favourite.svg">
+    <span>Add Favourite</span>
+  </div>
+  <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
+    *ngIf="dataService.selectedItemDetails.favourite">
+    <img src="../../assets/images/explorer/favourite.svg">
+    <span>Remove Favourite</span>
+  </div>
+</div>
