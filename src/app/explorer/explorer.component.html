@@ -90,6 +90,10 @@
           <path d="M8,0L6.6,1.4L12.2,7H0v2h12.2l-5.6,5.6L8,16l8-8L8,0z" />
         </svg>
       </div>
+      <div class="button" id="home-button" title="Click to go home" (click)="openHome()" style="font-size: x-large;"
+        data-ripple>
+        &#8962;
+      </div>
       <div class="button" id="refresh" title="Reload page" data-ripple (click)="refreshTab()">
         <svg viewBox="0 0 16 16">
           <path d="M13.6,2.3C12.2,0.9,10.2,0,8,0C3.6,0,0,3.6,0,8s3.6,8,8,8c3.7,0,6.8-2.5,7.7-6h-2.1c-0.8,2.3-3,4-5.6,4c-3.3,0-6-2.7-6-6
@@ -111,7 +115,7 @@
         </div>
         <!-- address bar  -->
         <div id="address">
-          <input type="text" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
+          <input type="text" disabled="true" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
         </div>
         <!-- address bar end -->
         <div id="bookmark" class="address-bar-button" data-ripple

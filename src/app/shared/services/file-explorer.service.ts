@@ -46,9 +46,16 @@ export class FileExplorerService {
   }
 
   deleteFile(fileDetails:any){
-    let url:any = this.httpCommonservice.baseurl+"/"+this.authService.activeProjectId+'/file/'+fileDetails.id;
+    let url:any = this.httpCommonservice.baseurl+"/"+this.authService.activeProjectId+'/file/'+fileDetails.id.itemId;
     return this.httpCommonservice.httpdelete(url).subscribe( ()=>{
       this.refreshExplorerMenu();
+    });
+  }
+
+  setFilePath(itemId: string){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/path/'+itemId;
+    this.httpCommonservice.httpGet(url).subscribe(data=>{
+      this.parentDataService.tabs[this.parentDataService.activeTabId]['path'] = data['path'];
     });
   }
 

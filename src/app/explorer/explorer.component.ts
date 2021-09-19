@@ -191,25 +191,6 @@ export class ExplorerComponent implements OnInit {
 
   }
 
-  getItems1(){
-    let items;
-    let activepath = this.dataService.tabs[this.dataService.activeTabId].path;
-    let pathsArray = activepath.split("/");
-
-    items = this.dataService.explorerMenu[0];
-    for(let i = 1;i<pathsArray.length;i++){
-      if(pathsArray[i] == items['name']){
-        items = items['children'];
-      }else{
-        for(let j =0;items != undefined && j<items.length;j++){
-          if(pathsArray[i] == items[j]['name']){
-            items = items[j].children;
-          }
-        }
-      }
-    }
-    return items;
-  }
   getItems(){
     let itemId  = this.dataService.tabs[this.dataService.activeTabId].id;
     let details = this.getFileChildrens(this.dataService.explorerMenu,itemId);
@@ -262,13 +243,14 @@ export class ExplorerComponent implements OnInit {
   });
   }
 
-  open(itemDetails){
+  async open(itemDetails){
     event.stopPropagation();
       this.dataService.selectedItemDetails = itemDetails;
-      if(this.checkTabs(itemDetails.id)){
+      if(this.checkTabs(itemDetails.id.itemId)){
         return;
       }else{
-        this.addNewTab(itemDetails.path,itemDetails.name,itemDetails.name,itemDetails.type,itemDetails.id);
+        await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
+        await this.addNewTab(itemDetails.path,itemDetails.name,itemDetails.name,itemDetails.type,itemDetails.id.itemId);
       }
 
   }
@@ -443,13 +425,13 @@ export class ExplorerComponent implements OnInit {
       this.authService.saveExplorerMenu();
   }
 
-  openInSameTab(itemDetails){
+  async openInSameTab(itemDetails){
 
     let tabjson = {
       "desc":itemDetails.name,
       "type":itemDetails.type,
       "path":itemDetails.path,
-      "id":itemDetails.id,
+      "id":itemDetails.id.itemId,
       "tabPrev":false,
       "tabNext":false,
       "prev":false,
@@ -464,11 +446,12 @@ export class ExplorerComponent implements OnInit {
     }
 
     this.dataService.tabs[this.dataService.activeTabId] = tabjson;
+    await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
     this.refreshContent();
   }
 
   delete(itemdetails){
-    this.deleteTabWithPath(itemdetails.id);
+    this.deleteTabWithPath(itemdetails.id.itemId);
     this.fileExplorerService.deleteFile(itemdetails);
   }
 
@@ -530,6 +513,22 @@ export class ExplorerComponent implements OnInit {
 
   refreshTab(){
     this.fileExplorerService.refreshExplorerMenu();
+  }
+
+  setFilePath(itemId: string){
+    this.fileExplorerService.setFilePath(itemId);
+  }
+
+  openHome(){
+    let itemDetails = {
+      "name": "Home",
+      "type": "1",
+      "path": "/Home",
+      "id":{
+        "itemId":"FE_0000001",
+      }
+    }
+    this.openInSameTab(itemDetails);
   }
 
 }
