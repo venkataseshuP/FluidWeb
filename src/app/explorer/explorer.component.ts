@@ -77,7 +77,6 @@ export class ExplorerComponent implements OnInit {
       this.openTab(this.dataService.activeTabId-1);
     }
     this.dataService.tabs.splice(i,1);
-    this.authService.savedata();
   }
 
   dragEnter(Id){
@@ -425,29 +424,33 @@ export class ExplorerComponent implements OnInit {
       this.authService.saveExplorerMenu();
   }
 
-  async openInSameTab(itemDetails){
+  async openInSameTab(itemDetails) {
 
-    let tabjson = {
-      "desc":itemDetails.name,
-      "type":itemDetails.type,
-      "path":itemDetails.path,
-      "id":itemDetails.id.itemId,
-      "tabPrev":false,
-      "tabNext":false,
-      "prev":false,
-      "next":false,
-      "save":false,
-      "bookmark":false,
-      "locked":false,
-      "error":false,
-      "tabDesc":itemDetails.name,
-      "explorer":true,
-      "list":false,
+    if (this.checkTabs(itemDetails.id.itemId)) {
+      return;
+    } else {
+      let tabjson = {
+        "desc": itemDetails.name,
+        "type": itemDetails.type,
+        "path": itemDetails.path,
+        "id": itemDetails.id.itemId,
+        "tabPrev": false,
+        "tabNext": false,
+        "prev": false,
+        "next": false,
+        "save": false,
+        "bookmark": false,
+        "locked": false,
+        "error": false,
+        "tabDesc": itemDetails.name,
+        "explorer": true,
+        "list": false,
+      }
+
+      this.dataService.tabs[this.dataService.activeTabId] = tabjson;
+      await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
+      this.refreshContent();
     }
-
-    this.dataService.tabs[this.dataService.activeTabId] = tabjson;
-    await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
-    this.refreshContent();
   }
 
   delete(itemdetails){
