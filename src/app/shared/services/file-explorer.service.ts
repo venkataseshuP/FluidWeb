@@ -59,4 +59,9 @@ export class FileExplorerService {
     });
   }
 
+  getParentDetails(itemId: string){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/parent/'+itemId;
+    return this.httpCommonservice.httpGet(url);
+  }
+
 }

@@ -534,4 +534,13 @@ export class ExplorerComponent implements OnInit {
     this.openInSameTab(itemDetails);
   }
 
+  gotoParent(){
+    this.fileExplorerService.getParentDetails(this.dataService.tabs[this.dataService.activeTabId].id).subscribe(data=>{
+      if(data){
+        this.openInSameTab(data);
+      }
+    });
+    this.contextmenu = false;
+  }
+
 }
