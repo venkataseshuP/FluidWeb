@@ -209,12 +209,7 @@
                     [ngClass]="{'activechild':dataService.selectedItemDetails.id == exploreritem.id }"
                     (click)="selectchild(exploreritem)" (contextmenu)="openitemContextmenu($event,exploreritem,true)"
                     (dblclick)="openInSameTab(exploreritem)">
-                    <img src="../../assets/images/explorer/assets.svg" *ngIf="exploreritem.type == '0'">
-                    <img src="../../assets/images/menu/folderopen.svg"
-                      *ngIf="exploreritem.type == '1' && exploreritem.children.length>0">
-                    <img src="../../assets/images/menu/folderclose.svg"
-                      *ngIf="exploreritem.type == '1' && exploreritem.children.length ==0">
-                    <img src="../../assets/images/explorer/designer.svg" *ngIf="exploreritem.type == '2'">
+                    <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem }"> </ng-container>
                     <div class="title">
                       <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
                         (blur)="changeName(exploreritem,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
@@ -249,10 +244,7 @@
   <ng-container *ngFor="let item of list">
     <li (click)="openItem(item)"
       [ngClass]="{'folderopen':(item.type == '1' && item.showChildren),'folderclose':(item.type == '1' && !item.showChildren)}">
-      <img src="../../assets/images/menu/folderopen.svg" *ngIf="item.type == '1' && item.children.length>0">
-      <img src="../../assets/images/menu/folderclose.svg" *ngIf="item.type == '1' && item.children.length ==0">
-      <img src="../../assets/images/explorer/designer.svg" *ngIf="item.type == '2'">
-
+      <ng-container *ngTemplateOutlet="iconImg; context:{ list: item }"> </ng-container>
       <span (dblclick)="open(item)" (contextmenu)="openitemContextmenu($event,item,false)"
         [ngClass]="{'active':dataService.selectedItemDetails.id == item.id}">
         {{ item.name }}</span>
@@ -267,18 +259,22 @@
   <ng-container *ngFor="let exploreritem of list">
     <div *ngIf="exploreritem.favourite" class='child inline-block-child' (click)="selectchild(exploreritem)"
       (dblclick)="open(exploreritem)" (contextmenu)="openitemContextmenu($event,exploreritem,false)">
-      <img src="../../assets/images/explorer/assets.svg" *ngIf="exploreritem.type == '0'">
-      <img src="../../assets/images/menu/folderopen.svg"
-        *ngIf="exploreritem.type == '1' && exploreritem.children.length>0">
-      <img src="../../assets/images/menu/folderclose.svg"
-        *ngIf="exploreritem.type == '1' && exploreritem.children.length ==0">
-      <img src="../../assets/images/explorer/designer.svg" *ngIf="exploreritem.type == '2'">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem }"> </ng-container>
       <div class="title">
         <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
-          (blur)="changeName(exploreritem,$event.target.value)"></div>
+          (blur)="changeName(exploreritem,$event.target.value)">
+      </div>
     </div>
     <ng-container *ngTemplateOutlet="favList; context:{ list: exploreritem.children }"></ng-container>
   </ng-container>
+</ng-template>
+
+<ng-template #iconImg let-list="list">
+      <img src="../../assets/images/explorer/assets.svg" *ngIf="list.type == '0'">
+      <img src="../../assets/images/menu/folderopen.svg" *ngIf="list.type == '1' && list.children.length>0">
+      <img src="../../assets/images/menu/folderclose.svg" *ngIf="list.type == '1' && list.children.length ==0">
+      <img src="../../assets/images/explorer/designer.svg" *ngIf="list.type == '2'">
+      <img src="../../assets/images/explorer/swagger.svg" *ngIf="list.type == '4'">
 </ng-template>
 
 <div class="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
@@ -298,6 +294,10 @@
   <div class="contextlist" (click)="addUIComponent();disableContextMenu()">
     <img src="../../assets/images/explorer/designer.svg">
     <span>New FTL Component</span>
+  </div>
+  <div class="contextlist" (click)="addSwagger();disableContextMenu()">
+    <img src="../../assets/images/explorer/swagger.svg">
+    <span>New Swagger</span>
   </div>
   <hr>
   <div class="contextlist" (click)="refreshTab()">

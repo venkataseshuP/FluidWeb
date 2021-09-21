@@ -322,6 +322,18 @@ export class ExplorerComponent implements OnInit {
     this.fileExplorerService.createFile(fileDetails);
   }
 
+  addSwagger(){
+    let name = "NewSwagger"+this.getNewFolderCount("NewSwagger");
+    let fileDetails = {
+      name : name,
+      type :"4",
+      parentId:this.dataService.tabs[this.dataService.activeTabId].id,
+      showChildren:false,
+      children:[]
+    }
+    this.fileExplorerService.createFile(fileDetails);
+  }
+
   addNewTemplate(){
 
     let name = "NewTemplate"+this.getNewFolderCount("NewTemplate");
@@ -343,7 +355,7 @@ export class ExplorerComponent implements OnInit {
     let name = "New FTL"+this.getNewFolderCount("New FTL")+".ftl";
     let fileDetails = {
       name : name,
-      type :"2",
+      type :"3",
       id:this.getId(),
       parentId:this.dataService.tabs[this.dataService.activeTabId].id,
       showChildren:false,
