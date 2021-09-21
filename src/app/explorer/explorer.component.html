@@ -277,7 +277,7 @@
       <img src="../../assets/images/explorer/swagger.svg" *ngIf="list.type == '4'">
 </ng-template>
 
-<div class="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
+<div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
   [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
   <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
     <img src="../../assets/images/menu/add-folder.svg">

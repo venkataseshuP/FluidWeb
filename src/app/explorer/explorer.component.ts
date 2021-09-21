@@ -139,9 +139,22 @@ export class ExplorerComponent implements OnInit {
   openContextmenu(event){
     event.preventDefault();
     this.disableitemContextMenu();
-    this.contextmenuX = event.clientX
-    this.contextmenuY = event.clientY
+    this.contextmenuX = event.clientX;
+    this.contextmenuY = event.clientY;
     this.contextmenu = true;
+    setTimeout(()=>{
+      let element = document.getElementById("contextmenu");
+      let width = window.screen.width;
+      let height = window.screen.height;
+      let elementheight = element.offsetHeight;
+      let elementwidth = element.offsetWidth;
+      if(this.contextmenuX+elementwidth +10 >width){
+        this.contextmenuX = event.clientX-elementwidth-10;
+      }
+      if(this.contextmenuY+elementheight +10 >height){
+        this.contextmenuY = event.clientY-elementheight;
+      }
+    },100);
   }
 
   disableContextMenu() {
