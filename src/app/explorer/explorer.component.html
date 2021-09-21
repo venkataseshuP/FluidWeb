@@ -235,6 +235,9 @@
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '2'">
         <app-fluid-designer #designer></app-fluid-designer>
       </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '4'">
+        <app-swaggereditor #swaggerEditor></app-swaggereditor>
+      </ng-container>
     </div>
     <!-- explorer html end -->
   </div>

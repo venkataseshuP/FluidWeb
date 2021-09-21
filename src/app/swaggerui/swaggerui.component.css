@@ -1,0 +1,7 @@
+.swaggerui{
+  position: absolute;
+    height: 88%;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}

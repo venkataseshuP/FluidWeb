@@ -27,6 +27,8 @@
     "ng2-ace-editor": "^0.3.9",
     "ngx-device-detector": "^2.0.0",
     "rxjs": "~6.5.5",
+    "swagger-editor-dist": "^3.18.2",
+    "swagger-ui-dist": "^3.52.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

@@ -148,10 +148,10 @@ export class ExplorerComponent implements OnInit {
       let height = window.screen.height;
       let elementheight = element.offsetHeight;
       let elementwidth = element.offsetWidth;
-      if(this.contextmenuX+elementwidth +10 >width){
-        this.contextmenuX = event.clientX-elementwidth-10;
+      if(this.contextmenuX+elementwidth >width){
+        this.contextmenuX = event.clientX-elementwidth;
       }
-      if(this.contextmenuY+elementheight +10 >height){
+      if(this.contextmenuY+elementheight >height){
         this.contextmenuY = event.clientY-elementheight;
       }
     },100);

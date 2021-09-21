@@ -24,10 +24,17 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/swagger-ui-dist/swagger-ui.css",
+              "node_modules/swagger-editor-dist/swagger-editor.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/swagger-editor-dist/swagger-editor-bundle.js",
+              "node_modules/swagger-editor-dist/swagger-editor-standalone-preset.js",
+              "node_modules/swagger-ui-dist/swagger-ui-bundle.js",
+              "node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,8 +98,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           }
         },
         "lint": {
