@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SwaggeruiComponent } from './swaggerui/swaggerui.component';
 import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component';
 import { AppsComponent } from './apps/apps.component';
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 
 
 
@@ -38,6 +39,9 @@ import { AppsComponent } from './apps/apps.component';
     AppsComponent
   ],
   imports: [
+    BackButtonDisableModule.forRoot({
+      preserveScrollPosition: true
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

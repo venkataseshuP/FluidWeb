@@ -26,7 +26,7 @@ export class ExplorerComponent implements OnInit {
     public dataService:ParentDataService,
     public authService:AuthService,
     public router:Router,
-    public fileExplorerService:FileExplorerService
+    public fileExplorerService:FileExplorerService,
     ) {
     this.fileExplorerService.refreshExplorerMenu();
     this.refreshExplorer();
@@ -571,5 +571,7 @@ export class ExplorerComponent implements OnInit {
     });
     this.contextmenu = false;
   }
+
+  
 
 }
