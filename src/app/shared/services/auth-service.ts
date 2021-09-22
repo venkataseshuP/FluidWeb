@@ -48,7 +48,7 @@ export class AuthService {
     this.dataService.load = true;
     return await this.afAuth.signInWithEmailAndPassword(email, password)
       .then(async (result) => {
-          await this.getUserProperties(result.user);
+          // await this.getUserProperties(result.user);
           await this.ngZone.run(() => {
             this.router.navigate(['home']);
           });
@@ -106,7 +106,7 @@ export class AuthService {
     .then(async (result) => {
       this.dataService.load = true;
       await this.SetUserData(result['user']);
-      await this.SetUserProperties(result['user']);
+      //await this.SetUserProperties(result['user']);
       this.ngZone.run(() => {
         this.router.navigate(['home']);
       })

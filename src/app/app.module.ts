@@ -20,6 +20,7 @@ import { AuthService } from './shared/services/auth-service';
 import { HttpClientModule } from '@angular/common/http';
 import { SwaggeruiComponent } from './swaggerui/swaggerui.component';
 import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component';
+import { AppsComponent } from './apps/apps.component';
 
 
 
@@ -33,7 +34,8 @@ import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component'
     ForgotPasswordComponent,
     VerifyEmailComponent,
     SwaggeruiComponent,
-    SwaggereditorComponent
+    SwaggereditorComponent,
+    AppsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
