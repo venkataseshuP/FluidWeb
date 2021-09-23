@@ -64,4 +64,9 @@ export class FileExplorerService {
     return this.httpCommonservice.httpGet(url);
   }
 
+  getFavouriteFiles(){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.userData.uid+'/'+this.authService.activeProjectId+'/files';
+    return this.httpCommonservice.httpGet(url);
+  }
+
 }

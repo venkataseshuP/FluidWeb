@@ -21,6 +21,7 @@ export class ExplorerComponent implements OnInit {
   activeDropId;
   activeItems = [];
   disableclick = false;
+  favouriteFiles:any = [];
   explorerContextMenu = false;
   constructor(
     public dataService:ParentDataService,
@@ -30,6 +31,7 @@ export class ExplorerComponent implements OnInit {
     ) {
     this.fileExplorerService.refreshExplorerMenu();
     this.refreshExplorer();
+    this.getFavouriteFiles();
   }
 
   refreshExplorer(){
@@ -273,7 +275,6 @@ export class ExplorerComponent implements OnInit {
     event.stopPropagation();
     itemDetails.showChildren = !itemDetails.showChildren;
     this.dataService.selectedItemDetails = itemDetails;
-    this.authService.saveExplorerMenu();
   }
 
  async addNewTab(path,name,desc,type,id){
@@ -401,15 +402,14 @@ export class ExplorerComponent implements OnInit {
     this.fileExplorerService.updateFile(itemDetails);
   }
 
-  getBookmark(){
-    let items = this.getParentData();
-
-    for(let i = 0;i<items.length;i++){
-      if(items[i].path == this.dataService.tabs[this.dataService.activeTabId].path){
-        return items[i].favourite;
+  getFavouriteFlagForSelectedItem(){
+    if(!this.favouriteFiles) return;
+    let selectedfile = this.dataService.selectedItemDetails;
+    for(let i = 0;i<this.favouriteFiles.length;i++){
+      if(this.favouriteFiles[i].fileDetails.id.itemId == selectedfile['id'].itemId){
+        return true;
       }
     }
-
     return false;
   }
 
@@ -422,8 +422,6 @@ export class ExplorerComponent implements OnInit {
         items[i].favourite = !items[i].favourite;
       }
     }
-
-    this.authService.saveExplorerMenu();
   }
 
   updateTab(path,value){
@@ -440,7 +438,6 @@ export class ExplorerComponent implements OnInit {
   selectchild(itemDetails){
     event.stopPropagation();
     this.dataService.selectedItemDetails = itemDetails;
-    this.authService.saveselectedItems();
   }
 
   setFavourite(){
@@ -570,6 +567,25 @@ export class ExplorerComponent implements OnInit {
       }
     });
     this.contextmenu = false;
+  }
+
+  getFavouriteFiles(){
+    this.favouriteFiles = [];
+    this.fileExplorerService.getFavouriteFiles().subscribe(data=>{
+      if(data){
+        this.favouriteFiles = data;
+      }
+    });
+  }
+
+  getBookmark(){
+    let id = this.dataService.tabs[this.dataService.activeTabId].id;
+    for(let i = 0;i<this.favouriteFiles.length;i++){
+      if(this.favouriteFiles[i].fileDetails.id.itemId == id){
+        return true;
+      }
+    }
+    return false;
   }
 
   

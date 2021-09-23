@@ -185,7 +185,7 @@
                   [ngClass]="{'menu':!dataService.tabs[dataService.activeTabId]['explorer'],'menuactive':dataService.tabs[dataService.activeTabId]['explorer']}">
                   Explorer
                 </div>
-                <div class="menu" (click)="setProperty('explorer',false)"
+                <div class="menu" (click)="setProperty('explorer',false);getFavouriteFiles()"
                   [ngClass]="{'menu':dataService.tabs[dataService.activeTabId]['explorer'],'menuactive':!dataService.tabs[dataService.activeTabId]['explorer']}">
                   Favourites
                 </div>
@@ -227,7 +227,7 @@
             </div>
             <div *ngIf="!dataService.tabs[dataService.activeTabId]['explorer']" class="rightMenuBody">
               <div *ngIf="!dataService.tabs[dataService.activeTabId]['list']" class="parent">
-                <ng-container *ngTemplateOutlet="favList; context:{ list: dataService.explorerMenu }"></ng-container>
+                <ng-container *ngTemplateOutlet="favList; context:{ list: favouriteFiles }"></ng-container>
               </div>
               <div *ngIf="dataService.tabs[dataService.activeTabId]['list']">
 
@@ -264,15 +264,14 @@
 
 <ng-template #favList let-list="list">
   <ng-container *ngFor="let exploreritem of list">
-    <div *ngIf="exploreritem.favourite" class='child inline-block-child' (click)="selectchild(exploreritem)"
-      (dblclick)="open(exploreritem)" (contextmenu)="openitemContextmenu($event,exploreritem,false)">
-      <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem }"> </ng-container>
+    <div class='child inline-block-child' (click)="selectchild(exploreritem.fileDetails)"
+      (dblclick)="open(exploreritem.fileDetails)" (contextmenu)="openitemContextmenu($event,exploreritem.fileDetails,false)">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem.fileDetails }"> </ng-container>
       <div class="title">
-        <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
-          (blur)="changeName(exploreritem,$event.target.value)">
+        <input disabled="true" type="text" id="{{exploreritem.fileDetails.name}}" value="{{exploreritem.fileDetails.name}}"
+          (blur)="changeName(exploreritem.fileDetails,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
       </div>
     </div>
-    <ng-container *ngTemplateOutlet="favList; context:{ list: exploreritem.children }"></ng-container>
   </ng-container>
 </ng-template>
 
@@ -312,12 +311,12 @@
     <span>Refresh</span>
   </div>
   <div class="contextlist" (click)="setbookmark()"
-    *ngIf="dataService.tabs[dataService.activeTabId]['path'] != '/Home' && !getBookmark()">
+    *ngIf="dataService.selectedItemDetails.path !='/Home' && !getBookmark()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Add Favourite</span>
   </div>
   <div class="contextlist" (click)="setbookmark()"
-    *ngIf="dataService.tabs[dataService.activeTabId]['path'] != '/Home' && getBookmark()">
+    *ngIf="dataService.selectedItemDetails.path !='/Home' && getBookmark()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Remove Favourite</span>
   </div>
@@ -351,12 +350,12 @@
     </div>
   </ng-container>
   <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
-    *ngIf="!dataService.selectedItemDetails.favourite">
+    *ngIf="!getFavouriteFlagForSelectedItem()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Add Favourite</span>
   </div>
   <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
-    *ngIf="dataService.selectedItemDetails.favourite">
+    *ngIf="getFavouriteFlagForSelectedItem()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Remove Favourite</span>
   </div>
