@@ -588,6 +588,22 @@ export class ExplorerComponent implements OnInit {
     return false;
   }
 
-  
+  addfavourite(){
+    this.fileExplorerService.addFavourite(this.dataService.selectedItemDetails['id'].itemId)
+    .subscribe(data=>{
+      if(data){
+        this.favouriteFiles = data;
+      }
+    });
+  }
+
+  removeFavourite(){
+    this.fileExplorerService.removeFavourite(this.dataService.selectedItemDetails['id'].itemId)
+    .subscribe(data=>{
+      if(data && data['status'] == 'success'){
+        this.getFavouriteFiles();
+      }
+    });
+  }
 
 }

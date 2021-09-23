@@ -349,12 +349,12 @@
       <span>Delete</span>
     </div>
   </ng-container>
-  <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
+  <div class="contextlist" (click)="addfavourite();disableitemContextMenu()"
     *ngIf="!getFavouriteFlagForSelectedItem()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Add Favourite</span>
   </div>
-  <div class="contextlist" (click)="setFavourite();disableitemContextMenu()"
+  <div class="contextlist" (click)="removeFavourite();disableitemContextMenu()"
     *ngIf="getFavouriteFlagForSelectedItem()">
     <img src="../../assets/images/explorer/favourite.svg">
     <span>Remove Favourite</span>

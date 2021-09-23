@@ -69,4 +69,25 @@ export class FileExplorerService {
     return this.httpCommonservice.httpGet(url);
   }
 
+  addFavourite(itemId:string){
+    let url:any = this.httpCommonservice.baseurl+'/favourite';
+    let body = {
+      id:{
+        userid:this.authService.userData.uid,
+        pid:this.authService.activeProjectId,
+        itemid:itemId,
+      }
+    }
+    return this.httpCommonservice.httpPost(url,body);
+  }
+
+  removeFavourite(itemId:string){
+    let url:any = this.httpCommonservice.baseurl
+                  +'/'+this.authService.userData.uid
+                  +'/'+this.authService.activeProjectId
+                  +'/favourite'
+                  +'/'+itemId;
+    return this.httpCommonservice.httpdelete(url);
+  }
+
 }
