@@ -578,6 +578,14 @@ export class ExplorerComponent implements OnInit {
     });
   }
 
+  isHome(){
+    if(this.dataService.tabs[this.dataService.activeTabId].path == '/Home'){
+      return true;
+    }
+
+    return false;
+  }
+
   getBookmark(){
     let id = this.dataService.tabs[this.dataService.activeTabId].id;
     for(let i = 0;i<this.favouriteFiles.length;i++){
@@ -586,6 +594,26 @@ export class ExplorerComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  addBookmark(){
+    let id = this.dataService.tabs[this.dataService.activeTabId].id;
+    this.fileExplorerService.addFavourite(id)
+    .subscribe(data=>{
+      if(data){
+        this.favouriteFiles = data;
+      }
+    });
+  }
+
+  removeBookmark(){
+    let id = this.dataService.tabs[this.dataService.activeTabId].id;
+    this.fileExplorerService.removeFavourite(id)
+    .subscribe(data=>{
+      if(data && data['status'] == 'success'){
+        this.getFavouriteFiles();
+      }
+    });
   }
 
   addfavourite(){
