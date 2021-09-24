@@ -68,7 +68,7 @@ export class AuthService {
         up and returns promise */
         await this.SendVerificationMail();
         await this.SetUserData(result.user);
-        await this.SetUserProperties(result.user);
+        //await this.SetUserProperties(result.user);
         this.dataService.load = false;
       }).catch((error) => {
         window.alert(error.message);
@@ -122,7 +122,7 @@ export class AuthService {
       .then(async (result) => {
         this.dataService.load = true;
         await this.SetUserData(result.user);
-        await this.SetUserProperties(result.user);
+        //await this.SetUserProperties(result.user);
         this.dataService.load = false;
         this.ngZone.run(() => {
           this.router.navigate(['home']);
@@ -206,6 +206,7 @@ export class AuthService {
   async SignOut() {
     this.dataService.load = true;
     return await this.afAuth.signOut().then(async () => {
+      this.dataService.refreshDataService();
       this.router.navigate(['sign-in']);
       this.dataService.load = false;
     })
