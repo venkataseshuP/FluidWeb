@@ -601,7 +601,7 @@ export class ExplorerComponent implements OnInit {
     this.fileExplorerService.addFavourite(id)
     .subscribe(data=>{
       if(data){
-        this.favouriteFiles = data;
+        this.getFavouriteFiles();
       }
     });
   }
