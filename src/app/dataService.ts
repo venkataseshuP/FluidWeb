@@ -10,7 +10,8 @@ export class ParentDataService {
   tabType = {
     "0": "",
     "1": "Folder",
-    "2": "ftl"
+    "2": "ftl",
+    "4": "Swagger Spec"
   }
   tabs = [
     {
