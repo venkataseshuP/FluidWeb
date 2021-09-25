@@ -4,6 +4,7 @@ import { ParentDataService } from '../dataService';
 import { FluidDesignerComponent } from '../fluid-designer/fluid-designer.component';
 import { AuthService } from '../shared/services/auth-service';
 import { Router } from '@angular/router';
+import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component';
 
 @Component({
   selector: 'app-explorer',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class ExplorerComponent implements OnInit {
 
   @ViewChild('designer') designer :FluidDesignerComponent;
+  @ViewChild('swaggerEditor') swaggerEditor: SwaggereditorComponent;
 
 
   // explorer properties and functions
@@ -31,7 +33,6 @@ export class ExplorerComponent implements OnInit {
     ) {
     this.fileExplorerService.refreshExplorerMenu();
     this.refreshExplorer();
-    this.getFavouriteFiles();
   }
 
   refreshExplorer(){
@@ -632,6 +633,26 @@ export class ExplorerComponent implements OnInit {
         this.getFavouriteFiles();
       }
     });
+  }
+
+  save(){
+    let type = this.dataService.getActiveTabContent().type;
+    switch(type){
+      case '4':{
+        this.swaggerEditor.saveSwaggerSpec();
+        break;
+      }
+    }
+  }
+
+  download(){
+    let type = this.dataService.getActiveTabContent().type;
+    switch(type){
+      case '4':{
+        this.swaggerEditor.downloadSwaggerSpec();
+        break;
+      }
+    }
   }
 
 }

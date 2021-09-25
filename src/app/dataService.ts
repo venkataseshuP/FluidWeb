@@ -144,4 +144,9 @@ export class ParentDataService {
 
     }
   }
+
+  getActiveTabContent(){
+    return this.tabs[this.activeTabId];
+  }
+
 };

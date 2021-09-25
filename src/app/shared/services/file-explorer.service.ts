@@ -90,4 +90,21 @@ export class FileExplorerService {
     return this.httpCommonservice.httpdelete(url);
   }
 
+  getSpecDetails(specId:string){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/spec/'+specId;
+    return this.httpCommonservice.httpGet(url);
+  }
+
+  saveSwaggerSpec(spec:String, itemId:string){
+    let specDetails = {
+      id:{
+        itemId:itemId,
+        pid:this.authService.activeProjectId,
+      },
+      spec : spec
+    }
+    let url:any = this.httpCommonservice.baseurl+'/swagger/spec';
+    return this.httpCommonservice.httpPost(url,specDetails);
+  }
+
 }
