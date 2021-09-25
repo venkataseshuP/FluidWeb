@@ -55,7 +55,7 @@ export class SwaggereditorComponent implements OnInit {
   }
 
   downloadSwaggerSpec(){
-    
+    this.editor.specSelectors.downloadFile(this.editor.specSelectors.specStr(), this.dataService.getActiveTabContent()['name']);
   }
 
 
