@@ -1,6 +1,6 @@
 .swaggereditor{
   position: absolute;
-  height: 88%;
+  height: calc(100% - 78px);  ;
   width: 100%;
   overflow: hidden;
 }
