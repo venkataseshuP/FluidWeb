@@ -150,4 +150,12 @@ export class ParentDataService {
     return this.tabs[this.activeTabId];
   }
 
+  loadSpinner(){
+    this.load = true;
+  }
+
+  stopSpinner(){
+    this.load = false;
+  }
+
 };

@@ -149,12 +149,12 @@
         data-ripple>
           <img src="../../assets/images/tabs/download.svg" alt="">
         </div> -->
-        <div class="button extension" extension-id="3" title="Save" *ngIf="!dataService.tabs[dataService.activeTabId]['save']"          
-        (click)= "save()"  
+        <div class="button extension" extension-id="3" title="Save" *ngIf="!dataService.tabs[dataService.activeTabId]['save']"         
+        [attr.data-disabled]="{'data-disabled':dataService.tabs[dataService.activeTabId]['save']}"
         data-ripple>
           <img src="../../assets/images/tabs/save.svg" alt="">
         </div>
-        <div class="button extension" extension-id="3" title="Save" (click)="saveTab()" *ngIf="dataService.tabs[dataService.activeTabId]['save']"
+        <div class="button extension" extension-id="3" title="Save" (click)="save()" *ngIf="dataService.tabs[dataService.activeTabId]['save']"
           data-ripple>
           <img src="../../assets/images/tabs/save.svg" alt="">
         </div>
@@ -245,7 +245,7 @@
         <app-fluid-designer #designer></app-fluid-designer>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '4'">
-        <app-swaggereditor #swaggerEditor></app-swaggereditor>
+        <app-swaggereditor #swaggerEditor (click)="saveTabData()"></app-swaggereditor>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '0'">
         <app-apps #apps></app-apps>

@@ -67,10 +67,11 @@ export class ExplorerComponent implements OnInit {
   }
 
   async saveTabData(){
-    let type = this.dataService.tabs[this.dataService.activeTabId].type;
+    let type = this.dataService.getActiveTabContent().type;
     if(type == '4'){
       await this.swaggerEditor.updateSpec();
     }
+    this.dataService.getActiveTabContent().save = true;
   }
 
   closeTab(i){
@@ -653,14 +654,17 @@ export class ExplorerComponent implements OnInit {
     });
   }
 
-  save(){
+  async save(){
+    this.dataService.loadSpinner();
     let type = this.dataService.getActiveTabContent().type;
     switch(type){
       case '4':{
-        this.swaggerEditor.saveSwaggerSpec();
+        await this.swaggerEditor.saveSwaggerSpec();
         break;
       }
     }
+    this.dataService.getActiveTabContent().save = false;
+    this.dataService.stopSpinner();
   }
 
   download(){
