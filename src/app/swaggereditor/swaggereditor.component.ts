@@ -22,9 +22,7 @@ export class SwaggereditorComponent implements OnInit {
       presets: [
         SwaggerEditorStandalonePreset
       ],
-    });
-
-    this.loadEdiorSwaggerSpec();
+    });    
   }
 
   async loadEdiorSwaggerSpec(){
@@ -39,9 +37,10 @@ export class SwaggereditorComponent implements OnInit {
     this.fileService.getSpecDetails(this.dataService.getActiveTabContent().id).subscribe(data=>{
       let specDetails = '';
       if(data){
-        this.editor.specActions.updateSpec(data['spec']);        
+        specDetails =  data['spec'];       
       }
       this.dataService.getActiveTabContent()['spec'] = specDetails;
+      this.editor.specActions.updateSpec(specDetails);
     });
   }
 
@@ -56,6 +55,10 @@ export class SwaggereditorComponent implements OnInit {
 
   downloadSwaggerSpec(){
     this.editor.specSelectors.downloadFile(this.editor.specSelectors.specStr(), this.dataService.getActiveTabContent()['name']);
+  }
+
+  updateSpec(){
+    this.dataService.getActiveTabContent()['spec']  = this.editor.specSelectors.specStr();
   }
 
 

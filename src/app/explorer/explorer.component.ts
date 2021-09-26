@@ -59,10 +59,18 @@ export class ExplorerComponent implements OnInit {
     this.tabWidth = width<258?width:258;
   }
 
-  openTab(tabId){
+  async openTab(tabId){
+    await this.saveTabData();
     this.dataService.activeTabId = tabId;
     this.realignTabs();
     this.refreshContent();
+  }
+
+  async saveTabData(){
+    let type = this.dataService.tabs[this.dataService.activeTabId].type;
+    if(type == '4'){
+      await this.swaggerEditor.updateSpec();
+    }
   }
 
   closeTab(i){
@@ -254,6 +262,8 @@ export class ExplorerComponent implements OnInit {
     }
     else if(type == '2'){
       this.designer.refresh();
+    }else if(type == '4'){
+      this.swaggerEditor.loadEdiorSwaggerSpec();
     }
   });
   }
