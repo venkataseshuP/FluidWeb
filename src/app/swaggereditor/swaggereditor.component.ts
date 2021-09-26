@@ -54,7 +54,16 @@ export class SwaggereditorComponent implements OnInit {
   }
 
   downloadSwaggerSpec(){
-    this.editor.specSelectors.downloadFile(this.editor.specSelectors.specStr(), this.dataService.getActiveTabContent()['name']);
+    const blob = new Blob([this.editor.specSelectors.specStr()], { type: 'text/yaml' });
+    const url= window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    document.body.appendChild(a);
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = 'sample.yaml';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
   }
 
   updateSpec(){
