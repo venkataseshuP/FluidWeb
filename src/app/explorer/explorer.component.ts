@@ -558,7 +558,15 @@ export class ExplorerComponent implements OnInit {
   }
 
   openApps(){
-    this.router.navigate(['/apps']);
+    let itemDetails = {
+      "name": "Apps",
+      "type": "0",
+      "path": "/Apps",
+      "id":{
+        "itemId":"FE_0000000",
+      }
+    }
+    this.openInSameTab(itemDetails);
   }
 
   gotoParent(){
@@ -653,6 +661,11 @@ export class ExplorerComponent implements OnInit {
         break;
       }
     }
+  }
+
+  enableOptions(){
+    let type = +this.dataService.getActiveTabContent()['type'];
+    return type>1;
   }
 
 }

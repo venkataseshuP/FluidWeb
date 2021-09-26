@@ -133,7 +133,7 @@
           </svg>
         </div>
       </div>
-      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] !='1'">
+      <ng-container *ngIf="enableOptions()">
         <div class="button extension" extension-id="1" title="Previous"
           [attr.data-disabled]="{'data-disabled':dataService.tabs[dataService.activeTabId]['prev'] == false}"
           data-ripple>
@@ -246,6 +246,9 @@
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '4'">
         <app-swaggereditor #swaggerEditor></app-swaggereditor>
+      </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '0'">
+        <app-apps #apps></app-apps>
       </ng-container>
     </div>
     <!-- explorer html end -->
