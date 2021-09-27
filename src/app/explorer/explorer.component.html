@@ -241,14 +241,17 @@
           </div>
         </div>
       </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '0'">
+        <app-apps #apps></app-apps>
+      </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '2'">
+        <app-templatedesigner #templatedesigner></app-templatedesigner>
+      </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '3'">
         <app-fluid-designer #designer></app-fluid-designer>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '4'">
         <app-swaggereditor #swaggerEditor (click)="saveTabData()"></app-swaggereditor>
-      </ng-container>
-      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '0'">
-        <app-apps #apps></app-apps>
       </ng-container>
     </div>
     <!-- explorer html end -->
@@ -287,7 +290,7 @@
       <img src="../../assets/images/explorer/assets.svg" *ngIf="list.type == '0'">
       <img src="../../assets/images/menu/folderopen.svg" *ngIf="list.type == '1' && list.children.length>0">
       <img src="../../assets/images/menu/folderclose.svg" *ngIf="list.type == '1' && list.children.length ==0">
-      <img src="../../assets/images/explorer/designer.svg" *ngIf="list.type == '2'">
+      <img src="../../assets/images/explorer/Template.svg" *ngIf="list.type == '2'">
       <img src="../../assets/images/explorer/swagger.svg" *ngIf="list.type == '4'">
 </ng-template>
 

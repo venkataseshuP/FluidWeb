@@ -3,6 +3,7 @@ import { ParentDataService } from '../dataService';
 import { FileExplorerService } from '../shared/services/file-explorer.service';
 declare const SwaggerEditorBundle: any;
 declare const SwaggerEditorStandalonePreset: any;
+
 @Component({
   selector: 'app-swaggereditor',
   templateUrl: './swaggereditor.component.html',
@@ -60,7 +61,7 @@ export class SwaggereditorComponent implements OnInit {
     document.body.appendChild(a);
     a.setAttribute('style', 'display: none');
     a.href = url;
-    a.download = 'sample.yaml';
+    a.download = this.dataService.getActiveTabContent()['tabDesc']+'.yaml';
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
@@ -69,6 +70,8 @@ export class SwaggereditorComponent implements OnInit {
   updateSpec(){
     this.dataService.getActiveTabContent()['spec']  = this.editor.specSelectors.specStr();
   }
+
+
 
 
 }

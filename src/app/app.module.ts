@@ -22,6 +22,7 @@ import { SwaggeruiComponent } from './swaggerui/swaggerui.component';
 import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component';
 import { AppsComponent } from './apps/apps.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
+import { TemplatedesignerComponent } from './templatedesigner/templatedesigner.component';
 
 
 
@@ -36,7 +37,8 @@ import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
     VerifyEmailComponent,
     SwaggeruiComponent,
     SwaggereditorComponent,
-    AppsComponent
+    AppsComponent,
+    TemplatedesignerComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

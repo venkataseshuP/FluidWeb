@@ -366,7 +366,6 @@ export class ExplorerComponent implements OnInit {
     let fileDetails = {
       name : name,
       type :"2",
-      id:this.getId(),
       parentId:this.dataService.tabs[this.dataService.activeTabId].id,
       showChildren:false,
       children:[]
@@ -640,7 +639,7 @@ export class ExplorerComponent implements OnInit {
     this.fileExplorerService.addFavourite(this.dataService.selectedItemDetails['id'].itemId)
     .subscribe(data=>{
       if(data){
-        this.favouriteFiles = data;
+        this.getFavouriteFiles();
       }
     });
   }
