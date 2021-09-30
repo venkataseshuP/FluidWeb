@@ -1,1 +1,5 @@
-<p>nativecomponents works!</p>
+<ng-container *ngFor="let nativeComponent of templateService.nativeComponents">
+<div>
+  {{nativeComponent.typeName}}
+</div>
+</ng-container>

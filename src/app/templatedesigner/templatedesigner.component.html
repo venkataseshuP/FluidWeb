@@ -12,7 +12,7 @@
 
 <div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
   [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
-  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+  <div class="contextlist" (click)="addNewComplextype();disableContextMenu()">
     <img src="../../assets/images/menu/add-folder.svg">
     <span>New Complextype</span>
   </div>

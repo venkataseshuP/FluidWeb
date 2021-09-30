@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { TemplateService } from '../shared/services/template.service'; 
+
 
 @Component({
   selector: 'app-templatedesigner',
@@ -7,7 +9,9 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class TemplatedesignerComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public templateService:TemplateService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -47,6 +51,10 @@ export class TemplatedesignerComponent implements OnInit {
   @HostListener('document:click')clickout() {
     event.stopPropagation();
     this.disableContextMenu();
+  }
+
+  addNewComplextype(){
+    this.templateService.addNewComplextype();
   }
 
 }

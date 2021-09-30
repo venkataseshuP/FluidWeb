@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TemplateService } from '../shared/services/template.service'; 
 
 @Component({
   selector: 'app-nativecomponents',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NativecomponentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public templateService:TemplateService,
+  ) { }
 
   ngOnInit(): void {
+    this.templateService.refreshNativeComponents();
   }
 
 }
