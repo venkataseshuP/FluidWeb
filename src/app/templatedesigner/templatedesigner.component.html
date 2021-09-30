@@ -1,1 +1,37 @@
-<p>templatedesigner works!</p>
+<div class="templatedesigner" (contextmenu)="openContextmenu($event)">
+  <div class="nativecomponents">
+    <app-nativecomponents></app-nativecomponents>
+  </div>
+  <div class="referredcomponents">
+    <app-refferedcomponents></app-refferedcomponents>
+  </div>
+  <div class="elementtree">
+    <app-elementtree></app-elementtree>
+  </div>
+</div>
+
+<div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
+  [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/menu/add-folder.svg">
+    <span>New Complextype</span>
+  </div>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/menu/add-folder.svg">
+    <span>New Simpletype</span>
+  </div>
+  <hr>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/tabs/save.svg">
+    <span>Save</span>
+  </div>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/explorer/refresh.svg">
+    <span>Refresh</span>
+  </div>  
+  <hr>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/menu/add-folder.svg">
+    <span>Properties</span>
+  </div>  
+</div>

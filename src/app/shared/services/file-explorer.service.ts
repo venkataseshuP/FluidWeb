@@ -45,9 +45,9 @@ export class FileExplorerService {
     });
   }
 
-  deleteFile(fileDetails:any){
-    let url:any = this.httpCommonservice.baseurl+"/"+this.authService.activeProjectId+'/file/'+fileDetails.id.itemId;
-    return this.httpCommonservice.httpdelete(url).subscribe( ()=>{
+  deleteFile(fileDetails: any){
+    let url: any = this.httpCommonservice.baseurl + "/" + this.authService.activeProjectId + '/file/' + fileDetails.id.itemId;
+    return this.httpCommonservice.httpdelete(url).subscribe(() => {
       this.refreshExplorerMenu();
     });
   }
@@ -65,7 +65,7 @@ export class FileExplorerService {
   }
 
   getFavouriteFiles(){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.userData.uid+'/'+this.authService.activeProjectId+'/files';
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.userData.uid+'/'+this.authService.activeProjectId+'/favourites';
     return this.httpCommonservice.httpGet(url);
   }
 

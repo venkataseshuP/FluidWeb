@@ -23,6 +23,9 @@ import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component'
 import { AppsComponent } from './apps/apps.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { TemplatedesignerComponent } from './templatedesigner/templatedesigner.component';
+import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
+import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
+import { ElementtreeComponent } from './elementtree/elementtree.component';
 
 
 
@@ -38,7 +41,10 @@ import { TemplatedesignerComponent } from './templatedesigner/templatedesigner.c
     SwaggeruiComponent,
     SwaggereditorComponent,
     AppsComponent,
-    TemplatedesignerComponent
+    TemplatedesignerComponent,
+    NativecomponentsComponent,
+    RefferedcomponentsComponent,
+    ElementtreeComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
