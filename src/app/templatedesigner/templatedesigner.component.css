@@ -10,8 +10,9 @@
     overflow-x: auto;
     overflow-y: auto;
     margin: 3px;
-    border-right: 1px solid #e0dbdb;
-    background-color: aqua;
+    border: 1px solid #e0dbdb;
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .templatedesigner .referredcomponents{
