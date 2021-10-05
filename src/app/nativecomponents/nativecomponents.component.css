@@ -5,6 +5,10 @@
     font-size: 14px;
     height: 30px;
 }
+ul{
+  margin: 0;
+    padding: 5px;
+}
 .directory-list ul {
   margin-left: 10px;
   padding-left: 10px;
@@ -59,6 +63,19 @@
   width: 20px;
   background-repeat: no-repeat;
   display: inline-block;
+  /* file icon by default */
+  background-position: center 2px;
+  background-size: 60% auto;
+}
+
+.directory-list li.nativetype:before {
+  margin-right: 2px;
+  content: "";
+  height: 0px;
+  vertical-align: bottom;
+  width: 0px;
+  background-repeat: no-repeat;
+  display: none;
   /* file icon by default */
   background-position: center 2px;
   background-size: 60% auto;

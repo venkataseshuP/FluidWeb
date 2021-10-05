@@ -260,7 +260,7 @@ export class ExplorerComponent implements OnInit {
       this.fileExplorerService.refreshExplorerMenu();
     }
     else if(type == '2'){
-      this.designer.refresh();
+      //this.designer.refresh();
     }else if(type == '4'){
       this.swaggerEditor.loadEdiorSwaggerSpec();
     }

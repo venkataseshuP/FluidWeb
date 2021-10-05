@@ -54,7 +54,11 @@ export class TemplatedesignerComponent implements OnInit {
   }
 
   addNewComplextype(){
-    this.templateService.addNewComplextype();
+    this.templateService.addNewNativeComponent('CT');
+  }
+
+  addNewSimpletype(){
+    this.templateService.addNewNativeComponent('ST');
   }
 
 }

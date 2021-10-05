@@ -8,8 +8,8 @@ import { TemplateService } from '../shared/services/template.service';
 })
 export class NativecomponentsComponent implements OnInit {
 
-  isSimpletypesOpen = '0';
-  isComplextypesOpen = '0';
+  isSimpletypesOpen = false;
+  isComplextypesOpen = false;
   constructor(
     public templateService:TemplateService,
   ) { }
@@ -18,4 +18,12 @@ export class NativecomponentsComponent implements OnInit {
     this.templateService.refreshNativeComponents();
   }
 
+  openORcloseST(){
+    this.isSimpletypesOpen = !this.isSimpletypesOpen;
+  }
+
+  openORcloseCT(){
+    this.isComplextypesOpen = !this.isComplextypesOpen;
+  }
+  
 }

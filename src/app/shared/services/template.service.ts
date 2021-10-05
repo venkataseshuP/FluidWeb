@@ -27,8 +27,8 @@ export class TemplateService {
     return this.httpCommonService.httpGet(url);
   }
 
-  addNewComplextype(){
-     this.addNewType('CT').subscribe(()=>{
+  addNewNativeComponent(type:string){
+     this.addNewType(type).subscribe(()=>{
        this.refreshNativeComponents();
      });
   }
@@ -42,11 +42,20 @@ export class TemplateService {
         namespaceId:'N_0001',
       },
       templateId:templateId,
-      typeName:'New Complextype',
-      type:'CT',
+      typeName:this.getNativeComponentSampleName(type),
+      type:type,
       desc:''
     }
     return this.httpCommonService.httpPost(url,body);
+  }
+
+  getNativeComponentSampleName(type:string){
+    switch(type){
+      case 'ST':
+        return 'New Simpletype';
+      case 'CT':
+        return 'New Complextype';
+    }
   }
 
   getActiveTemplateCode(){
@@ -55,5 +64,9 @@ export class TemplateService {
 
   getBasePath(){
     return this.httpCommonService.baseurl;
+  }
+
+  stopPropagation(){
+    event.stopPropagation();
   }
 }

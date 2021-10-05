@@ -3,20 +3,20 @@
 </div>
 <div class="body">
   <ul class="directory-list">
-    <li [ngClass]="{'folderopen':(isSimpletypesOpen == '1'),'folderclose':(isSimpletypesOpen == '0')}">
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'ST' }"> </ng-container>
+    <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
       <span> Simple Types </span>
-      <ul *ngIf="isSimpletypesOpen == '1'">
+      <ul *ngIf="isSimpletypesOpen">
         <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'ST' }">
         </ng-container>
       </ul>
     </li>
   </ul>
   <ul class="directory-list">
-    <li [ngClass]="{'folderopen':(isComplextypesOpen == '1'),'folderclose':(isComplextypesOpen == '0')}">
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CT' }"> </ng-container>
+    <li (click)="openORcloseCT()" [ngClass]="{'folderopen':(isComplextypesOpen),'folderclose':(!isComplextypesOpen)}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CTH' }"> </ng-container>
       <span> Complex Types </span>
-      <ul *ngIf="isComplextypesOpen == '1'">
+      <ul *ngIf="isComplextypesOpen">
         <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT' }">
         </ng-container>
       </ul>
@@ -26,10 +26,9 @@
 
 <ng-template #components let-list="list" let-type="type">
   <ng-container *ngFor="let nativeComponent of list">
-    <li *ngIf="nativeComponent.type == type"> 
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: item.type }"> </ng-container>
-      <span [ngClass]="{'active':dataService.selectedItemDetails.id == item.id}">
-        {{ item.typeName }}</span>
+    <li class="nativetype" *ngIf="nativeComponent.type == type" (click)="templateService.stopPropagation()"> 
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
+      <span> {{ nativeComponent.typeName }}</span>
     </li>
   </ng-container>
 </ng-template>
@@ -37,4 +36,6 @@
 <ng-template #iconImg let-type="type">
   <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == '0'">
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">
+  <img src="../../assets/images/templatedesigner/simpletype.svg" *ngIf="type == 'ST'">
+  <img src="../../assets/images/templatedesigner/complextype.svg" *ngIf="type == 'CT'">
 </ng-template>
