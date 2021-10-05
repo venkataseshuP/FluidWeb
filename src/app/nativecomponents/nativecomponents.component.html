@@ -5,7 +5,7 @@
   <ul class="directory-list">
     <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
-      <span> Simple Types </span>
+      <span class="bold"> Simple Types </span>
       <ul *ngIf="isSimpletypesOpen">
         <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'ST' }">
         </ng-container>
@@ -15,7 +15,7 @@
   <ul class="directory-list">
     <li (click)="openORcloseCT()" [ngClass]="{'folderopen':(isComplextypesOpen),'folderclose':(!isComplextypesOpen)}">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CTH' }"> </ng-container>
-      <span> Complex Types </span>
+      <span class="bold"> Complex Types </span>
       <ul *ngIf="isComplextypesOpen">
         <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT' }">
         </ng-container>
@@ -28,7 +28,8 @@
   <ng-container *ngFor="let nativeComponent of list">
     <li class="nativetype" *ngIf="nativeComponent.type == type" (click)="templateService.stopPropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
-      <span> {{ nativeComponent.typeName }}</span>
+      <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
+      (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
     </li>
   </ng-container>
 </ng-template>

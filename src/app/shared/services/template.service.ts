@@ -49,6 +49,11 @@ export class TemplateService {
     return this.httpCommonService.httpPost(url,body);
   }
 
+  updateType(typeDetails){
+    let url = this.getBasePath()+'/template/typesrep';
+    return this.httpCommonService.httpPut(url,typeDetails);
+  }
+
   getNativeComponentSampleName(type:string){
     switch(type){
       case 'ST':

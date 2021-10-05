@@ -724,3 +724,7 @@ body .table thead th {
   overflow-y: scroll;
 }
 
+.bold{
+  font-weight: 600;
+}
+

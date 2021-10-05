@@ -8,14 +8,14 @@ import { TemplateService } from '../shared/services/template.service';
 })
 export class NativecomponentsComponent implements OnInit {
 
-  isSimpletypesOpen = false;
-  isComplextypesOpen = false;
+  isSimpletypesOpen = true;
+  isComplextypesOpen = true;
   constructor(
     public templateService:TemplateService,
   ) { }
 
   ngOnInit(): void {
-    this.templateService.refreshNativeComponents();
+    this.refreshNativeComponents();
   }
 
   openORcloseST(){
@@ -25,5 +25,19 @@ export class NativecomponentsComponent implements OnInit {
   openORcloseCT(){
     this.isComplextypesOpen = !this.isComplextypesOpen;
   }
+
+  changeTypeName(typeDetails,newTypeName){
+    if(typeDetails.typeName == newTypeName)return;
+    typeDetails.typeName = newTypeName;
+    this.templateService.updateType(typeDetails).subscribe((data)=>{
+      if(data)
+        this.refreshNativeComponents;
+    });
+  }
+
+  refreshNativeComponents(){
+    this.templateService.refreshNativeComponents();
+  }
+
   
 }
