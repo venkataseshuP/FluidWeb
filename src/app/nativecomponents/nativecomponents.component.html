@@ -1,41 +1,40 @@
 <div class="header">
   Native Components
 </div>
-<div class="accordion open" id="accordionPanelsStayOpenExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-      <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-      <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
+<div class="body">
+  <ul class="directory-list">
+    <li [ngClass]="{'folderopen':(isSimpletypesOpen == '1'),'folderclose':(isSimpletypesOpen == '0')}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'ST' }"> </ng-container>
+      <span> Simple Types </span>
+      <ul *ngIf="isSimpletypesOpen == '1'">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'ST' }">
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
+  <ul class="directory-list">
+    <li [ngClass]="{'folderopen':(isComplextypesOpen == '1'),'folderclose':(isComplextypesOpen == '0')}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CT' }"> </ng-container>
+      <span> Complex Types </span>
+      <ul *ngIf="isComplextypesOpen == '1'">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT' }">
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
 </div>
+
+<ng-template #components let-list="list" let-type="type">
+  <ng-container *ngFor="let nativeComponent of list">
+    <li *ngIf="nativeComponent.type == type"> 
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: item.type }"> </ng-container>
+      <span [ngClass]="{'active':dataService.selectedItemDetails.id == item.id}">
+        {{ item.typeName }}</span>
+    </li>
+  </ng-container>
+</ng-template>
+
+<ng-template #iconImg let-type="type">
+  <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == '0'">
+  <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">
+</ng-template>

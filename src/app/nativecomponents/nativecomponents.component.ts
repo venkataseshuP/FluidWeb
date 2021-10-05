@@ -8,6 +8,8 @@ import { TemplateService } from '../shared/services/template.service';
 })
 export class NativecomponentsComponent implements OnInit {
 
+  isSimpletypesOpen = '0';
+  isComplextypesOpen = '0';
   constructor(
     public templateService:TemplateService,
   ) { }

@@ -5,3 +5,92 @@
     font-size: 14px;
     height: 30px;
 }
+.directory-list ul {
+  margin-left: 10px;
+  padding-left: 10px;
+  width: max-content;
+  border-left: 1px dashed #ddd;
+}
+
+.directory-list li {
+  list-style: none;
+  color: #6f6d6f;
+  font-size: 12px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.directory-list li span:hover {
+
+  color:#2196F3;
+}
+
+.directory-list li .active {
+  color:#2196F3;
+}
+
+.directory-list a {
+  border-bottom: 1px solid transparent;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.directory-list a:hover {
+  border-color: #eee;
+  color: #000;
+}
+
+.directory-list .folder,
+.directory-list .folder > a {
+  color: #777;
+  font-weight: bold;
+}
+
+
+/* The icons
+-------------------------------------------------------------- */
+
+.directory-list li:before {
+  margin-right: 2px;
+  content: "";
+  height: 22px;
+  vertical-align: bottom;
+  width: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  /* file icon by default */
+  background-position: center 2px;
+  background-size: 60% auto;
+}
+
+.directory-list li img{
+  width: 12px;
+  vertical-align: baseline;
+  margin-right: 5px;
+}
+
+.directory-list li.folderclose:before {
+  /* folder icon if folder class is specified */
+  /* background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightblue' d='M96.429,37.5v39.286c0,3.423-1.228,6.361-3.684,8.817c-2.455,2.455-5.395,3.683-8.816,3.683H16.071 c-3.423,0-6.362-1.228-8.817-3.683c-2.456-2.456-3.683-5.395-3.683-8.817V23.214c0-3.422,1.228-6.362,3.683-8.817 c2.455-2.456,5.394-3.683,8.817-3.683h17.857c3.422,0,6.362,1.228,8.817,3.683c2.455,2.455,3.683,5.395,3.683,8.817V25h37.5 c3.422,0,6.361,1.228,8.816,3.683C95.201,31.138,96.429,34.078,96.429,37.5z' /></svg>"); */
+  background-image: url("../../assets/images/explorer/arrow-right.svg");
+  background-position: center center;
+  background-size: 45% auto;
+}
+
+
+.directory-list li.folderopen:before {
+  /* folder icon if folder class is specified */
+  /* background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightblue' d='M96.429,37.5v39.286c0,3.423-1.228,6.361-3.684,8.817c-2.455,2.455-5.395,3.683-8.816,3.683H16.071 c-3.423,0-6.362-1.228-8.817-3.683c-2.456-2.456-3.683-5.395-3.683-8.817V23.214c0-3.422,1.228-6.362,3.683-8.817 c2.455-2.456,5.394-3.683,8.817-3.683h17.857c3.422,0,6.362,1.228,8.817,3.683c2.455,2.455,3.683,5.395,3.683,8.817V25h37.5 c3.422,0,6.361,1.228,8.816,3.683C95.201,31.138,96.429,34.078,96.429,37.5z' /></svg>"); */
+  background-image: url("../../assets/images/explorer/arrow-down.svg");
+  background-position: center center;
+  background-size: 45% auto;
+}
+
+.directory-list li.template:before {
+  /* folder icon if folder class is specified */
+  /* background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightblue' d='M96.429,37.5v39.286c0,3.423-1.228,6.361-3.684,8.817c-2.455,2.455-5.395,3.683-8.816,3.683H16.071 c-3.423,0-6.362-1.228-8.817-3.683c-2.456-2.456-3.683-5.395-3.683-8.817V23.214c0-3.422,1.228-6.362,3.683-8.817 c2.455-2.456,5.394-3.683,8.817-3.683h17.857c3.422,0,6.362,1.228,8.817,3.683c2.455,2.455,3.683,5.395,3.683,8.817V25h37.5 c3.422,0,6.361,1.228,8.816,3.683C95.201,31.138,96.429,34.078,96.429,37.5z' /></svg>"); */
+  background-image: url("../../assets/images/explorer/Template.svg");
+  background-position: center top;
+  background-size: 75% auto;
+}
