@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 import { TemplateService } from '../shared/services/template.service'; 
 
 
@@ -11,7 +12,20 @@ export class TemplatedesignerComponent implements OnInit {
 
   constructor(
     public templateService:TemplateService,
-  ) { }
+    public hotkeyService:HotkeysService
+  ) {
+
+    this.hotkeyService.add(new Hotkey('alt+s',(event: KeyboardEvent): boolean => {
+      this.addNewSimpletype();
+      return false;
+    }));
+
+    this.hotkeyService.add(new Hotkey('alt+c',(event: KeyboardEvent): boolean => {
+      this.addNewComplextype();
+      return false;
+    }));
+
+   }
 
   ngOnInit(): void {
   }

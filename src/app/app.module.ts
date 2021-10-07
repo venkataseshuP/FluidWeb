@@ -27,6 +27,7 @@ import { NativecomponentsComponent } from './nativecomponents/nativecomponents.c
 import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
 import { ElementtreeComponent } from './elementtree/elementtree.component';
 import { FormsModule } from '@angular/forms';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 
 
@@ -61,6 +62,7 @@ import { FormsModule } from '@angular/forms';
     fluiddesignerModule,
     AppRoutingModule,
     HttpClientModule,
+    HotkeyModule.forRoot()
   ],
   providers: [ParentDataService,AuthService],
   bootstrap: [AppComponent]
