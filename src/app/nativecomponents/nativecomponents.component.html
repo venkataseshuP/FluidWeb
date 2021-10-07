@@ -31,8 +31,14 @@
   <ng-container *ngFor="let nativeComponent of list">
     <li class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
-      <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
-      (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
+      <ng-container *ngIf="isTypeEditable(nativeComponent)">
+        <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
+        (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
+      </ng-container>
+      <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
+        <input readonly=true class="nativetypes bg-t" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
+        (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="activateEdit(nativeComponent)" (click)="templateService.stopPropagation()">
+      </ng-container>      
     </li>
   </ng-container>
 </ng-template>

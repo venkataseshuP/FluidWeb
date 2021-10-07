@@ -8,6 +8,7 @@ import { TemplateService } from '../shared/services/template.service';
 })
 export class RefferedcomponentsComponent implements OnInit {
 
+  searchText = '';
   constructor(
     public templateService:TemplateService,
   ) { }

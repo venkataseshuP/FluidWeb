@@ -11,6 +11,7 @@ export class NativecomponentsComponent implements OnInit {
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
   searchText = '';
+  editableTypeId = '';
   constructor(
     public templateService:TemplateService,
   ) { }
@@ -41,5 +42,13 @@ export class NativecomponentsComponent implements OnInit {
     this.templateService.refreshNativeComponents();
   }
 
+  activateEdit(nativeComponent){
+    this.editableTypeId=nativeComponent.id.typeId;
+    this.templateService.stopPropagation();
+  }
+
+  isTypeEditable(nativeComponent){
+    return (this.editableTypeId == nativeComponent.id.typeId);
+  }
   
 }

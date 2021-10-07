@@ -139,3 +139,15 @@ ul{
 .form-control::placeholder  {
   font-family: FontAwesome;
 }
+
+input[readonly]{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+input[readonly]:focus{
+  outline:none;
+}
+
