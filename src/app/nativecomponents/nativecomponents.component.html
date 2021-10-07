@@ -2,6 +2,9 @@
   Native Components
 </div>
 <div class="body">
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search native components">
+  </div>
   <ul class="directory-list">
     <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
@@ -26,7 +29,7 @@
 
 <ng-template #components let-list="list" let-type="type">
   <ng-container *ngFor="let nativeComponent of list">
-    <li class="nativetype" *ngIf="nativeComponent.type == type" (click)="templateService.stopPropagation()"> 
+    <li class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
       <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
       (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">

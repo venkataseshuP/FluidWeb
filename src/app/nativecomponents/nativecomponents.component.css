@@ -120,3 +120,22 @@ ul{
   margin: 0;
   font-size: 13px;
 }
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  color: #405065;
+}
+
+.search-hero {
+  margin: 10px;
+}
+
+.form-control {
+  height: 30px;
+  margin: 0;
+}
+
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}

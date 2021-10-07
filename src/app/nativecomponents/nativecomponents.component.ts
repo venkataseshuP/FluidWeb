@@ -10,6 +10,7 @@ export class NativecomponentsComponent implements OnInit {
 
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
+  searchText = '';
   constructor(
     public templateService:TemplateService,
   ) { }
@@ -19,6 +20,7 @@ export class NativecomponentsComponent implements OnInit {
   }
 
   openORcloseST(){
+   
     this.isSimpletypesOpen = !this.isSimpletypesOpen;
   }
 

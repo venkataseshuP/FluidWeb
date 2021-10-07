@@ -26,6 +26,7 @@ import { TemplatedesignerComponent } from './templatedesigner/templatedesigner.c
 import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
 import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
 import { ElementtreeComponent } from './elementtree/elementtree.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -54,6 +55,7 @@ import { ElementtreeComponent } from './elementtree/elementtree.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     CommonModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     fluiddesignerModule,
