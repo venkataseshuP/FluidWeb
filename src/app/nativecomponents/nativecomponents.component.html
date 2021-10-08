@@ -33,11 +33,12 @@
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
       <ng-container *ngIf="isTypeEditable(nativeComponent)">
         <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
-        (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
+        autocomplete="off" (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
       </ng-container>
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
-        <input readonly=true class="nativetypes bg-t" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
-        (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="activateEdit(nativeComponent)" (click)="templateService.stopPropagation()">
+        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="templateService.stopPropagation()">
+          {{nativeComponent.typeName}}
+        </div>
       </ng-container>      
     </li>
   </ng-container>

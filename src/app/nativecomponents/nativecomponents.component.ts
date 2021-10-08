@@ -33,8 +33,10 @@ export class NativecomponentsComponent implements OnInit {
     if(typeDetails.typeName == newTypeName)return;
     typeDetails.typeName = newTypeName;
     this.templateService.updateType(typeDetails).subscribe((data)=>{
-      if(data)
-        this.refreshNativeComponents;
+      if(data){
+        this.editableTypeId = '';
+        this.refreshNativeComponents();
+      }
     });
   }
 

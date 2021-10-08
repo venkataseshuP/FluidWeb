@@ -12,7 +12,7 @@ ul{
 .directory-list ul {
   margin-left: 10px;
   padding-left: 10px;
-  width: max-content;
+  width: 100% !important;
   border-left: 1px dashed #ddd;
 }
 
@@ -151,3 +151,12 @@ input[readonly]:focus{
   outline:none;
 }
 
+
+.readonlytype{
+  border: none;
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  display: contents;
+}
