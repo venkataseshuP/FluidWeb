@@ -28,6 +28,7 @@ import { RefferedcomponentsComponent } from './refferedcomponents/refferedcompon
 import { ElementtreeComponent } from './elementtree/elementtree.component';
 import { FormsModule } from '@angular/forms';
 import { HotkeyModule } from 'angular2-hotkeys';
+import { HighlightSearch } from './shared/pipes/HighlightSearch';
 
 
 
@@ -46,7 +47,8 @@ import { HotkeyModule } from 'angular2-hotkeys';
     TemplatedesignerComponent,
     NativecomponentsComponent,
     RefferedcomponentsComponent,
-    ElementtreeComponent
+    ElementtreeComponent,
+    HighlightSearch
   ],
   imports: [
     BackButtonDisableModule.forRoot({

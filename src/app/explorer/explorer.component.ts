@@ -27,6 +27,7 @@ export class ExplorerComponent implements OnInit {
   explorerContextMenu = false;
   filterdataEnabled = false;
   filterdata:any = [];
+  searchpath;
   constructor(
     public dataService:ParentDataService,
     public authService:AuthService,
@@ -204,6 +205,7 @@ export class ExplorerComponent implements OnInit {
     this.disableContextMenu();
     this.disableitemContextMenu();
     this.filterdataEnabled = false;
+    document.getElementById('homesearch')['value'] = this.dataService.tabs[this.dataService.activeTabId]['path'];
     if(this.dataService.selectedItemDetails.path != ''){
       this.dataService.selectedItemDetails = {
         path:'',
@@ -696,6 +698,7 @@ export class ExplorerComponent implements OnInit {
 
   filterSearch(path){
     this.filterdata = [];
+    this.searchpath = path;
     this.fileExplorerService.getFilesBySamplePath(path).subscribe((data)=>{
       if(data){
         this.filterdata = data;

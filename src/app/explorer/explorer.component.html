@@ -119,7 +119,7 @@
         </div>
         <!-- address bar  -->
         <div id="address">
-          <input type="text" (keyup)="searchfilter($event)"  value="{{dataService.tabs[dataService.activeTabId]['path']}}">
+          <input id="homesearch" type="text" (keyup)="searchfilter($event)" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
           <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
             <ng-container *ngFor="let item of filterdata">
               <div class="filterdata" (click)="openItemInSameTab(item)">
@@ -127,11 +127,9 @@
                   <ng-container *ngTemplateOutlet="iconImg; context:{ list: {'type':item[2],children:[]} }"> </ng-container>
                 </div>
                 <div class="filterdatapathandname">
-                  <div class="filterdataname">
-                    {{item[3]}}
+                  <div class="filterdataname" [innerHTML]="item[3] | highlight : searchpath">
                   </div>
-                  <div class="filterdatapath">
-                    {{item[1]}}
+                  <div class="filterdatapath"  [innerHTML]="item[1] | highlight : searchpath">
                   </div>
                 </div>
               </div>
