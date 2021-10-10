@@ -704,4 +704,16 @@ export class ExplorerComponent implements OnInit {
     });
   }
 
+  openItemInSameTab(itemDetails){
+    let details = {
+      name:itemDetails[3],
+      type:itemDetails[2],
+      path:itemDetails[1],
+      id:itemDetails[0],
+    }
+
+    this.openInSameTab(details);
+    this.filterdataEnabled = false;
+  }
+
 }

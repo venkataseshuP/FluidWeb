@@ -122,7 +122,7 @@
           <input type="text" (keyup)="searchfilter($event)"  value="{{dataService.tabs[dataService.activeTabId]['path']}}">
           <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
             <ng-container *ngFor="let item of filterdata">
-              <div class="filterdata">
+              <div class="filterdata" (click)="openItemInSameTab(item)">
                 <div class="filterdataimage">
                   <ng-container *ngTemplateOutlet="iconImg; context:{ list: {'type':item[2],children:[]} }"> </ng-container>
                 </div>
