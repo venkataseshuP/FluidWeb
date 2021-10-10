@@ -220,7 +220,7 @@
                     (dblclick)="openInSameTab(exploreritem)">
                     <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem }"> </ng-container>
                     <div class="title">
-                      <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}"
+                      <input type="text" id="{{exploreritem.name}}" value="{{exploreritem.name}}" autocomplete=off
                         (blur)="changeName(exploreritem,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
                     </div>
                   </div>
@@ -279,7 +279,7 @@
       (dblclick)="open(exploreritem.fileDetails)" (contextmenu)="openitemContextmenu($event,exploreritem.fileDetails,false)">
       <ng-container *ngTemplateOutlet="iconImg; context:{ list: exploreritem.fileDetails }"> </ng-container>
       <div class="title">
-        <input disabled="true" type="text" id="{{exploreritem.fileDetails.name}}" value="{{exploreritem.fileDetails.name}}"
+        <input autocomplete=off disabled="true" type="text" id="{{exploreritem.fileDetails.name}}" value="{{exploreritem.fileDetails.name}}"
           (blur)="changeName(exploreritem.fileDetails,$event.target.value)" (dblclick)="stopPropagation()" (click)="stopPropagation()">
       </div>
     </div>
