@@ -27,6 +27,11 @@ export class FileExplorerService {
     });
   }
 
+  getFilesBySamplePath(samplepath){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/filesByPath/';
+    return this.httpCommonservice.httpPost(url,samplepath);
+  }
+
   createFile(fileDetails:any){
     let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file';
     fileDetails['pid'] = this.authService.activeProjectId;

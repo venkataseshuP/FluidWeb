@@ -25,6 +25,8 @@ export class ExplorerComponent implements OnInit {
   disableclick = false;
   favouriteFiles:any = [];
   explorerContextMenu = false;
+  filterdataEnabled = false;
+  filterdata:any = [];
   constructor(
     public dataService:ParentDataService,
     public authService:AuthService,
@@ -201,6 +203,7 @@ export class ExplorerComponent implements OnInit {
     event.stopPropagation();
     this.disableContextMenu();
     this.disableitemContextMenu();
+    this.filterdataEnabled = false;
     if(this.dataService.selectedItemDetails.path != ''){
       this.dataService.selectedItemDetails = {
         path:'',
@@ -677,6 +680,28 @@ export class ExplorerComponent implements OnInit {
   enableOptions(){
     let type = +this.dataService.getActiveTabContent()['type'];
     return type>1;
+  }
+
+  timeout: any = null;
+  searchfilter(event){
+    clearTimeout(this.timeout);
+    var $this = this;
+    this.timeout = setTimeout(function () {
+      if (event.keyCode != 13) {
+        $this.filterSearch(event.target.value);
+      }
+    }, 1000);
+
+  }
+
+  filterSearch(path){
+    this.filterdata = [];
+    this.fileExplorerService.getFilesBySamplePath(path).subscribe((data)=>{
+      if(data){
+        this.filterdata = data;
+      }
+      this.filterdataEnabled = true;
+    });
   }
 
 }
