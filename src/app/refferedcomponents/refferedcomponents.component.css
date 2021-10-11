@@ -139,3 +139,39 @@ ul{
 .form-control::placeholder  {
   font-family: FontAwesome;
 }
+.searchresults{
+  max-height: 250px;
+  width: 100%;
+  font-size: 12px;
+  z-index: 1;
+  border: 1px solid lightgray;
+  border-radius: 0px 0px 5px 5px;
+  background: white;
+  margin-top: 7px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.filterdata{
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filterdataimage{
+  width: 20px;
+  margin: 10px;
+}
+
+.filterdatapathandname{
+  width: 100%;
+}
+
+.filterdataname{
+
+}
+
+.filterdatapath{
+
+}

@@ -3,7 +3,19 @@
 </div>
 <div class="body">
   <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+    <input id="search" class="form-control" type="text" name="search" autocomplete="off" (keyup)="searchfilter($event)"
       placeholder="&#61442;  search reffered templates">
+      <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
+        <ng-container *ngFor="let item of filterdata">
+            <div class="filterdata" (click)="openItemInSameTab(item)">
+              <div class="filterdatapathandname">
+                <div class="filterdataname" [innerHTML]="item[3] | highlight : searchpath">
+                </div>
+                <div class="filterdatapath" [innerHTML]="item[1] | highlight : searchpath">
+                </div>
+              </div>
+            </div>
+        </ng-container>
+      </div>
   </div>
 </div>

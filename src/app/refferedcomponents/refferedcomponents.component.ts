@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FileExplorerService } from '../shared/services/file-explorer.service';
 import { TemplateService } from '../shared/services/template.service';
 
 @Component({
@@ -8,13 +9,45 @@ import { TemplateService } from '../shared/services/template.service';
 })
 export class RefferedcomponentsComponent implements OnInit {
 
-  searchText = '';
   constructor(
     public templateService:TemplateService,
+    public fileExplorerService:FileExplorerService
   ) { }
 
   ngOnInit(): void {
-    this.templateService.refreshNativeComponents();
+    //this.templateService.refreshNativeComponents();
+  }
+
+  filterdata:any = [];
+  searchpath = '';
+  filterdataEnabled = false;
+  filterSearch(path){
+    this.filterdata = [];
+    this.searchpath = path;
+    this.fileExplorerService.getFilesByTypeAndSamplePath("2",path).subscribe((data)=>{
+      if(data){
+        this.filterdata = data;
+      }
+      this.filterdataEnabled = true;
+    });
+  }
+
+  
+  timeout: any = null;
+  searchfilter(event){
+    clearTimeout(this.timeout);
+    var $this = this;
+    this.timeout = setTimeout(function () {
+      if (event.keyCode != 13) {
+        $this.filterSearch(event.target.value);
+      }
+    }, 1000);
+
+  }
+
+  @HostListener('document:click')clickout() {
+    document.getElementById('search')['value'] = '';
+    this.filterdataEnabled = false;
   }
 
 }

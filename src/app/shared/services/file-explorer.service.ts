@@ -32,6 +32,11 @@ export class FileExplorerService {
     return this.httpCommonservice.httpPost(url,samplepath.toUpperCase());
   }
 
+  getFilesByTypeAndSamplePath(type:string, samplepath:string){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/filesByType/'+type;
+    return this.httpCommonservice.httpPost(url,samplepath.toUpperCase());
+  }
+
   createFile(fileDetails:any){
     let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file';
     fileDetails['pid'] = this.authService.activeProjectId;
