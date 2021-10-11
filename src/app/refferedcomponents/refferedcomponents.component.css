@@ -165,7 +165,7 @@ ul{
 }
 
 .filterdatapathandname{
-  width: 100%;
+  width: 80%;
 }
 
 .filterdataname{
@@ -173,5 +173,7 @@ ul{
 }
 
 .filterdatapath{
-
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

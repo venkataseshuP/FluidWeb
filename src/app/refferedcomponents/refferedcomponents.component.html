@@ -8,10 +8,13 @@
       <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
         <ng-container *ngFor="let item of filterdata">
             <div class="filterdata" (click)="openItemInSameTab(item)">
+              <div class="filterdataimage">
+                <ng-container *ngTemplateOutlet="iconImg; context:{ list: {'type':item[2],children:[]} }"> </ng-container>
+              </div>
               <div class="filterdatapathandname">
                 <div class="filterdataname" [innerHTML]="item[3] | highlight : searchpath">
                 </div>
-                <div class="filterdatapath" [innerHTML]="item[1] | highlight : searchpath">
+                <div class="filterdatapath" [title]="item[1]" [innerHTML]="item[1] | highlight : searchpath">
                 </div>
               </div>
             </div>
@@ -19,3 +22,11 @@
       </div>
   </div>
 </div>
+
+<ng-template #iconImg let-list="list">
+  <img src="../../assets/images/explorer/assets.svg" *ngIf="list.type == '0'">
+  <img src="../../assets/images/menu/folderopen.svg" *ngIf="list.type == '1' && list.children.length>0">
+  <img src="../../assets/images/menu/folderclose.svg" *ngIf="list.type == '1' && list.children.length ==0">
+  <img src="../../assets/images/explorer/Template.svg" *ngIf="list.type == '2'">
+  <img src="../../assets/images/explorer/swagger.svg" *ngIf="list.type == '4'">
+</ng-template>
