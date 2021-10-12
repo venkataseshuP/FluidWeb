@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from 'src/app/dataService';
+import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
 @Injectable({
@@ -8,9 +9,11 @@ import { HttpCommonService } from './http-common.service';
 export class TemplateService {
 
   nativeComponents;
+  refferedTemplates:any = [];
   constructor(
     private dataService:ParentDataService,
-    private httpCommonService:HttpCommonService
+    private httpCommonService:HttpCommonService,
+    private authService:AuthService
   ) { }
 
   refreshNativeComponents(){
@@ -21,10 +24,51 @@ export class TemplateService {
     });
   }
 
+  refreshRefferedTemplates(){
+    this.getRefferedTemplates().subscribe((data)=>{
+      if(data){
+        this.refferedTemplates = data;
+      }
+    });
+  }
+
   getNativeComponents(){
     let templateCode = this.getActiveTemplateCode();
     let url = this.getBasePath()+'/template/'+templateCode+'/nativecomponents';
     return this.httpCommonService.httpGet(url);
+  }
+
+  getRefferedTemplates(){
+    let templateCode = this.getActiveTemplateCode();
+    let url = this.getBasePath()+'/'+this.authService.activeProjectId+'/referredtemplates/'+templateCode;
+    return this.httpCommonService.httpGet(url);
+  }
+
+  addRefferedTemplate(refferedTemplateId:string){
+    if(this.checkTemplateExistsInRefferedTemplates(refferedTemplateId)) return;
+    let templateId = this.getActiveTemplateCode();
+    let url = this.getBasePath()+'/refferedtemplate';
+    let body = {
+      id:{
+        templateId: templateId,
+        refferedTemplateId : refferedTemplateId
+      }
+    }
+    this.httpCommonService.httpPost(url, body).subscribe((data)=>{
+      this.refreshRefferedTemplates();
+    });
+  }
+
+  checkTemplateExistsInRefferedTemplates(templateId){
+    let parenttemplateId = this.getActiveTemplateCode();
+    if(parenttemplateId == templateId) return true;
+    for(let i = 0;i<this.refferedTemplates.length;i++){
+      let templateDetails = this.refferedTemplates[i];
+      if(templateDetails['details']['id']['itemId'] == templateId){
+        return true;
+      }
+    }
+    return false;
   }
 
   addNewNativeComponent(type:string){

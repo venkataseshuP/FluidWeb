@@ -5,9 +5,9 @@
   <div class="search-hero">
     <input id="search" class="form-control" type="text" name="search" autocomplete="off" (keyup)="searchfilter($event)"
       placeholder="&#61442;  search reffered templates">
-      <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
+      <div class="searchresults" *ngIf="filterdataEnabled" (click)="templateService.stopPropagation()">
         <ng-container *ngFor="let item of filterdata">
-            <div class="filterdata" (click)="openItemInSameTab(item)">
+            <div class="filterdata" (click)="addRefferedTemplate(item)">
               <div class="filterdataimage">
                 <ng-container *ngTemplateOutlet="iconImg; context:{ list: {'type':item[2],children:[]} }"> </ng-container>
               </div>
@@ -21,6 +21,9 @@
         </ng-container>
       </div>
   </div>
+  <ng-container *ngFor="let refferedTemplate of templateService.refferedTemplates">
+    <app-reffered-template [template]=refferedTemplate></app-reffered-template>
+  </ng-container>
 </div>
 
 <ng-template #iconImg let-list="list">

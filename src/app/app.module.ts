@@ -29,6 +29,9 @@ import { ElementtreeComponent } from './elementtree/elementtree.component';
 import { FormsModule } from '@angular/forms';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { HighlightSearch } from './shared/pipes/HighlightSearch';
+import { TemplateService } from './shared/services/template.service';
+import { FileExplorerService } from './shared/services/file-explorer.service';
+import { RefferedTemplateComponent } from './reffered-template/reffered-template.component';
 
 
 
@@ -48,7 +51,8 @@ import { HighlightSearch } from './shared/pipes/HighlightSearch';
     NativecomponentsComponent,
     RefferedcomponentsComponent,
     ElementtreeComponent,
-    HighlightSearch
+    HighlightSearch,
+    RefferedTemplateComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
@@ -66,7 +70,7 @@ import { HighlightSearch } from './shared/pipes/HighlightSearch';
     HttpClientModule,
     HotkeyModule.forRoot()
   ],
-  providers: [ParentDataService,AuthService],
+  providers: [ParentDataService,AuthService, TemplateService, FileExplorerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

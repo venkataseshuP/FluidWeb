@@ -15,7 +15,7 @@ export class RefferedcomponentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.templateService.refreshNativeComponents();
+    this.templateService.refreshRefferedTemplates();
   }
 
   filterdata:any = [];
@@ -48,6 +48,11 @@ export class RefferedcomponentsComponent implements OnInit {
   @HostListener('document:click')clickout() {
     document.getElementById('search')['value'] = '';
     this.filterdataEnabled = false;
+  }
+
+  addRefferedTemplate(refferedtemplateDetails){
+    let refferedtemplateId = refferedtemplateDetails[0].itemId;
+    this.templateService.addRefferedTemplate(refferedtemplateId);
   }
 
 }

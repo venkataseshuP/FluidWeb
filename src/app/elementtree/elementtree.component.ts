@@ -13,7 +13,7 @@ export class ElementtreeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.templateService.refreshNativeComponents();
+    
   }
 
 }
