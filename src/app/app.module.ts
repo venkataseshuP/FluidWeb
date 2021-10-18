@@ -32,6 +32,18 @@ import { HighlightSearch } from './shared/pipes/HighlightSearch';
 import { TemplateService } from './shared/services/template.service';
 import { FileExplorerService } from './shared/services/file-explorer.service';
 import { RefferedTemplateComponent } from './reffered-template/reffered-template.component';
+import { ApidesignerComponent } from './ApiDesigner/apidesigner/apidesigner.component';
+import { ApidesignerSideMenuComponent } from './ApiDesigner/apidesigner-side-menu/apidesigner-side-menu.component';
+import { ApidesignerTabsComponent } from './ApiDesigner/apidesigner-tabs/apidesigner-tabs.component';
+import { FlowDesignerComponent } from './FlowDesigner/flow-designer/flow-designer.component';
+import { FlowDesignerSideMenuComponent } from './FlowDesigner/flow-designer-side-menu/flow-designer-side-menu.component';
+import { FlowDesignerSettingsComponent } from './FlowDesigner/flow-designer-settings/flow-designer-settings.component';
+import { ApidesignerSettingsComponent } from './ApiDesigner/apidesigner-settings/apidesigner-settings.component';
+import { ApiExchangeComponent } from './ApiExchange/api-exchange/api-exchange.component';
+import { ApiExchangeSideMenuComponent } from './ApiExchange/api-exchange-side-menu/api-exchange-side-menu.component';
+import { ApiExchangeSettingsComponent } from './ApiExchange/api-exchange-settings/api-exchange-settings.component';
+import { SwaggerUiComponent } from './ApiExchange/swagger-ui/swagger-ui.component';
+import { SwaggerEditorComponent } from './ApiExchange/swagger-editor/swagger-editor.component';
 
 
 
@@ -52,7 +64,19 @@ import { RefferedTemplateComponent } from './reffered-template/reffered-template
     RefferedcomponentsComponent,
     ElementtreeComponent,
     HighlightSearch,
-    RefferedTemplateComponent
+    RefferedTemplateComponent,
+    ApidesignerComponent,
+    ApidesignerSideMenuComponent,
+    ApidesignerTabsComponent,
+    FlowDesignerComponent,
+    FlowDesignerSideMenuComponent,
+    FlowDesignerSettingsComponent,
+    ApidesignerSettingsComponent,
+    ApiExchangeComponent,
+    ApiExchangeSideMenuComponent,
+    ApiExchangeSettingsComponent,
+    SwaggerUiComponent,
+    SwaggerEditorComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
