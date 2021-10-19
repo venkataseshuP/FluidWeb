@@ -30,6 +30,10 @@ export class NativecomponentsComponent implements OnInit {
   }
 
   changeTypeName(typeDetails,newTypeName){
+    if(!newTypeName || newTypeName == ''){
+      document.getElementById(typeDetails.typeName)['value'] = typeDetails.typeName;      
+      return ;
+    }
     if(typeDetails.typeName == newTypeName)return;
     typeDetails.typeName = newTypeName;
     this.templateService.updateType(typeDetails).subscribe((data)=>{
