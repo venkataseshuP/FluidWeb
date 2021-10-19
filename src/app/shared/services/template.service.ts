@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ParentDataService } from 'src/app/dataService';
+import { ParentDataService } from '../../dataService';
 import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
@@ -30,6 +30,43 @@ export class TemplateService {
         this.refferedTemplates = data;
       }
     });
+  }
+
+  checkReferredTemplateIsOpen(templateId:string){
+    let templateDetails = this.dataService.getActiveTabContent();
+    let openedRefferedTemplates:any[] = templateDetails['openedRefferedTemplates'];
+    if(openedRefferedTemplates && openedRefferedTemplates.indexOf(templateId['itemId']) >-1 ){
+      return true;
+    }
+    return false;
+  }
+
+  openRefferedTemplate(templateId:string){
+    let templateDetails = this.dataService.getActiveTabContent();
+    let openedRefferedTemplates:any[] = templateDetails['openedRefferedTemplates'];
+    if(!openedRefferedTemplates){
+      this.dataService.getActiveTabContent()['openedRefferedTemplates'] = [];
+      openedRefferedTemplates = [];
+    }
+    let templateIndex = openedRefferedTemplates.indexOf(templateId['itemId']);
+    if(templateIndex == -1){
+      this.dataService.getActiveTabContent()['openedRefferedTemplates'].push(templateId['itemId']);
+    }else{
+      this.closeRefferedTemplate(templateId);
+    }
+  }
+
+  closeRefferedTemplate(templateId:string){
+    let templateDetails = this.dataService.getActiveTabContent();
+    let openedRefferedTemplates:any[] = templateDetails['openedRefferedTemplates'];
+    if(!openedRefferedTemplates){
+      this.dataService.getActiveTabContent()['openedRefferedTemplates'] = [];
+      openedRefferedTemplates = [];
+    }
+    let templateIndex = openedRefferedTemplates.indexOf(templateId['itemId']);
+    if(templateIndex != -1){
+      this.dataService.getActiveTabContent()['openedRefferedTemplates'].splice(templateIndex,1);
+    }
   }
 
   getNativeComponents(){

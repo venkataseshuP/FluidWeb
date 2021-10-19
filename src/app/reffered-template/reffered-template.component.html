@@ -1,9 +1,12 @@
-<div class="header">
+<ng-container *ngFor="let isTemplateOpen of [templateService.checkReferredTemplateIsOpen(template['details']['id'])]">
+<div class="header" (click)="templateService.openRefferedTemplate(template['details']['id'])">
   <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'Template' }"> </ng-container>
   <div class="title">{{template['details']['name']}}</div>
-  <span class="arrow"><ng-container *ngTemplateOutlet="iconImg; context:{ type: '0' }"> </ng-container></span>
+  <span class="arrow">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: isTemplateOpen?'1':'0' }"> </ng-container>
+  </span>
 </div>
-<div class="body">
+<div class="body" *ngIf="isTemplateOpen">
   <div class="search-hero">
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search native components">
   </div>
@@ -28,6 +31,8 @@
     </li>
   </ul>
 </div>
+</ng-container>
+
 <ng-template #components let-list="list" let-type="type">
   <ng-container *ngFor="let nativeComponent of list">
     <li class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
@@ -44,7 +49,6 @@
     </li>
   </ng-container>
 </ng-template>
-
 <ng-template #iconImg let-type="type">
   <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == '0'">
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">

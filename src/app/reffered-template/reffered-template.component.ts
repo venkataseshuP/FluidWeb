@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TemplateService } from '../shared/services/template.service';
 
 @Component({
   selector: 'app-reffered-template',
@@ -12,7 +13,7 @@ export class RefferedTemplateComponent implements OnInit {
   isComplextypesOpen = true;
   searchText = '';
   editableTypeId = '';
-  constructor() { }
+  constructor(public templateService:TemplateService) { }
 
   ngOnInit(): void {
   }
