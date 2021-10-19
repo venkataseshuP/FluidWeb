@@ -141,7 +141,7 @@ ul{
 }
 .searchresults{
   max-height: 250px;
-  width: 100%;
+  width: 225px;
   font-size: 12px;
   z-index: 1;
   border: 1px solid lightgray;
@@ -150,6 +150,7 @@ ul{
   margin-top: 7px;
   overflow: hidden;
   overflow-y: auto;
+  position: absolute;
 }
 
 .filterdata{

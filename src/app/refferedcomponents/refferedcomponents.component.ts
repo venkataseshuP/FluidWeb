@@ -53,6 +53,7 @@ export class RefferedcomponentsComponent implements OnInit {
   addRefferedTemplate(refferedtemplateDetails){
     let refferedtemplateId = refferedtemplateDetails[0].itemId;
     this.templateService.addRefferedTemplate(refferedtemplateId);
+    this.filterdataEnabled = false;
   }
 
   refreshRefferedComponents(){
