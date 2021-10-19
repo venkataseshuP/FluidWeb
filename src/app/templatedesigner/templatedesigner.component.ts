@@ -1,5 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
+import { ElementtreeComponent } from '../elementtree/elementtree.component';
+import { NativecomponentsComponent } from '../nativecomponents/nativecomponents.component';
+import { RefferedcomponentsComponent } from '../refferedcomponents/refferedcomponents.component';
 import { TemplateService } from '../shared/services/template.service'; 
 
 
@@ -9,6 +12,14 @@ import { TemplateService } from '../shared/services/template.service';
   styleUrls: ['./templatedesigner.component.css']
 })
 export class TemplatedesignerComponent implements OnInit {
+
+  @ViewChild('nativecomponents') nativecomponents :NativecomponentsComponent;
+  @ViewChild('refferedcomponents') refferedcomponents :RefferedcomponentsComponent;
+  @ViewChild('elementtree') elementtree :ElementtreeComponent;
+
+  contextmenu = false;
+  contextmenuX = 0;
+  contextmenuY = 0;
 
   constructor(
     public templateService:TemplateService,
@@ -30,9 +41,12 @@ export class TemplatedesignerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  contextmenu = false;
-  contextmenuX = 0;
-  contextmenuY = 0;
+
+  refreshTemplate(){
+    this.nativecomponents.refreshNativeComponents();
+    this.refferedcomponents.refreshRefferedComponents();
+  }
+
 
   openContextmenu(event){
     event.preventDefault();

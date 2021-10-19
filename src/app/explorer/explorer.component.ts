@@ -5,6 +5,7 @@ import { FluidDesignerComponent } from '../fluid-designer/fluid-designer.compone
 import { AuthService } from '../shared/services/auth-service';
 import { Router } from '@angular/router';
 import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component';
+import { TemplatedesignerComponent } from '../templatedesigner/templatedesigner.component';
 
 @Component({
   selector: 'app-explorer',
@@ -14,8 +15,8 @@ import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component
 export class ExplorerComponent implements OnInit {
 
   @ViewChild('designer') designer :FluidDesignerComponent;
-  @ViewChild('swaggerEditor') swaggerEditor: SwaggereditorComponent;
-
+  @ViewChild('swaggerEditor') swaggerEditor: SwaggereditorComponent;  
+  @ViewChild('templatedesigner') templatedesigner: TemplatedesignerComponent;
 
   // explorer properties and functions
   tabWidth=258;
@@ -265,7 +266,7 @@ export class ExplorerComponent implements OnInit {
       this.fileExplorerService.refreshExplorerMenu();
     }
     else if(type == '2'){
-      //this.designer.refresh();
+      this.templatedesigner.refreshTemplate();
     }else if(type == '4'){
       this.swaggerEditor.loadEdiorSwaggerSpec();
     }

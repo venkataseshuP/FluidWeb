@@ -55,4 +55,8 @@ export class RefferedcomponentsComponent implements OnInit {
     this.templateService.addRefferedTemplate(refferedtemplateId);
   }
 
+  refreshRefferedComponents(){
+    this.templateService.refreshRefferedTemplates();
+  }
+
 }
