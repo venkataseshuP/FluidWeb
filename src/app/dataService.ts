@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ParentDataService {
   activeTabId = 0;
+  alert = false;
+  alertmsg = '';
+  alerttype = 1;
   selectedItemDetails = {
     path: '',
   };

@@ -1,9 +1,9 @@
 <div class="alert">
   <div class="img">
-    <img src="../../assets/images/gifs/success.gif">
+    <img *ngIf="dataService.alerttype == 1" src="../../assets/images/explorer/success.svg">
   </div>
   <div class="msg">
-    Successfully created template
+    {{dataService.alertmsg}}
   </div>
   <div class="closebtn">
     X

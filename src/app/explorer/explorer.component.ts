@@ -6,6 +6,7 @@ import { AuthService } from '../shared/services/auth-service';
 import { Router } from '@angular/router';
 import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component';
 import { TemplatedesignerComponent } from '../templatedesigner/templatedesigner.component';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-explorer',
@@ -34,6 +35,7 @@ export class ExplorerComponent implements OnInit {
     public authService:AuthService,
     public router:Router,
     public fileExplorerService:FileExplorerService,
+    private alertService:AlertService
     ) {
     this.fileExplorerService.refreshExplorerMenu();
     this.refreshExplorer();
@@ -350,6 +352,7 @@ export class ExplorerComponent implements OnInit {
       children:[]
     }
     this.fileExplorerService.createFile(fileDetails);
+    this.alertService.showAlert(1,"successufully created folder");
   }
 
   addSwagger(){
