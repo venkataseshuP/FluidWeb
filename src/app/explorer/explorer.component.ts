@@ -365,6 +365,7 @@ export class ExplorerComponent implements OnInit {
       children:[]
     }
     this.fileExplorerService.createFile(fileDetails);
+    this.alertService.showAlert(1,"successufully created swagger");
   }
 
   addNewTemplate(){
@@ -379,7 +380,21 @@ export class ExplorerComponent implements OnInit {
     }
 
     this.fileExplorerService.createFile(fileDetails);
+    this.alertService.showAlert(1,"successufully created Template");
+  }
 
+  addNewAPI(){
+    let name = "NewAPI"+this.getNewFolderCount("NewAPI");
+    let fileDetails = {
+      name : name,
+      type :"5",
+      parentId:this.dataService.tabs[this.dataService.activeTabId].id,
+      showChildren:false,
+      children:[]
+    }
+
+    this.fileExplorerService.createFile(fileDetails);
+    this.alertService.showAlert(1,"successufully created API");
   }
 
   addUIComponent(){
@@ -395,6 +410,7 @@ export class ExplorerComponent implements OnInit {
     }
 
     this.fileExplorerService.createFile(fileDetails);
+    this.alertService.showAlert(1,"successufully created UIComponent");
 
   }
 

@@ -13,4 +13,10 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  closeAlert(){
+    this.dataService.alertmsg = '';
+    this.dataService.alerttype = 0;
+    this.dataService.alert = false;
+  }
+
 }

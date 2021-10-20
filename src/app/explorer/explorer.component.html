@@ -307,6 +307,7 @@
       <img src="../../assets/images/menu/folderclose.svg" *ngIf="list.type == '1' && list.children.length ==0">
       <img src="../../assets/images/explorer/Template.svg" *ngIf="list.type == '2'">
       <img src="../../assets/images/explorer/swagger.svg" *ngIf="list.type == '4'">
+      <img src="../../assets/images/explorer/api.svg" *ngIf="list.type == '5'">
 </ng-template>
 
 <div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
@@ -315,7 +316,7 @@
     <img src="../../assets/images/menu/add-folder.svg">
     <span>New Folder</span>
   </div>
-  <div class="contextlist">
+  <div class="contextlist" (click)="addNewAPI();disableContextMenu()">
     <img src="../../assets/images/explorer/api.svg">
     <span>New API</span>
   </div>
