@@ -1,1 +1,39 @@
-<p>apidesigner works!</p>
+<div class="designer" (contextmenu)="openContextmenu($event)">
+  <div class="sidemenu">
+    <app-apidesigner-side-menu #sidemenu></app-apidesigner-side-menu>
+  </div>
+</div>
+
+<div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
+  [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+  <div class="contextlist" (click)="disableContextMenu()">
+    <img src="../../assets/images/ApiDesigner/post.svg">
+    <span>New POST API</span>
+  </div>
+  <div class="contextlist" (click)="disableContextMenu()">
+    <img src="../../assets/images/ApiDesigner/get.svg">
+    <span>New GET API</span>
+  </div>
+  <div class="contextlist" (click)="disableContextMenu()">
+    <img src="../../assets/images/ApiDesigner/put.svg">
+    <span>New PUT API</span>
+  </div>
+  <div class="contextlist" (click)="disableContextMenu()">
+    <img src="../../assets/images/ApiDesigner/delete.svg">
+    <span>New DELETE API</span>
+  </div>
+  <hr>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/tabs/save.svg">
+    <span>Save</span>
+  </div>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/explorer/refresh.svg">
+    <span>Refresh</span>
+  </div>  
+  <hr>
+  <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
+    <img src="../../assets/images/menu/add-folder.svg">
+    <span>Properties</span>
+  </div>  
+</div>

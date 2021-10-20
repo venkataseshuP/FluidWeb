@@ -434,6 +434,7 @@ export class ExplorerComponent implements OnInit {
     event.stopPropagation();
     itemDetails.name = value;
     this.fileExplorerService.updateFile(itemDetails);
+    this.alertService.showAlert(1,"successufully updated file");
   }
 
   getFavouriteFlagForSelectedItem(){

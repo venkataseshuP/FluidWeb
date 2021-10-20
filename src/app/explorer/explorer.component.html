@@ -119,7 +119,7 @@
         </div>
         <!-- address bar  -->
         <div id="address">
-          <input id="homesearch" type="text" (keyup)="searchfilter($event)" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
+          <input id="homesearch" autocomplete="off" type="text" (keyup)="searchfilter($event)" value="{{dataService.tabs[dataService.activeTabId]['path']}}">
           <div class="searchresults" *ngIf="filterdataEnabled" (click)="stopPropagation()">
             <ng-container *ngFor="let item of filterdata">
               <div class="filterdata" (click)="openItemInSameTab(item)">
@@ -267,6 +267,9 @@
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '4'">
         <app-swaggereditor #swaggerEditor (click)="saveTabData()"></app-swaggereditor>
+      </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '5'">
+        <app-apidesigner #apiDesigner></app-apidesigner>
       </ng-container>
     </div>
     <!-- explorer html end -->
