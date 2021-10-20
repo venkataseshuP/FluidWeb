@@ -45,6 +45,7 @@ import { ApiExchangeSettingsComponent } from './ApiExchange/api-exchange-setting
 import { SwaggerUiComponent } from './ApiExchange/swagger-ui/swagger-ui.component';
 import { SwaggerEditorComponent } from './ApiExchange/swagger-editor/swagger-editor.component';
 import { JsonEditorComponent } from './JsonEditor/json-editor/json-editor.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 
@@ -78,7 +79,8 @@ import { JsonEditorComponent } from './JsonEditor/json-editor/json-editor.compon
     ApiExchangeSettingsComponent,
     SwaggerUiComponent,
     SwaggerEditorComponent,
-    JsonEditorComponent
+    JsonEditorComponent,
+    AlertComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
