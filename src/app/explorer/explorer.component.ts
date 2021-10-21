@@ -505,7 +505,8 @@ export class ExplorerComponent implements OnInit {
       }
 
       this.dataService.tabs[this.dataService.activeTabId] = tabjson;
-      await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
+      if(itemDetails.type != '0')
+        await this.fileExplorerService.setFilePath(itemDetails.id.itemId);
       this.refreshContent();
     }
   }

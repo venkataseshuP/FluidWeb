@@ -11,7 +11,7 @@ export class ParentDataService {
   spinner = false;
   load = false;
   tabType = {
-    "0": "",
+    "0": "Apps",
     "1": "Folder",
     "2": "Template",
     "3": "ftl",
