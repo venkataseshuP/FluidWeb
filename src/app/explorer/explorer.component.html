@@ -257,8 +257,7 @@
         </div>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '0'">
-        <!-- <app-apps #apps></app-apps> -->
-        <app-json-editor></app-json-editor>
+        <app-apps #apps></app-apps>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '2'">
         <app-templatedesigner #templatedesigner></app-templatedesigner>

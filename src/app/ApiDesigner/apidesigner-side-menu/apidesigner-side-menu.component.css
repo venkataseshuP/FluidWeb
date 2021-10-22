@@ -5,3 +5,158 @@
     font-size: 14px;
     height: 30px;
 }
+ul{
+  margin: 0;
+    padding: 5px;
+}
+.list ul {
+  margin-left: 10px;
+  padding-left: 10px;
+  width: 100% !important;
+  border-left: 1px dashed #ddd;
+}
+
+.list li {
+  list-style: none;
+  color: #6f6d6f;
+  font-size: 12px;
+  font-weight: normal;
+  cursor: pointer;
+  display: flex;
+}
+
+.list li span:hover {
+
+  color:#2196F3;
+}
+
+.list li .active {
+  color:#2196F3;
+}
+
+.list a {
+  border-bottom: 1px solid transparent;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.list a:hover {
+  border-color: #eee;
+  color: #000;
+}
+
+.list .folder,
+.list .folder > a {
+  color: #777;
+  font-weight: bold;
+}
+
+
+/* The icons
+-------------------------------------------------------------- */
+
+.list li:before {
+  margin-right: 2px;
+  content: "";
+  height: 22px;
+  vertical-align: bottom;
+  width: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  /* file icon by default */
+  background-position: center 2px;
+  background-size: 60% auto;
+}
+
+.list li.api:before {
+  margin-right: 2px;
+  content: "";
+  height: 0px;
+  vertical-align: bottom;
+  width: 0px;
+  background-repeat: no-repeat;
+  display: none;
+  /* file icon by default */
+  background-position: center 2px;
+  background-size: 60% auto;
+}
+
+.api:hover{
+  background: rgb(240, 240, 240);
+}
+
+.list li img{
+  width: 35px;
+  vertical-align: baseline;
+  margin: 10px;
+}
+
+
+.apis{
+  border: none;
+  width: 90%;
+  -webkit-box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  color: #405065;
+}
+
+.search-hero {
+  margin: 10px;
+}
+
+.form-control {
+  height: 30px;
+  margin: 0;
+}
+
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}
+
+input[readonly]{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+input[readonly]:focus{
+  outline:none;
+}
+
+
+.readonlytype{
+  border: none;
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
+.readonlytype:hover{
+  font-weight: 600;
+}
+
+
+.apiname{
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+}
+
+.apiurl{
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

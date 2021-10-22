@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../shared/services/api.service';
 
 @Component({
   selector: 'app-apidesigner-side-menu',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApidesignerSideMenuComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public apiService:ApiService) { }
+  searchText = '';
   ngOnInit(): void {
   }
 

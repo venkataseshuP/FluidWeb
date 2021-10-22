@@ -1,3 +1,37 @@
 <div class="header">
-  API Documents
+  API's
 </div>
+<div class="body">
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search apis">
+    </div>
+    <ul class="list">
+      <ng-container *ngTemplateOutlet="apis; context:{ list: apiService.apislist }">
+      </ng-container>
+    </ul>
+</div>
+
+
+<ng-template #apis let-list="list">
+  <ng-container *ngFor="let api of list">
+    <li class="api" *ngIf="(!searchText || searchText=='' || api.method.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api.name.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api.url.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: api.method }"> </ng-container>
+        <div class="readonlytype bg-t"  (click)="templateService.stopPropagation()">
+          <div title="{{api.name}}" class="apiname">
+            {{api.name}}
+          </div>
+          <div title="{{api.url}}" class="apiurl">
+            {{api.url}}
+          </div>
+        </div>
+    </li>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #iconImg let-type="type">
+  <img src="../../assets/images/ApiDesigner/post.svg" *ngIf="type == 'POST'">
+  <img src="../../assets/images/ApiDesigner/put.svg" *ngIf="type == 'PUT'">
+  <img src="../../assets/images/ApiDesigner/get.svg" *ngIf="type == 'GET'">
+  <img src="../../assets/images/ApiDesigner/delete.svg" *ngIf="type == 'DELETE'">
+</ng-template>

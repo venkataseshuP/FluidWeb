@@ -6,7 +6,7 @@
 }
 
 .designer .sidemenu{
-  min-width: 18%;
+    width:20%;
     overflow-x: auto;
     overflow-y: auto;
     margin: 3px;
