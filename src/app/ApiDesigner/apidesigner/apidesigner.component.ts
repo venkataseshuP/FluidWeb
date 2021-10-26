@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ApiService } from '../../shared/services/api.service';
 
 @Component({
   selector: 'app-apidesigner',
@@ -12,9 +13,10 @@ export class ApidesignerComponent implements OnInit {
   contextmenuX = 0;
   contextmenuY = 0;
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
 
   ngOnInit(): void {
+    this.apiService.refreshAPIs();
   }
 
   openContextmenu(event){
@@ -50,5 +52,16 @@ export class ApidesignerComponent implements OnInit {
     this.disableContextMenu();
   }
 
+  createAPI(method:string){
+    this.apiService.createAPI(method).subscribe((data)=>{
+      if(data){
+        this.refreshAPIs();
+      }
+    });
+  }
+
+  refreshAPIs(){
+    this.apiService.refreshAPIs();
+  }
 
 }

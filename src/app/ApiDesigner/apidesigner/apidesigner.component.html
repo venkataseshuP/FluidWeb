@@ -6,19 +6,19 @@
 
 <div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
   [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
-  <div class="contextlist" (click)="disableContextMenu()">
+  <div class="contextlist" (click)="createAPI('POST');disableContextMenu()">
     <img src="../../assets/images/ApiDesigner/post.svg">
     <span>New POST API</span>
   </div>
-  <div class="contextlist" (click)="disableContextMenu()">
+  <div class="contextlist" (click)="createAPI('GET');disableContextMenu()">
     <img src="../../assets/images/ApiDesigner/get.svg">
     <span>New GET API</span>
   </div>
-  <div class="contextlist" (click)="disableContextMenu()">
+  <div class="contextlist" (click)="createAPI('PUT');disableContextMenu()">
     <img src="../../assets/images/ApiDesigner/put.svg">
     <span>New PUT API</span>
   </div>
-  <div class="contextlist" (click)="disableContextMenu()">
+  <div class="contextlist" (click)="createAPI('DELETE');disableContextMenu()">
     <img src="../../assets/images/ApiDesigner/delete.svg">
     <span>New DELETE API</span>
   </div>

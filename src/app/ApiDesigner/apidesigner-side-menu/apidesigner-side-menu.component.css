@@ -160,3 +160,12 @@ input[readonly]:focus{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.apiName{
+  border: none;
+  width: 100%;
+  -webkit-box-shadow: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}

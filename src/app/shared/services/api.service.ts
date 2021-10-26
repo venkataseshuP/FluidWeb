@@ -1,31 +1,49 @@
 import { Injectable } from '@angular/core';
+import { ParentDataService } from '../../dataService';
+import { APIRepoPK } from '../../model/apirepo-pk.model';
+import { APIRepo } from '../../model/apirepo.model';
+import { AuthService } from './auth-service';
+import { HttpCommonService } from './http-common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  apislist  = [
-    {
-      method:'GET',
-      url:'/account/{accountId}',
-      name:'get account details'
-    },
-    {
-      method:'POST',
-      url:'/account',
-      name:'add account details to the saving account'
-    },
-    {
-      method:'PUT',
-      url:'/account/{accountId}',
-      name:'update account details'
-    },
-    {
-      method:'DELETE',
-      url:'/account/{accountId}',
-      name:'delete account details'
-    }
-  ];
-  constructor() { }
+  apislist:APIRepo[]  = [];
+  constructor(private authservice:AuthService, 
+    private dataService:ParentDataService,
+    private httpCommonservice:HttpCommonService) { }
+
+  createAPI(method:string){
+    let apidetails =  new APIRepo();
+    apidetails.id = new APIRepoPK();
+    apidetails.id.endpointId = 'E0001';
+    apidetails.id.method = method;
+    apidetails.id.apidocId = this.dataService.getActiveTabContent().id;
+    apidetails.id.pid = this.authservice.activeProjectId;
+    apidetails.id.url = '/api/url/here';
+    apidetails.desc = '';
+    apidetails.apiName = 'API name here';
+    apidetails.type = 'P';
+
+    let url:any = this.httpCommonservice.baseurl+'/api';
+    return this.httpCommonservice.httpPost(url,apidetails);
+
+  }
+
+  refreshAPIs(){
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/apis/'+this.dataService.getActiveTabContent().id;
+    this.httpCommonservice.httpGet(url).subscribe((data:APIRepo[])=>{
+      if(data){
+        this.apislist = data;
+      }
+    })
+  }
+
+  updateAPI(apiData:APIRepo){
+    let url = this.httpCommonservice.baseurl+'/api';
+    return this.httpCommonservice.httpPut(url,apiData);
+  }
+
 }
