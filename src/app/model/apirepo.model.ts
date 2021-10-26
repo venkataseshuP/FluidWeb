@@ -5,4 +5,7 @@ export class APIRepo {
   desc:string;
   apiName:string;
   type:string;
+  endpointId:string;
+  method:string;
+  url:string;
 }

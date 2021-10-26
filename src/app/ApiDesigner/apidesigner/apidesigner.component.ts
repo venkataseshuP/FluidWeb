@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ApidesignerComponent implements OnInit {
   contextmenuX = 0;
   contextmenuY = 0;
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService,
+    private alertService:AlertService) { }
 
   ngOnInit(): void {
     this.apiService.refreshAPIs();
@@ -55,6 +57,7 @@ export class ApidesignerComponent implements OnInit {
   createAPI(method:string){
     this.apiService.createAPI(method).subscribe((data)=>{
       if(data){
+        this.alertService.showAlert(1,'successfully added api');
         this.refreshAPIs();
       }
     });

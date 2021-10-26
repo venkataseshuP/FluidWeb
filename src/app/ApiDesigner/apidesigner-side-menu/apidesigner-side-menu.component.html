@@ -14,8 +14,8 @@
 
 <ng-template #apis let-list="list">
   <ng-container *ngFor="let api of list">
-    <li class="api" *ngIf="(!searchText || searchText=='' || api['id'].method.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api.apiName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api['id'].url.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="stopPropagation()" (dblclick)="activateEdit(api)" > 
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: api['id'].method }"> </ng-container>
+    <li class="api" *ngIf="(!searchText || searchText=='' || api.method.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api.apiName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1 || api.url.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="stopPropagation()" (dblclick)="activateEdit(api)" > 
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: api.method }"> </ng-container>
         <div class="readonlytype bg-t"  (click)="stopPropagation()">
           <div class="apiname">
             <ng-container *ngIf="editableapi == api['id'].apiid">
@@ -28,8 +28,16 @@
               </div>
             </ng-container>   
           </div>
-          <div title="{{api['id'].url}}" class="apiurl">
-            {{api['id'].url}}
+          <div title="{{api.url}}" class="apiurl">
+            <ng-container *ngIf="editableapi == api['id'].apiid">
+              <input class="apiName" title="{{api.url}}" type="text" id="{{api.url}}" value="{{api.url}}" [(ngModel)]="api.url"
+              autocomplete="off" (blur)="updateAPI(api)">
+            </ng-container>
+            <ng-container *ngIf="editableapi != api['id'].apiid">
+              <div class="readonlytype bg-t" title="{{api.url}}" (dblclick)="activateEdit(api)" (click)="stopPropagation()">
+                {{api.url}}
+              </div>
+            </ng-container>  
           </div>
         </div>
     </li>

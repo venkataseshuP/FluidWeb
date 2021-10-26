@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { APIRepo } from '../../model/apirepo.model';
+import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ApiService } from '../../shared/services/api.service';
 export class ApidesignerSideMenuComponent implements OnInit {
 
   editableapi = '';
-  constructor(public apiService:ApiService) { }
+  constructor(public apiService:ApiService, private alertService:AlertService) { }
   searchText = '';
   ngOnInit(): void {
   }
@@ -29,13 +30,18 @@ export class ApidesignerSideMenuComponent implements OnInit {
     this.apiService.updateAPI(apidata).subscribe((data)=>{
       if(data){
         this.apiService.refreshAPIs();
-        this.editableapi = '';
+        this.alertService.showAlert(1,'successfully updated api');
       }
     });
   }
 
   stopPropagation(){
     event.stopPropagation();
+  }
+
+  @HostListener('document:click')clickout() {
+    event.stopPropagation();
+    this.editableapi = '';
   }
 
 }

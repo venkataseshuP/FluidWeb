@@ -18,11 +18,11 @@ export class ApiService {
   createAPI(method:string){
     let apidetails =  new APIRepo();
     apidetails.id = new APIRepoPK();
-    apidetails.id.endpointId = 'E0001';
-    apidetails.id.method = method;
+    apidetails.endpointId = 'E0001';
+    apidetails.method = method;
     apidetails.id.apidocId = this.dataService.getActiveTabContent().id;
     apidetails.id.pid = this.authservice.activeProjectId;
-    apidetails.id.url = '/api/url/here';
+    apidetails.url = '/api/url/here';
     apidetails.desc = '';
     apidetails.apiName = 'API name here';
     apidetails.type = 'P';
