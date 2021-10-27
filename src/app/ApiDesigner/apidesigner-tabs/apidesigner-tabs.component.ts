@@ -18,7 +18,7 @@ export class ApidesignerTabsComponent implements OnInit {
   }
 
   realignTabs(){
-    let width = ((window.innerWidth-300)/this.getTabs().length);
+    let width = ((window.innerWidth-258)/this.getTabs().length);
     this.tabWidth = width<258?width:258;
   }
 
