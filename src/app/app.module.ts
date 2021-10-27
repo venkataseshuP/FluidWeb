@@ -46,6 +46,7 @@ import { SwaggerUiComponent } from './ApiExchange/swagger-ui/swagger-ui.componen
 import { SwaggerEditorComponent } from './ApiExchange/swagger-editor/swagger-editor.component';
 import { JsonEditorComponent } from './JsonEditor/json-editor/json-editor.component';
 import { AlertComponent } from './alert/alert.component';
+import { EmptyComponent } from './empty/empty.component';
 
 
 
@@ -80,7 +81,8 @@ import { AlertComponent } from './alert/alert.component';
     SwaggerUiComponent,
     SwaggerEditorComponent,
     JsonEditorComponent,
-    AlertComponent
+    AlertComponent,
+    EmptyComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

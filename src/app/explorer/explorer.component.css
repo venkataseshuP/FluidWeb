@@ -244,6 +244,21 @@ hr{
     background-image: url('../../assets/images/tabs/folderopen.svg');
   }
 
+  .chrome-tabs .chrome-tab .apidoc{
+    background-image: url('../../assets/images/explorer/api.svg') !important;
+  }
+
+  .chrome-tabs .chrome-tab .Template{
+    background-image: url('../../assets/images/explorer/Template.svg') !important;
+  }
+
+  .chrome-tabs .chrome-tab .Apps{
+    background-image: url('../../assets/images/explorer/assets.svg') !important;
+  }
+
+  .chrome-tabs .chrome-tab .ftl{
+    background-image: url('../../assets/images/explorer/designer.svg') !important;
+  }
 
   .chrome-tabs .chrome-tab[is-small] .chrome-tab-favicon {
     margin-left: 0;

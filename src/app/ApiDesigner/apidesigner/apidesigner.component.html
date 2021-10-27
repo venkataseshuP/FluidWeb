@@ -1,11 +1,14 @@
 <div class="designer" (contextmenu)="openContextmenu($event)">
   <div class="sidemenu">
-    <app-apidesigner-side-menu #sidemenu></app-apidesigner-side-menu>
+    <app-apidesigner-side-menu #sidemenu (openTab)="openApiTab($event)"></app-apidesigner-side-menu>
+  </div>
+  <div class="apidata">
+    <app-apidesigner-tabs #apiTabs ></app-apidesigner-tabs>
   </div>
 </div>
 
-<div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)" *ngIf="contextmenu"
-  [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
+<div class="contextmenu" id="contextmenu" onselectstart='return false' (click)="stopemitting($event)"
+  *ngIf="contextmenu" [ngStyle]="{'left.px': contextmenuX, 'top.px': contextmenuY}">
   <div class="contextlist" (click)="createAPI('POST');disableContextMenu()">
     <img src="../../assets/images/ApiDesigner/post.svg">
     <span>New POST API</span>
@@ -30,10 +33,10 @@
   <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
     <img src="../../assets/images/explorer/refresh.svg">
     <span>Refresh</span>
-  </div>  
+  </div>
   <hr>
   <div class="contextlist" (click)="addNewFolder();disableContextMenu()">
     <img src="../../assets/images/menu/add-folder.svg">
     <span>Properties</span>
-  </div>  
+  </div>
 </div>

@@ -1,6 +1,9 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ParentDataService } from '../../dataService';
+import { APIRepo } from '../../model/apirepo.model';
 import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
+import { ApidesignerTabsComponent } from '../apidesigner-tabs/apidesigner-tabs.component';
 
 @Component({
   selector: 'app-apidesigner',
@@ -9,13 +12,15 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class ApidesignerComponent implements OnInit {
 
+  @ViewChild('apiTabs') apiTabs:ApidesignerTabsComponent;
   
   contextmenu = false;
   contextmenuX = 0;
   contextmenuY = 0;
 
   constructor(private apiService:ApiService,
-    private alertService:AlertService) { }
+    private alertService:AlertService,
+    public dataService:ParentDataService) { }
 
   ngOnInit(): void {
     this.apiService.refreshAPIs();
@@ -65,6 +70,10 @@ export class ApidesignerComponent implements OnInit {
 
   refreshAPIs(){
     this.apiService.refreshAPIs();
+  }
+
+  openApiTab(api:APIRepo){
+    this.apiTabs.open(api);
   }
 
 }

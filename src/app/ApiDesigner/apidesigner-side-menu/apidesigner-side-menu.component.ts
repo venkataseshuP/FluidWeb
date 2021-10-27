@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { APIRepo } from '../../model/apirepo.model';
 import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
@@ -10,6 +10,7 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class ApidesignerSideMenuComponent implements OnInit {
 
+  @Output() openTab = new EventEmitter<APIRepo>();
   editableapi = '';
   constructor(public apiService:ApiService, private alertService:AlertService) { }
   searchText = '';
@@ -42,6 +43,10 @@ export class ApidesignerSideMenuComponent implements OnInit {
   @HostListener('document:click')clickout() {
     event.stopPropagation();
     this.editableapi = '';
+  }
+
+  openAPI(api:APIRepo){
+    this.openTab.emit(api);
   }
 
 }

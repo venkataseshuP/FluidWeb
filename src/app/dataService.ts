@@ -15,7 +15,8 @@ export class ParentDataService {
     "1": "Folder",
     "2": "Template",
     "3": "ftl",
-    "4": "Swagger Spec"
+    "4": "Swagger Spec",
+    "5": "apidoc"
   }
   tabs = [
     {

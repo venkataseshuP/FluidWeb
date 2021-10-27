@@ -15,6 +15,16 @@
     overflow: hidden;
 }
 
+.designer .apidata{
+  width:80%;
+  overflow-x: auto;
+  overflow-y: auto;
+  margin: 3px;
+  border: 1px solid #e0dbdb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
 .contextmenu{
   height: auto;
   width: auto;
