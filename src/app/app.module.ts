@@ -47,6 +47,7 @@ import { SwaggerEditorComponent } from './ApiExchange/swagger-editor/swagger-edi
 import { JsonEditorComponent } from './JsonEditor/json-editor/json-editor.component';
 import { AlertComponent } from './alert/alert.component';
 import { EmptyComponent } from './empty/empty.component';
+import { ApitabdataComponent } from './ApiDesigner/apitabdata/apitabdata.component';
 
 
 
@@ -82,7 +83,8 @@ import { EmptyComponent } from './empty/empty.component';
     SwaggerEditorComponent,
     JsonEditorComponent,
     AlertComponent,
-    EmptyComponent
+    EmptyComponent,
+    ApitabdataComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

@@ -1,0 +1,30 @@
+<div *ngIf="getTabs().length>0">
+  <div class="apidata">
+    <div class="top">
+      <div class="methodurl">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle methodbtn" [class]="api.method" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{api.method}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item POST" (click)="api.method ='POST';update()">POST</a>
+            <a class="dropdown-item GET" (click)="api.method ='GET';update()">GET</a>
+            <a class="dropdown-item PUT" (click)="api.method ='PUT';update()">PUT</a>
+            <a class="dropdown-item DELETE" (click)="api.method ='DELETE';update()">DELETE</a>
+          </div>
+        </div>
+      </div>
+      <input class="urlinput" (blur)="update()" [(ngModel)]="api.url" type="text" placeholder="enter the url here">
+    </div>
+    <div class="bottom">
+      <div class="apiname">
+        <label class="label">Name</label>
+        <input class="inputform" [(ngModel)]="api.apiName" type="text" (blur)="update()">
+      </div>
+      <div class="desc">
+        <label class="label">Description</label>
+        <input class="inputform" [(ngModel)]="api.desc" type="text" (blur)="update()">
+      </div>
+    </div>
+  </div>
+</div>

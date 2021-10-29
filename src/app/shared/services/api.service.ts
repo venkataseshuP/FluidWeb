@@ -45,5 +45,9 @@ export class ApiService {
     let url = this.httpCommonservice.baseurl+'/api';
     return this.httpCommonservice.httpPut(url,apiData);
   }
+  getAPIDetails(apiId){
+    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId;
+    return this.httpCommonservice.httpGet(url);
+  }
 
 }

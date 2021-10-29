@@ -1,0 +1,76 @@
+.top{
+  display: flex;
+}
+
+.methodurl{
+  display: flex;
+}
+
+.dropdown{
+  flex:1;
+}
+
+.methodbtn{
+    height: 35px;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    background: #ffffff;
+    color: black;
+    border: 0.5px solid gray;
+}
+
+.urlinput{
+  flex: 5;
+  height: 35px;
+  border-radius: 0 5px 5px 0;
+  background: #ffffff;
+  color: black;
+  border: 0.5px solid gray;
+}
+
+.bottom{
+  display: flex;
+}
+
+.apiname{
+  flex: 1;
+  margin-right: 3px;
+}
+
+.desc{
+  flex: 1;
+}
+
+.label{
+  padding-bottom: 0;
+  margin-bottom: 3px;
+  background: none;
+  color: black;
+  font-size: 13px;
+  font-weight: 100;
+}
+
+.inputform{
+  width: 100%;
+  height: 35px;
+}
+
+.POST{
+  background: #49cc90;
+  color: white;
+}
+
+.GET{
+  background: #61affe;
+  color: white;
+}
+
+.PUT{
+  background: #fca130;
+  color: white;
+}
+
+.DELETE{
+  background: #fc3030;
+  color: white;
+}

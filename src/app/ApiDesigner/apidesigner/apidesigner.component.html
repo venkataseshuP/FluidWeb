@@ -3,7 +3,12 @@
     <app-apidesigner-side-menu #sidemenu (openTab)="openApiTab($event)"></app-apidesigner-side-menu>
   </div>
   <div class="apidata">
-    <app-apidesigner-tabs #apiTabs ></app-apidesigner-tabs>
+    <div class="apitabs">
+      <app-apidesigner-tabs #apiTabs (refreshdata)="refresh($event)"></app-apidesigner-tabs>
+    </div>
+    <div class="apitabdata">
+      <app-apitabdata #apiTabData (refreshdata)="refresh($event)"></app-apitabdata>
+    </div>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { APIRepo } from '../../model/apirepo.model';
 
@@ -8,6 +8,8 @@ import { APIRepo } from '../../model/apirepo.model';
   styleUrls: ['./apidesigner-tabs.component.css']
 })
 export class ApidesignerTabsComponent implements OnInit {
+
+  @Output() refreshdata = new EventEmitter<APIRepo>();
 
   tabWidth=258;
   activeDragId;
@@ -25,6 +27,7 @@ export class ApidesignerTabsComponent implements OnInit {
   async openTab(tabId){
     this.getActiveTabContent()['activeTabId'] = tabId;
     this.realignTabs();
+    this.refreshdata.emit();
   }
 
   getActiveTabContent(){
