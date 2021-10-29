@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component';
 import { TemplatedesignerComponent } from '../templatedesigner/templatedesigner.component';
 import { AlertService } from '../shared/services/alert.service';
+import { ApidesignerComponent } from '../ApiDesigner/apidesigner/apidesigner.component';
 
 @Component({
   selector: 'app-explorer',
@@ -18,7 +19,7 @@ export class ExplorerComponent implements OnInit {
   @ViewChild('designer') designer :FluidDesignerComponent;
   @ViewChild('swaggerEditor') swaggerEditor: SwaggereditorComponent;  
   @ViewChild('templatedesigner') templatedesigner: TemplatedesignerComponent;
-
+  @ViewChild('apiDesigner') apiDesigner: ApidesignerComponent;
   // explorer properties and functions
   tabWidth=258;
   activeDragId;
@@ -271,6 +272,8 @@ export class ExplorerComponent implements OnInit {
       this.templatedesigner.refreshTemplate();
     }else if(type == '4'){
       this.swaggerEditor.loadEdiorSwaggerSpec();
+    }else if(type == '5'){
+      this.apiDesigner.refresh(event);
     }
   });
   }

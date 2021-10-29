@@ -8,15 +8,18 @@
 
 .dropdown{
   flex:1;
+  cursor: pointer;
+}
+
+.dropdown-item:hover{
+  margin: 3px;
 }
 
 .methodbtn{
     height: 35px;
     border-radius: 5px 0 0 5px;
     text-align: center;
-    background: #ffffff;
-    color: black;
-    border: 0.5px solid gray;
+    border: none;
 }
 
 .urlinput{
@@ -24,8 +27,8 @@
   height: 35px;
   border-radius: 0 5px 5px 0;
   background: #ffffff;
-  color: black;
-  border: 0.5px solid gray;
+  color: #343434;
+  border: 0.5px solid lightgray;
 }
 
 .bottom{
@@ -38,14 +41,14 @@
 }
 
 .desc{
-  flex: 1;
+  flex: 2;
 }
 
 .label{
   padding-bottom: 0;
   margin-bottom: 3px;
   background: none;
-  color: black;
+  color: #343434;
   font-size: 13px;
   font-weight: 100;
 }
@@ -53,24 +56,62 @@
 .inputform{
   width: 100%;
   height: 35px;
+  border: 0.5px solid lightgray;
 }
 
-.POST{
+.dropdown .POST{
   background: #49cc90;
   color: white;
 }
 
-.GET{
+.dropdown .GET{
   background: #61affe;
   color: white;
 }
 
-.PUT{
+.dropdown .PUT{
   background: #fca130;
   color: white;
 }
 
-.DELETE{
+.dropdown .DELETE{
   background: #fc3030;
   color: white;
+}
+
+.apiparms{
+  display: flex;
+}
+
+.paramtab{
+  flex: 1;
+  color: #343434;
+  display: inline-block;
+  margin: 0px 20px;
+  text-align:center;
+  cursor: pointer;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+.apiparms .POST{
+  border-bottom: 2px solid #49cc90;
+}
+
+.apiparms .PUT{
+  border-bottom: 2px solid #fca130;
+}
+
+.apiparms .GET{
+  border-bottom: 2px solid #61affe;
+}
+
+.apiparms .DELETE{
+  border-bottom: 2px solid #fc3030;
+}
+
+.dropdown-menu{
+  background: white;
+  border: none;
+  box-shadow: none;
 }

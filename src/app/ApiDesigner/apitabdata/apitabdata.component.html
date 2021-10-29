@@ -27,4 +27,12 @@
       </div>
     </div>
   </div>
+  <div class="apiparms" *ngIf="api.method as method">
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 0)?method+'': '']" (click)="setActiveParamTabId(0)">Authorization</div>
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 1)?method+'': '']" (click)="setActiveParamTabId(1)">Path Params</div>
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 2)?method+'': '']" (click)="setActiveParamTabId(2)">Query Params</div>
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 3)?method+'': '']" (click)="setActiveParamTabId(3)">Headers</div>
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 4)?method+'': '']" (click)="setActiveParamTabId(4)">Request</div>
+    <div class="paramtab" [ngClass]="[(getActiveParamTabId() == 5)?method+'': '']" (click)="setActiveParamTabId(5)">Response</div>
+  </div>
 </div>

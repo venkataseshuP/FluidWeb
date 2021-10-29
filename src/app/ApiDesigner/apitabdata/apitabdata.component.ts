@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { APIRepo } from '../../model/apirepo.model';
+import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ApitabdataComponent implements OnInit {
   @Output() refreshdata = new EventEmitter<APIRepo>();
   api:APIRepo;
   constructor(private dataService:ParentDataService,
-    private apiService:ApiService) {
+    private apiService:ApiService,
+    private alert:AlertService) {
     this.api =  new APIRepo();
    }
 
@@ -53,6 +55,7 @@ export class ApitabdataComponent implements OnInit {
   update(){
     this.apiService.updateAPI(this.api).subscribe((data:APIRepo)=>{
       if(data){
+        this.alert.showAlert(1,'update API data');
         this.updateTabMethodAndName(data);
         this.refreshdata.emit();
       }
@@ -65,6 +68,15 @@ export class ApitabdataComponent implements OnInit {
     let apitabActiveId = this.getActiveTabId();
     tabsdata[apitabActiveId]['type'] = api.method;
     tabsdata[apitabActiveId]['desc'] = api.apiName;
+  }
+
+  getActiveParamTabId(){
+    let paramTabActiveId = this.getTabs()[this.getActiveTabId()]['paramTabActiveId'];
+    return paramTabActiveId?paramTabActiveId:0;
+  }
+
+  setActiveParamTabId(id:number){
+    this.getTabs()[this.getActiveTabId()]['paramTabActiveId'] = id;
   }
 
 }
