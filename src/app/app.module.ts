@@ -49,6 +49,7 @@ import { AlertComponent } from './alert/alert.component';
 import { EmptyComponent } from './empty/empty.component';
 import { ApitabdataComponent } from './ApiDesigner/apitabdata/apitabdata.component';
 import { PathparamsComponent } from './ApiDesigner/pathparams/pathparams.component';
+import { QueryparamsComponent } from './ApiDesigner/queryparams/queryparams.component';
 
 
 
@@ -86,7 +87,8 @@ import { PathparamsComponent } from './ApiDesigner/pathparams/pathparams.compone
     AlertComponent,
     EmptyComponent,
     ApitabdataComponent,
-    PathparamsComponent
+    PathparamsComponent,
+    QueryparamsComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

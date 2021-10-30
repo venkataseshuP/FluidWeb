@@ -4,6 +4,7 @@ import { APIRepo } from '../../model/apirepo.model';
 import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
 import { PathparamsComponent } from '../pathparams/pathparams.component';
+import { QueryparamsComponent } from '../queryparams/queryparams.component';
 
 @Component({
   selector: 'app-apitabdata',
@@ -14,6 +15,7 @@ export class ApitabdataComponent implements OnInit {
 
   @Output() refreshdata = new EventEmitter<APIRepo>();
   @ViewChild('pathparam') pathparam:PathparamsComponent;
+  @ViewChild('queryparam') queryparam:QueryparamsComponent;
   api:APIRepo;
   activeParamTabId = 0;
   constructor(private dataService:ParentDataService,
@@ -62,6 +64,9 @@ export class ApitabdataComponent implements OnInit {
       switch(this.activeParamTabId){
         case 1:
           this.pathparam.refresh();
+          break;
+        case 2:
+          this.queryparam.refresh();
           break;
       }
     },10);

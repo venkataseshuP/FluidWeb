@@ -37,5 +37,6 @@
   </div>
   <div class="apiparamstabdata">
     <app-pathparams #pathparam *ngIf="activeParamTabId == 1" [api]="api"></app-pathparams>
+    <app-queryparams #queryparam *ngIf="activeParamTabId == 2" [api]="api"></app-queryparams>
   </div>
 </div>

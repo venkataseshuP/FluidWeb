@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { APIPathParam } from '../../model/apipath-param.model';
+import { APIQueryParam } from '../../model/apiquery-param.model';
 import { APIRepoPK } from '../../model/apirepo-pk.model';
 import { APIRepo } from '../../model/apirepo.model';
 import { AuthService } from './auth-service';
@@ -72,6 +73,31 @@ export class ApiService {
     apiPathParam.id.apiid = api.id.apiid;
     apiPathParam.paramName = 'new path param';
     return this.httpCommonservice.httpPost(url, apiPathParam);
+  }
+
+  // ------------------ query params ---------------------------------
+
+  getQueryParams(apiId){
+    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/queryparams';
+    return this.httpCommonservice.httpGet(url);
+  }
+
+  deleteQueryParam(queryparam:APIQueryParam){
+    let url = this.httpCommonservice.baseurl+'/api/'+queryparam.id.apiid+'/queryparam/'+queryparam.id.paramId;
+    return this.httpCommonservice.httpdelete(url);
+  }
+
+  updateQueryParam(queryparam:APIQueryParam){
+    let url = this.httpCommonservice.baseurl+'/api/queryparam';
+    return this.httpCommonservice.httpPut(url,queryparam);
+  }
+
+  createQueryParam(api:APIRepo){
+    let url = this.httpCommonservice.baseurl+'/api/queryparam';
+    let queryparam:APIQueryParam = new APIQueryParam();
+    queryparam.id.apiid = api.id.apiid;
+    queryparam.paramName = 'new path param';
+    return this.httpCommonservice.httpPost(url, queryparam);
   }
 
 }
