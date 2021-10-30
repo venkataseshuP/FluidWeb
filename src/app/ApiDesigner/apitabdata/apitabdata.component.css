@@ -1,5 +1,6 @@
 .top{
   display: flex;
+  height: 35px;
 }
 
 .methodurl{
@@ -29,6 +30,7 @@
   background: #ffffff;
   color: #343434;
   border: 0.5px solid lightgray;
+  margin-right: 10px;
 }
 
 .bottom{
@@ -59,22 +61,22 @@
   border: 0.5px solid lightgray;
 }
 
-.dropdown .POST{
+.apiopitionbtns:hover .POST,.dropdown .POST{
   background: #49cc90;
   color: white;
 }
 
-.dropdown .GET{
+.apiopitionbtns:hover .GET,.dropdown .GET{
   background: #61affe;
   color: white;
 }
 
-.dropdown .PUT{
+.apiopitionbtns:hover .PUT,.dropdown .PUT{
   background: #fca130;
   color: white;
 }
 
-.dropdown .DELETE{
+.apiopitionbtns:hover .DELETE,.dropdown .DELETE{
   background: #fc3030;
   color: white;
 }
@@ -118,4 +120,14 @@
 
 .apidata{
   padding: 10px;
+}
+
+.apiopitionbtns{
+  color: lightgray;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.apiopitionbtns:hover{
+  color: gray;
 }

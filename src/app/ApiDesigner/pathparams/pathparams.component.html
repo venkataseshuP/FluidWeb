@@ -8,7 +8,7 @@
     <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
   </tr>
   <ng-container *ngFor="let pathparam of apiPathParams">
-    <tr>
+    <tr class="rowdata">
       <td class="borderleftNone borderrightnone paddingNone"></td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="pathparamactive" (change)="updatePathParam(pathparam)" type="checkbox" [(ngModel)]="pathparam.active"></td>
       <td class="paddingNone"><input autocomplete="off" class="pathparamInput" name="pathparamname" (change)="updatePathParam(pathparam)" type="text" placeholder="param name" [(ngModel)]="pathparam.paramName"></td>
