@@ -49,3 +49,7 @@ td, th {
 .paddingright10{
   padding-right: 10px;
 }
+
+.closebtn:hover{
+  font-weight: 600;
+}

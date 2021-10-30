@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from '../../dataService';
+import { APIHeaderParam } from '../../model/apiheader-param.model';
 import { APIPathParam } from '../../model/apipath-param.model';
 import { APIQueryParam } from '../../model/apiquery-param.model';
 import { APIRepoPK } from '../../model/apirepo-pk.model';
@@ -96,8 +97,33 @@ export class ApiService {
     let url = this.httpCommonservice.baseurl+'/api/queryparam';
     let queryparam:APIQueryParam = new APIQueryParam();
     queryparam.id.apiid = api.id.apiid;
-    queryparam.paramName = 'new path param';
+    queryparam.paramName = 'new query param';
     return this.httpCommonservice.httpPost(url, queryparam);
   }
+
+  // ------------------ header params ---------------------------------
+
+  getHeaderParams(apiId){
+    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/headerparams';
+    return this.httpCommonservice.httpGet(url);
+  }
+
+  deleteHeaderParam(param:APIHeaderParam){
+    let url = this.httpCommonservice.baseurl+'/api/'+param.id.apiid+'/headerparam/'+param.id.paramId;
+    return this.httpCommonservice.httpdelete(url);
+  }
+
+  updateHeaderParam(param:APIHeaderParam){
+    let url = this.httpCommonservice.baseurl+'/api/headerparam';
+    return this.httpCommonservice.httpPut(url,param);
+  }
+
+  createHeaderParam(api:APIRepo){
+    let url = this.httpCommonservice.baseurl+'/api/headerparam';
+    let queryparam:APIQueryParam = new APIQueryParam();
+    queryparam.id.apiid = api.id.apiid;
+    queryparam.paramName = 'new header param';
+    return this.httpCommonservice.httpPost(url, queryparam);
+  }  
 
 }

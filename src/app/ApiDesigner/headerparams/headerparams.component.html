@@ -8,7 +8,7 @@
     <th class="borderrightnone">Description</th>
     <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
   </tr>
-  <ng-container *ngFor="let param of apiQueryParams">
+  <ng-container *ngFor="let param of apiHeaderParams">
     <tr>
       <td class="borderleftNone borderrightnone paddingNone"></td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="paramactive" (change)="updateParam(param)" type="checkbox" [(ngModel)]="param.mandatory"></td>

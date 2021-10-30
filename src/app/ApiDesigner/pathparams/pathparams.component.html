@@ -14,7 +14,7 @@
       <td class="paddingNone"><input autocomplete="off" class="pathparamInput" name="pathparamname" (change)="updatePathParam(pathparam)" type="text" placeholder="param name" [(ngModel)]="pathparam.paramName"></td>
       <td class="paddingNone"><input autocomplete="off" class="pathparamInput" type="text" name="pathparamtype" placeholder="param type"></td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="pathparamdesc" (change)="updatePathParam(pathparam)" class="pathparamInput" type="text" placeholder="description" [(ngModel)]="pathparam.description"></td>
-      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10" (click)="deletePathParam(pathparam)">X</td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deletePathParam(pathparam)">X</td>
     </tr>
   </ng-container>
 </table>
