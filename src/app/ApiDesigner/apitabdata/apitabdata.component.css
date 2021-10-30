@@ -11,8 +11,8 @@
   cursor: pointer;
 }
 
-.dropdown-item:hover{
-  margin: 3px;
+.dropdown:hover{
+  font-weight: 600;
 }
 
 .methodbtn{
@@ -80,7 +80,7 @@
 }
 
 .apiparms{
-  display: flex;
+  display: inline-block;
 }
 
 .paramtab{
