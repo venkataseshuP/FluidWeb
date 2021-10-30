@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from '../../dataService';
+import { APIPathParam } from '../../model/apipath-param.model';
 import { APIRepoPK } from '../../model/apirepo-pk.model';
 import { APIRepo } from '../../model/apirepo.model';
 import { AuthService } from './auth-service';
@@ -48,6 +49,29 @@ export class ApiService {
   getAPIDetails(apiId){
     let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId;
     return this.httpCommonservice.httpGet(url);
+  }
+
+  getPathParams(apiId){
+    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/pathparams';
+    return this.httpCommonservice.httpGet(url);
+  }
+
+  deletePathParam(pathparam:APIPathParam){
+    let url = this.httpCommonservice.baseurl+'/api/'+pathparam.id.apiid+'/pathparam/'+pathparam.id.paramId;
+    return this.httpCommonservice.httpdelete(url);
+  }
+
+  updatePathParam(pathparam:APIPathParam){
+    let url = this.httpCommonservice.baseurl+'/api/pathparam';
+    return this.httpCommonservice.httpPut(url,pathparam);
+  }
+
+  createPathParam(api:APIRepo){
+    let url = this.httpCommonservice.baseurl+'/api/pathparam';
+    let apiPathParam:APIPathParam = new APIPathParam();
+    apiPathParam.id.apiid = api.id.apiid;
+    apiPathParam.paramName = 'new path param';
+    return this.httpCommonservice.httpPost(url, apiPathParam);
   }
 
 }

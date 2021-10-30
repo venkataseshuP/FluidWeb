@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th class="width10" (click)="addPathParam()">+</th>
+    <th class="borderleftNone width10 textaligncenter">Active</th>
+    <th>Param Name</th>
+    <th>Param Type</th>
+    <th class="borderrightnone">Description</th>
+    <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
+  </tr>
+  <ng-container *ngFor="let pathparam of apiPathParams">
+    <tr>
+      <td class="borderleftNone borderrightnone"></td>
+      <td class="borderleftNone width10 textaligncenter"><input name="pathparamactive" (change)="updatePathParam(pathparam)" type="checkbox" [(ngModel)]="pathparam.active"></td>
+      <td class="paddingNone"><input class="pathparamInput" name="pathparamname" (change)="updatePathParam(pathparam)" type="text" placeholder="param name" [(ngModel)]="pathparam.paramName"></td>
+      <td><input type="text" name="pathparamtype" placeholder="param type"></td>
+      <td class="borderrightnone paddingNone"><input name="pathparamdesc" (change)="updatePathParam(pathparam)" class="pathparamInput" type="text" placeholder="description" [(ngModel)]="pathparam.description"></td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone" (click)="deletePathParam(pathparam)">X</td>
+    </tr>
+  </ng-container>
+</table>

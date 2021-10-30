@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { APIRepo } from '../../model/apirepo.model';
 import { AlertService } from '../../shared/services/alert.service';
 import { ApiService } from '../../shared/services/api.service';
+import { PathparamsComponent } from '../pathparams/pathparams.component';
 
 @Component({
   selector: 'app-apitabdata',
@@ -12,6 +13,7 @@ import { ApiService } from '../../shared/services/api.service';
 export class ApitabdataComponent implements OnInit {
 
   @Output() refreshdata = new EventEmitter<APIRepo>();
+  @ViewChild('pathparam') pathparam:PathparamsComponent;
   api:APIRepo;
   activeParamTabId = 0;
   constructor(private dataService:ParentDataService,
@@ -36,7 +38,7 @@ export class ApitabdataComponent implements OnInit {
   }
 
   getActiveTabId(){
-    return this.dataService.getActiveTabContent()['activeTabId'];
+    return this.getActiveTabContent()['activeTabId'];
   }
 
   refresh(){
@@ -49,9 +51,20 @@ export class ApitabdataComponent implements OnInit {
     this.apiService.getAPIDetails(apiId).subscribe((data:APIRepo)=>{
       if(data){
         this.activeParamTabId = this.getActiveParamTabId();
+        this.updateSubComponent()
         this.api = data;
       }
     });
+  }
+
+  updateSubComponent(){
+    setTimeout(()=>{
+      switch(this.activeParamTabId){
+        case 1:
+          this.pathparam.refresh();
+          break;
+      }
+    },10);
   }
 
   update(){
@@ -80,6 +93,7 @@ export class ApitabdataComponent implements OnInit {
   setActiveParamTabId(id:number){
     this.getTabs()[this.getActiveTabId()]['paramTabActiveId'] = id;
     this.activeParamTabId = id;
+    this.updateSubComponent();
   }
 
 }

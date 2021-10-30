@@ -48,6 +48,7 @@ import { JsonEditorComponent } from './JsonEditor/json-editor/json-editor.compon
 import { AlertComponent } from './alert/alert.component';
 import { EmptyComponent } from './empty/empty.component';
 import { ApitabdataComponent } from './ApiDesigner/apitabdata/apitabdata.component';
+import { PathparamsComponent } from './ApiDesigner/pathparams/pathparams.component';
 
 
 
@@ -84,7 +85,8 @@ import { ApitabdataComponent } from './ApiDesigner/apitabdata/apitabdata.compone
     JsonEditorComponent,
     AlertComponent,
     EmptyComponent,
-    ApitabdataComponent
+    ApitabdataComponent,
+    PathparamsComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

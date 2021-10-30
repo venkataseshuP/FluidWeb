@@ -14,16 +14,16 @@
           </div>
         </div>
       </div>
-      <input class="urlinput" (blur)="update()" [(ngModel)]="api.url" type="text" placeholder="enter the url here">
+      <input class="urlinput" (change)="update()" [(ngModel)]="api.url" type="text" placeholder="enter the url here">
     </div>
     <div class="bottom">
       <div class="apiname">
         <label class="label">Name</label>
-        <input class="inputform" [(ngModel)]="api.apiName" type="text" (blur)="update()">
+        <input class="inputform" [(ngModel)]="api.apiName" type="text" (change)="update()">
       </div>
       <div class="desc">
         <label class="label">Description</label>
-        <input class="inputform" [(ngModel)]="api.desc" type="text" (blur)="update()">
+        <input class="inputform" [(ngModel)]="api.desc" type="text" (change)="update()">
       </div>
     </div>
   </div>
@@ -34,5 +34,8 @@
     <div class="paramtab" [ngClass]="[(activeParamTabId == 3)?method+'': '']" (click)="setActiveParamTabId(3)">Headers</div>
     <div class="paramtab" [ngClass]="[(activeParamTabId == 4)?method+'': '']" (click)="setActiveParamTabId(4)">Request</div>
     <div class="paramtab" [ngClass]="[(activeParamTabId == 5)?method+'': '']" (click)="setActiveParamTabId(5)">Response</div>
+  </div>
+  <div class="apiparamstabdata">
+    <app-pathparams #pathparam *ngIf="activeParamTabId == 1" [api]="api"></app-pathparams>
   </div>
 </div>
