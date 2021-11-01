@@ -16,7 +16,7 @@
       <td class="paddingNone borderrightnone"><input readonly autocomplete="off" type="text" class="paramInput" name="Responsetemplate" placeholder="template" (change)="updateResponseTemplate(Responsetemplate)" [(ngModel)]="Responsetemplate.templatename"></td>
       <td class="o-btn borderleftNone borderrightnone width10"> <app-search-templates [template]="Responsetemplate"  (templateId)="updateResponseTemplate($event)"></app-search-templates> </td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="description" (change)="updateResponseTemplate(Responsetemplate)" class="paramInput" type="text" placeholder="description" [(ngModel)]="Responsetemplate.description"></td>
-      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deleteResponseTemplate(Responsetemplate)">X</td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 o-btn" (click)="deleteResponseTemplate(Responsetemplate)">X</td>
     </tr>
   </ng-container>
 </table>
