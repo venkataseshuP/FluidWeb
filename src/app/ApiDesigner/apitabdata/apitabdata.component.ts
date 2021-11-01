@@ -6,6 +6,7 @@ import { ApiService } from '../../shared/services/api.service';
 import { HeaderparamsComponent } from '../headerparams/headerparams.component';
 import { PathparamsComponent } from '../pathparams/pathparams.component';
 import { QueryparamsComponent } from '../queryparams/queryparams.component';
+import { RequestTemplatesComponent } from '../request-templates/request-templates.component';
 
 @Component({
   selector: 'app-apitabdata',
@@ -18,6 +19,7 @@ export class ApitabdataComponent implements OnInit {
   @ViewChild('pathparam') pathparam:PathparamsComponent;
   @ViewChild('queryparam') queryparam:QueryparamsComponent;
   @ViewChild('headerparam') headerparam:HeaderparamsComponent;
+  @ViewChild('requestTemplates') requestTemplates:RequestTemplatesComponent;
   api:APIRepo;
   activeParamTabId = 0;
   constructor(private dataService:ParentDataService,
@@ -72,6 +74,9 @@ export class ApitabdataComponent implements OnInit {
           break;
         case 3:
           this.headerparam.refresh();
+          break;
+        case 4:
+          this.requestTemplates.refresh();
           break;
       }
     },10);

@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th class="borderleftNone width10" (click)="addRequestTemplate()">+</th>
+    <th class="borderleftNone width10 textaligncenter">Active</th>
+    <th>Consumes Type</th>
+    <th>Template</th>
+    <th class="borderrightnone">Description</th>
+    <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
+  </tr>
+  <ng-container *ngFor="let requesttemplate of apiRequestTemplates">
+    <tr class="rowdata">
+      <td class="borderleftNone borderrightnone paddingNone"></td>
+      <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="requesttemplateactive" (change)="updateRequestTemplate(requesttemplate)" type="checkbox" [(ngModel)]="requesttemplate.active"></td>
+      <td class="paddingNone"><input autocomplete="off" class="paramInput" name="requesttemplateType" (change)="updateRequestTemplate(requesttemplate)" type="text" placeholder="consumes type" [(ngModel)]="requesttemplate.type"></td>
+      <td class="paddingNone"><input autocomplete="off" type="text" class="paramInput" name="requesttemplate" placeholder="template" (change)="updateRequestTemplate(requesttemplate)" [(ngModel)]="requesttemplate.templateId"></td>
+      <td class="borderrightnone paddingNone"><input autocomplete="off" name="description" (change)="updateRequestTemplate(requesttemplate)" class="paramInput" type="text" placeholder="description" [(ngModel)]="requesttemplate.description"></td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deleteRequestTemplate(requesttemplate)">X</td>
+    </tr>
+  </ng-container>
+</table>

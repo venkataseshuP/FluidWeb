@@ -51,6 +51,7 @@ import { ApitabdataComponent } from './ApiDesigner/apitabdata/apitabdata.compone
 import { PathparamsComponent } from './ApiDesigner/pathparams/pathparams.component';
 import { QueryparamsComponent } from './ApiDesigner/queryparams/queryparams.component';
 import { HeaderparamsComponent } from './ApiDesigner/headerparams/headerparams.component';
+import { RequestTemplatesComponent } from './ApiDesigner/request-templates/request-templates.component';
 
 
 
@@ -90,7 +91,8 @@ import { HeaderparamsComponent } from './ApiDesigner/headerparams/headerparams.c
     ApitabdataComponent,
     PathparamsComponent,
     QueryparamsComponent,
-    HeaderparamsComponent
+    HeaderparamsComponent,
+    RequestTemplatesComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

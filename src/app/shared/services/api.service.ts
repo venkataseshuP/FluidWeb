@@ -5,6 +5,7 @@ import { APIPathParam } from '../../model/apipath-param.model';
 import { APIQueryParam } from '../../model/apiquery-param.model';
 import { APIRepoPK } from '../../model/apirepo-pk.model';
 import { APIRepo } from '../../model/apirepo.model';
+import { APIRequestTemplate } from '../../model/apirequest-template.model';
 import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
@@ -125,5 +126,30 @@ export class ApiService {
     queryparam.paramName = 'new header param';
     return this.httpCommonservice.httpPost(url, queryparam);
   }  
+
+
+    // ------------------ Request Templates ---------------------------------
+
+    getRequestTemplates(apiId){
+      let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/requesttemplates';
+      return this.httpCommonservice.httpGet(url);
+    }
+  
+    deleteRequestTemplate(requestTemplate:APIRequestTemplate){
+      let url = this.httpCommonservice.baseurl+'/api/'+requestTemplate.id.apiid+'/requesttemplate/'+requestTemplate.id.requestId;
+      return this.httpCommonservice.httpdelete(url);
+    }
+  
+    updateRequestTemplate(requestTemplate:APIRequestTemplate){
+      let url = this.httpCommonservice.baseurl+'/api/requesttemplate';
+      return this.httpCommonservice.httpPut(url,requestTemplate);
+    }
+  
+    createRequestTemplate(api:APIRepo){
+      let url = this.httpCommonservice.baseurl+'/api/requesttemplate';
+      let reuqestTemplate:APIRequestTemplate = new APIRequestTemplate();
+      reuqestTemplate.id.apiid = api.id.apiid;
+      return this.httpCommonservice.httpPost(url, reuqestTemplate);
+    } 
 
 }
