@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th class="borderleftNone width10" (click)="addResponseTemplate()">+</th>
+    <th class="borderleftNone width10 textaligncenter">Active</th>
+    <th>Produces Type</th>
+    <th>Template</th>
+    <th class="borderrightnone">Description</th>
+    <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
+  </tr>
+  <ng-container *ngFor="let Responsetemplate of apiResponseTemplates">
+    <tr class="rowdata">
+      <td class="borderleftNone borderrightnone paddingNone"></td>
+      <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="Responsetemplateactive" (change)="updateResponseTemplate(Responsetemplate)" type="checkbox" [(ngModel)]="Responsetemplate.active"></td>
+      <td class="paddingNone"><input autocomplete="off" class="paramInput" name="ResponsetemplateType" (change)="updateResponseTemplate(Responsetemplate)" type="text" placeholder="produces type" [(ngModel)]="Responsetemplate.type"></td>
+      <td class="paddingNone"><input autocomplete="off" type="text" class="paramInput" name="Responsetemplate" placeholder="template" (change)="updateResponseTemplate(Responsetemplate)" [(ngModel)]="Responsetemplate.templateId"></td>
+      <td class="borderrightnone paddingNone"><input autocomplete="off" name="description" (change)="updateResponseTemplate(Responsetemplate)" class="paramInput" type="text" placeholder="description" [(ngModel)]="Responsetemplate.description"></td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deleteResponseTemplate(Responsetemplate)">X</td>
+    </tr>
+  </ng-container>
+</table>

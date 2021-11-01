@@ -6,6 +6,7 @@ import { APIQueryParam } from '../../model/apiquery-param.model';
 import { APIRepoPK } from '../../model/apirepo-pk.model';
 import { APIRepo } from '../../model/apirepo.model';
 import { APIRequestTemplate } from '../../model/apirequest-template.model';
+import { APIResponseTemplate } from '../../model/apiresponse-template.model';
 import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
@@ -151,5 +152,29 @@ export class ApiService {
       reuqestTemplate.id.apiid = api.id.apiid;
       return this.httpCommonservice.httpPost(url, reuqestTemplate);
     } 
+
+        // ------------------ Response Templates ---------------------------------
+
+        getResponseTemplates(apiId){
+          let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/responsetemplates';
+          return this.httpCommonservice.httpGet(url);
+        }
+      
+        deleteResponseTemplate(ResponseTemplate:APIResponseTemplate){
+          let url = this.httpCommonservice.baseurl+'/api/'+ResponseTemplate.id.apiid+'/responsetemplate/'+ResponseTemplate.id.responseId;
+          return this.httpCommonservice.httpdelete(url);
+        }
+      
+        updateResponseTemplate(ResponseTemplate:APIResponseTemplate){
+          let url = this.httpCommonservice.baseurl+'/api/responsetemplate';
+          return this.httpCommonservice.httpPut(url,ResponseTemplate);
+        }
+      
+        createResponseTemplate(api:APIRepo){
+          let url = this.httpCommonservice.baseurl+'/api/responsetemplate';
+          let reuqestTemplate:APIResponseTemplate = new APIResponseTemplate();
+          reuqestTemplate.id.apiid = api.id.apiid;
+          return this.httpCommonservice.httpPost(url, reuqestTemplate);
+        } 
 
 }

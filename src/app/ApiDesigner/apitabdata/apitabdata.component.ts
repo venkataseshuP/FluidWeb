@@ -20,6 +20,7 @@ export class ApitabdataComponent implements OnInit {
   @ViewChild('queryparam') queryparam:QueryparamsComponent;
   @ViewChild('headerparam') headerparam:HeaderparamsComponent;
   @ViewChild('requestTemplates') requestTemplates:RequestTemplatesComponent;
+  @ViewChild('responseTemplates') responseTemplates:RequestTemplatesComponent;
   api:APIRepo;
   activeParamTabId = 0;
   constructor(private dataService:ParentDataService,
@@ -77,6 +78,9 @@ export class ApitabdataComponent implements OnInit {
           break;
         case 4:
           this.requestTemplates.refresh();
+          break;
+        case 5:
+          this.responseTemplates.refresh();
           break;
       }
     },10);
