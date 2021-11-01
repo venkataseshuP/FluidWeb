@@ -53,6 +53,7 @@ import { QueryparamsComponent } from './ApiDesigner/queryparams/queryparams.comp
 import { HeaderparamsComponent } from './ApiDesigner/headerparams/headerparams.component';
 import { RequestTemplatesComponent } from './ApiDesigner/request-templates/request-templates.component';
 import { ResponseTemplatesComponent } from './ApiDesigner/response-templates/response-templates.component';
+import { SearchTemplatesComponent } from './search-templates/search-templates.component';
 
 
 
@@ -94,7 +95,8 @@ import { ResponseTemplatesComponent } from './ApiDesigner/response-templates/res
     QueryparamsComponent,
     HeaderparamsComponent,
     RequestTemplatesComponent,
-    ResponseTemplatesComponent
+    ResponseTemplatesComponent,
+    SearchTemplatesComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

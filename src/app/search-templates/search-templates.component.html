@@ -1,0 +1,38 @@
+<div *ngIf="!enablemodal" (click)="enablemodal = true"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+<div class="requestTemplatemodal" *ngIf="enablemodal">
+  <div class="modalbody">
+    <div class="search-hero">
+      <div class="header">
+        <div class="title" >Search Templates
+          <span class="arrow" (click)="enablemodal = false">
+            x
+        </span>
+        </div>
+      </div>
+      <input id="search" class="form-control" type="text" name="search" autocomplete="off" (keyup)="searchfilter($event)"
+        placeholder="&#61442;  type template name/ path to search">
+        <div class="searchresults" *ngIf="filterdataEnabled" (click)="templateService.stopPropagation()">
+          <ng-container *ngFor="let item of filterdata">
+              <div class="filterdata" (click)="selectedTemplate(item)">
+                <div class="filterdataimage">
+                  <ng-container *ngTemplateOutlet="iconImg; context:{ list: {'type':item[2],children:[]} }"> </ng-container>
+                </div>
+                <div class="filterdatapathandname">
+                  <div class="filterdataname" [innerHTML]="item[3] | highlight : searchpath">
+                  </div>
+                  <div class="filterdatapath" [title]="item[1]" [innerHTML]="item[1] | highlight : searchpath">
+                  </div>
+                </div>
+              </div>
+          </ng-container>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #iconImg let-list="list">
+  <img src="../../assets/images/explorer/Template.svg" *ngIf="list.type == '2'">
+  <img src="../../../assets/images/explorer/eyeclose.svg" *ngIf="list.type == '1'">
+</ng-template>

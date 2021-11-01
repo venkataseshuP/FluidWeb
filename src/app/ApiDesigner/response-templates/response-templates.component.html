@@ -3,7 +3,8 @@
     <th class="borderleftNone width10" (click)="addResponseTemplate()">+</th>
     <th class="borderleftNone width10 textaligncenter">Active</th>
     <th>Produces Type</th>
-    <th>Template</th>
+    <th class="borderrightnone">Template</th>
+    <th class="borderleftNone borderrightnone width10"></th>
     <th class="borderrightnone">Description</th>
     <th class="borderrightnone width10 textaligncenter borderleftNone"></th>
   </tr>
@@ -11,8 +12,9 @@
     <tr class="rowdata">
       <td class="borderleftNone borderrightnone paddingNone"></td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="Responsetemplateactive" (change)="updateResponseTemplate(Responsetemplate)" type="checkbox" [(ngModel)]="Responsetemplate.active"></td>
-      <td class="paddingNone"><input autocomplete="off" class="paramInput" name="ResponsetemplateType" (change)="updateResponseTemplate(Responsetemplate)" type="text" placeholder="produces type" [(ngModel)]="Responsetemplate.type"></td>
-      <td class="paddingNone"><input autocomplete="off" type="text" class="paramInput" name="Responsetemplate" placeholder="template" (change)="updateResponseTemplate(Responsetemplate)" [(ngModel)]="Responsetemplate.templateId"></td>
+      <td class="paddingNone width15p"><input autocomplete="off" class="paramInput" name="ResponsetemplateType" (change)="updateResponseTemplate(Responsetemplate)" type="text" placeholder="produces type" [(ngModel)]="Responsetemplate.type"></td>
+      <td class="paddingNone borderrightnone"><input readonly autocomplete="off" type="text" class="paramInput" name="Responsetemplate" placeholder="template" (change)="updateResponseTemplate(Responsetemplate)" [(ngModel)]="Responsetemplate.templatename"></td>
+      <td class="o-btn borderleftNone borderrightnone width10"> <app-search-templates [template]="Responsetemplate"  (templateId)="updateResponseTemplate($event)"></app-search-templates> </td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="description" (change)="updateResponseTemplate(Responsetemplate)" class="paramInput" type="text" placeholder="description" [(ngModel)]="Responsetemplate.description"></td>
       <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deleteResponseTemplate(Responsetemplate)">X</td>
     </tr>

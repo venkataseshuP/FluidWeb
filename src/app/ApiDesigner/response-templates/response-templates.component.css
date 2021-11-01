@@ -30,6 +30,10 @@ td, th {
   width: 30px;
 }
 
+.width15p{
+  width: 15%;
+}
+
 .textaligncenter{
   text-align: center;
 }
