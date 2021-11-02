@@ -54,6 +54,7 @@ import { HeaderparamsComponent } from './ApiDesigner/headerparams/headerparams.c
 import { RequestTemplatesComponent } from './ApiDesigner/request-templates/request-templates.component';
 import { ResponseTemplatesComponent } from './ApiDesigner/response-templates/response-templates.component';
 import { SearchTemplatesComponent } from './search-templates/search-templates.component';
+import { SearchSimpletypesComponent } from './search-simpletypes/search-simpletypes.component';
 
 
 
@@ -96,7 +97,8 @@ import { SearchTemplatesComponent } from './search-templates/search-templates.co
     HeaderparamsComponent,
     RequestTemplatesComponent,
     ResponseTemplatesComponent,
-    SearchTemplatesComponent
+    SearchTemplatesComponent,
+    SearchSimpletypesComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

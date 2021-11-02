@@ -155,4 +155,9 @@ export class TemplateService {
   stopPropagation(){
     event.stopPropagation();
   }
+
+  getTyesByTypeNameAndType(typeName:string, type:string){
+    let url:any = this.httpCommonService.baseurl+'/'+this.authService.activeProjectId+'/findByTypeNameAndType/'+type+'/'+typeName.toLocaleUpperCase();
+    return this.httpCommonService.httpGet(url);
+  }
 }
