@@ -1,4 +1,8 @@
-<div *ngIf="!enablemodal" (click)="enablemodal = true"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+<div *ngIf="!enablemodal" >
+  <i class="fa fa-ellipsis-h" aria-hidden="true" (click)="enablemodal = true"></i>
+  <!-- <i class="fa fa-times" aria-hidden="true" (click)="remove()"></i> -->
+  <span (click)="remove()"> X </span>
+</div>
 <div class="requestTemplatemodal" *ngIf="enablemodal">
   <div class="modalbody">
     <div class="search-hero">

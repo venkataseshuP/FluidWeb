@@ -10,13 +10,13 @@
   </tr>
   <ng-container *ngFor="let pathparam of apiPathParams">
     <tr class="rowdata">
-      <td class="borderleftNone borderrightnone paddingNone"></td>
+      <td class="borderleftNone borderrightnone paddingNone paddingleft10 o-btn fontsize14" (click)="addPathParam()" > + </td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="pathparamactive" (change)="updatePathParam(pathparam)" type="checkbox" [(ngModel)]="pathparam.active"></td>
       <td class="paddingNone"><input readonly autocomplete="off" class="pathparamInput" name="pathparamname" (change)="updatePathParam(pathparam)" type="text" placeholder="param name" [(ngModel)]="pathparam.paramName"></td>
       <td class="paddingNone borderrightnone"><input readonly autocomplete="off" class="pathparamInput" type="text" name="pathparamtype" placeholder="param type" [(ngModel)]="pathparam.paramTypename"></td>
-      <td class="borderrightnone borderleftNone width10"> <app-search-simpletypes [param]="pathparam"  (typeId)="updatePathParam($event)"></app-search-simpletypes></td>
+      <td class="borderrightnone borderleftNone width72 o-btn"> <app-search-simpletypes [param]="pathparam"  (typeId)="updatePathParam($event)"></app-search-simpletypes></td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="pathparamdesc" (change)="updatePathParam(pathparam)" class="pathparamInput" type="text" placeholder="description" [(ngModel)]="pathparam.description"></td>
-      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deletePathParam(pathparam)">X</td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 o-btn" (click)="deletePathParam(pathparam)">X</td>
     </tr>
   </ng-container>
 </table>

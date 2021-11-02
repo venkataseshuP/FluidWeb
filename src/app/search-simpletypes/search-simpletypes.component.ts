@@ -58,4 +58,11 @@ export class SearchSimpletypesComponent implements OnInit {
 
   }
 
+  remove(){
+    this.param['paramType'] = '';
+    this.param['templateId'] = '';
+    this.typeId.emit(this.param);
+    this.enablemodal = false;
+  }
+
 }

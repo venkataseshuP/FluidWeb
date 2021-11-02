@@ -11,14 +11,14 @@
   </tr>
   <ng-container *ngFor="let param of apiHeaderParams">
     <tr class="rowdata">
-      <td class="borderleftNone borderrightnone paddingNone"></td>
+      <td class="borderleftNone borderrightnone paddingNone paddingleft10 o-btn fontsize14" (click)="addParam()" > + </td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="paramactive" (change)="updateParam(param)" type="checkbox" [(ngModel)]="param.mandatory"></td>
       <td class="paddingNone"><input autocomplete="off" class="paramInput" name="paramname" (change)="updateParam(param)" type="text" placeholder="param name" [(ngModel)]="param.paramName"></td>
       <td class="paddingNone borderrightnone"><input readonly autocomplete="off" class="paramInput" type="text" name="pathparamtype" placeholder="param type" [(ngModel)]="param.paramTypename"></td>
-      <td class="borderrightnone borderleftNone width10"> <app-search-simpletypes [param]="param"  (typeId)="updateParam($event)"></app-search-simpletypes></td>
+      <td class="borderrightnone borderleftNone width72 o-btn"> <app-search-simpletypes [param]="param"  (typeId)="updateParam($event)"></app-search-simpletypes></td>
       <td class="paddingNone"><input autocomplete="off" class="paramInput" name="paramdefaultValue" (change)="updateParam(param)" type="text" placeholder="default value" [(ngModel)]="param.defaultvalue"></td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="paramdesc" (change)="updateParam(param)" class="paramInput" type="text" placeholder="description" [(ngModel)]="param.description"></td>
-      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 closebtn" (click)="deleteParam(param)">X</td>
+      <td class="borderrightnone width10 textaligncenter borderleftNone paddingNone paddingright10 o-btn" (click)="deleteParam(param)">X</td>
     </tr>
   </ng-container>
 </table>

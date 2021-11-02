@@ -30,6 +30,10 @@ td, th {
   width: 30px;
 }
 
+.width72{
+  width: 72px;
+}
+
 .textaligncenter{
   text-align: center;
 }
@@ -53,10 +57,18 @@ td, th {
   padding-right: 10px;
 }
 
-.closebtn{
+.paddingleft10{
+  padding-left: 10px;
+}
+
+.o-btn{
   color: lightgray;
 }
 
-.rowdata:hover .closebtn{
+.rowdata:hover .o-btn{
   color: black;
+}
+
+.fontsize14{
+  font-size: 14px;
 }
