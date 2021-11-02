@@ -64,3 +64,11 @@ td, th {
 .rowdata:hover .o-btn{
   color: black;
 }
+
+.paddingleft10{
+  padding-left: 10px;
+}
+
+.width72{
+  width: 72px;
+}

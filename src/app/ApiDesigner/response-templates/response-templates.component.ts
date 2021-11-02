@@ -27,6 +27,9 @@ export class ResponseTemplatesComponent implements OnInit {
   }
 
   deleteResponseTemplate(ResponseTemplate:APIResponseTemplate){
+    if(!ResponseTemplate.id.responseId){
+      this.refresh();
+    }
     this.apiService.deleteResponseTemplate(ResponseTemplate).subscribe((data)=>{
       if(data){
         this.refresh();

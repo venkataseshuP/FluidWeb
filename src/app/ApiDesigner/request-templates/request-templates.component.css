@@ -30,6 +30,10 @@ td, th {
   width: 30px;
 }
 
+.width72{
+  width: 72px;
+}
+
 .width15p{
   width: 15%;
 }
@@ -55,6 +59,10 @@ td, th {
 
 .paddingright10{
   padding-right: 10px;
+}
+
+.paddingleft10{
+  padding-left: 10px;
 }
 
 .o-btn{

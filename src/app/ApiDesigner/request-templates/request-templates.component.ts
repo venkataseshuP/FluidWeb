@@ -29,6 +29,9 @@ export class RequestTemplatesComponent implements OnInit {
   }
 
   deleteRequestTemplate(requestTemplate:APIRequestTemplate){
+    if(!requestTemplate.id.requestId){
+      this.refresh();
+    }
     this.apiService.deleteRequestTemplate(requestTemplate).subscribe((data)=>{
       if(data){
         this.refresh();

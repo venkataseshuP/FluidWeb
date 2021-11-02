@@ -55,4 +55,10 @@ export class SearchTemplatesComponent implements OnInit {
     this.enablemodal = false;
 
   }
+
+  remove(){
+    this.template['templateId'] = '';
+    this.templateId.emit(this.template);
+    this.enablemodal = false;
+  }
 }
