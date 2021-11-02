@@ -14,7 +14,7 @@
       <td class="borderleftNone borderrightnone paddingNone"></td>
       <td class="borderleftNone width10 textaligncenter paddingNone"><input autocomplete="off" name="paramactive" (change)="updateParam(param)" type="checkbox" [(ngModel)]="param.mandatory"></td>
       <td class="paddingNone"><input autocomplete="off" class="paramInput" name="paramname" (change)="updateParam(param)" type="text" placeholder="param name" [(ngModel)]="param.paramName"></td>
-      <td class="paddingNone borderrightnone"><input autocomplete="off" type="text" class="paramInput" name="paramtype" placeholder="param type"></td>
+      <td class="paddingNone borderrightnone"><input readonly autocomplete="off" type="text" class="paramInput" name="paramtype" placeholder="param type" [(ngModel)]="param.paramTypename"></td>
       <td class="borderrightnone borderleftNone width10"> <app-search-simpletypes [param]="param"  (typeId)="updateParam($event)"></app-search-simpletypes></td>
       <td class="paddingNone"><input autocomplete="off" class="paramInput" name="paramdefaultValue" (change)="updateParam(param)" type="text" placeholder="default value" [(ngModel)]="param.defaultvalue"></td>
       <td class="borderrightnone paddingNone"><input autocomplete="off" name="paramdesc" (change)="updateParam(param)" class="paramInput" type="text" placeholder="description" [(ngModel)]="param.description"></td>
