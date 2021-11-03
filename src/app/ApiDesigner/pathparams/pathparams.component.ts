@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { APIPathParam } from '../../model/apipath-param.model';
 import { APIRepo } from '../../model/apirepo.model';
+import { SearchSimpletypesComponent } from '../../search-simpletypes/search-simpletypes.component';
 import { ApiService } from '../../shared/services/api.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { ApiService } from '../../shared/services/api.service';
 })
 export class PathparamsComponent implements OnInit {
 
+  @ViewChild('simpletypeSearch') simpletypeSearch:SearchSimpletypesComponent;
   @Input() api:APIRepo;
   apiPathParams:APIPathParam[] = [];
   constructor(private apiService:ApiService, private dataService:ParentDataService) { }
@@ -51,6 +53,10 @@ export class PathparamsComponent implements OnInit {
         this.refresh();
       }
     });
+  }
+
+  opensimpletypes(){
+    this.simpletypeSearch.enablemodal = true;
   }
 
 }

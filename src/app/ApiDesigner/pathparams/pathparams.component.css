@@ -30,6 +30,11 @@ td, th {
   width: 72px;
 }
 
+.width20p{
+  width: 20%;
+}
+
+
 .textaligncenter{
   text-align: center;
 }
@@ -55,11 +60,11 @@ td, th {
 }
 
 .o-btn{
-  color: lightgray;
+  color: transparent;
 }
 
 .rowdata:hover .o-btn{
-  color: black;
+  color: gray;
 }
 
 .fontsize14{

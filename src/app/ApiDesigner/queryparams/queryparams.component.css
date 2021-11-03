@@ -62,11 +62,11 @@ td, th {
 }
 
 .o-btn{
-  color: lightgray;
+  color: transparent;
 }
 
 .rowdata:hover .o-btn{
-  color: black;
+  color: gray;
 }
 
 .fontsize14{
