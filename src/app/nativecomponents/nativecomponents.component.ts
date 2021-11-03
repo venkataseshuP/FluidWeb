@@ -10,6 +10,8 @@ export class NativecomponentsComponent implements OnInit {
 
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
+  isPrimitivtypesOpen = true;
+  isRootOpen = true;
   searchText = '';
   editableTypeId = '';
   constructor(
@@ -27,6 +29,14 @@ export class NativecomponentsComponent implements OnInit {
 
   openORcloseCT(){
     this.isComplextypesOpen = !this.isComplextypesOpen;
+  }
+
+  openORclosePT(){
+    this.isPrimitivtypesOpen = !this.isPrimitivtypesOpen;
+  }
+
+  openORcloseR(){
+    this.isRootOpen = !this.isRootOpen;
   }
 
   changeTypeName(typeDetails,newTypeName){

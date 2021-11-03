@@ -6,6 +6,16 @@
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search native components">
   </div>
   <ul class="directory-list">
+    <li (click)="openORcloseR()" [ngClass]="{'folderopen':(isRootOpen),'folderclose':(!isRootOpen)}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'RH' }"> </ng-container>
+      <span class="bold"> Root </span>
+      <ul *ngIf="isRootOpen">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'R' }">
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
+  <ul class="directory-list">
     <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
       <span class="bold"> Simple Types </span>
@@ -21,6 +31,16 @@
       <span class="bold"> Complex Types </span>
       <ul *ngIf="isComplextypesOpen">
         <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT' }">
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
+  <ul class="directory-list">
+    <li (click)="openORclosePT()" [ngClass]="{'folderopen':(isPrimitivtypesOpen),'folderclose':(!isPrimitivtypesOpen)}">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'PTH' }"> </ng-container>
+      <span class="bold"> Primitive Types </span>
+      <ul *ngIf="isPrimitivtypesOpen">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'PT' }">
         </ng-container>
       </ul>
     </li>
@@ -49,4 +69,6 @@
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">
   <img src="../../assets/images/templatedesigner/simpletype.svg" *ngIf="type == 'ST'">
   <img src="../../assets/images/templatedesigner/complextype.svg" *ngIf="type == 'CT'">
+  <img src="../../assets/images/templatedesigner/primitivetype.svg" *ngIf="type == 'PT'">
+  <img src="../../assets/images/templatedesigner/root.svg" *ngIf="type == 'R'">
 </ng-template>
