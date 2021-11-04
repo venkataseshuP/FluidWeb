@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FileExplorerService } from '../shared/services/file-explorer.service';
-import { TemplateService } from '../shared/services/template.service';
+import { FileExplorerService } from '../../shared/services/file-explorer.service';
+import { TemplateService } from '../../shared/services/template.service';
 
 @Component({
   selector: 'app-refferedcomponents',

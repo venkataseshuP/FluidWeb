@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplateService } from '../shared/services/template.service';
+import { TemplateService } from '../../shared/services/template.service';
 
 @Component({
   selector: 'app-elementtree',

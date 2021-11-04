@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
-import { ElementtreeComponent } from '../elementtree/elementtree.component';
-import { NativecomponentsComponent } from '../nativecomponents/nativecomponents.component';
-import { RefferedcomponentsComponent } from '../refferedcomponents/refferedcomponents.component';
+import { ElementtreeComponent } from './elementtree/elementtree.component';
+import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
+import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
 import { TemplateService } from '../shared/services/template.service'; 
 
 

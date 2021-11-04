@@ -23,15 +23,15 @@ import { SwaggereditorComponent } from './swaggereditor/swaggereditor.component'
 import { AppsComponent } from './apps/apps.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { TemplatedesignerComponent } from './templatedesigner/templatedesigner.component';
-import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
-import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
-import { ElementtreeComponent } from './elementtree/elementtree.component';
+import { NativecomponentsComponent } from './templatedesigner/nativecomponents/nativecomponents.component';
+import { RefferedcomponentsComponent } from './templatedesigner/refferedcomponents/refferedcomponents.component';
+import { ElementtreeComponent } from './templatedesigner/elementtree/elementtree.component';
 import { FormsModule } from '@angular/forms';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { HighlightSearch } from './shared/pipes/HighlightSearch';
 import { TemplateService } from './shared/services/template.service';
 import { FileExplorerService } from './shared/services/file-explorer.service';
-import { RefferedTemplateComponent } from './reffered-template/reffered-template.component';
+import { RefferedTemplateComponent } from './templatedesigner/reffered-template/reffered-template.component';
 import { ApidesignerComponent } from './ApiDesigner/apidesigner/apidesigner.component';
 import { ApidesignerSideMenuComponent } from './ApiDesigner/apidesigner-side-menu/apidesigner-side-menu.component';
 import { ApidesignerTabsComponent } from './ApiDesigner/apidesigner-tabs/apidesigner-tabs.component';
@@ -55,6 +55,7 @@ import { RequestTemplatesComponent } from './ApiDesigner/request-templates/reque
 import { ResponseTemplatesComponent } from './ApiDesigner/response-templates/response-templates.component';
 import { SearchTemplatesComponent } from './search-templates/search-templates.component';
 import { SearchSimpletypesComponent } from './search-simpletypes/search-simpletypes.component';
+import { ElementtreeTabsComponent } from './TemplateDesigner/elementtree-tabs/elementtree-tabs.component';
 
 
 
@@ -98,7 +99,8 @@ import { SearchSimpletypesComponent } from './search-simpletypes/search-simplety
     RequestTemplatesComponent,
     ResponseTemplatesComponent,
     SearchTemplatesComponent,
-    SearchSimpletypesComponent
+    SearchSimpletypesComponent,
+    ElementtreeTabsComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
