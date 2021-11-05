@@ -56,6 +56,7 @@ import { ResponseTemplatesComponent } from './ApiDesigner/response-templates/res
 import { SearchTemplatesComponent } from './search-templates/search-templates.component';
 import { SearchSimpletypesComponent } from './search-simpletypes/search-simpletypes.component';
 import { ElementtreeTabsComponent } from './TemplateDesigner/elementtree-tabs/elementtree-tabs.component';
+import { ElementtreeTabdataComponent } from './TemplateDesigner/elementtree-tabdata/elementtree-tabdata.component';
 
 
 
@@ -100,7 +101,8 @@ import { ElementtreeTabsComponent } from './TemplateDesigner/elementtree-tabs/el
     ResponseTemplatesComponent,
     SearchTemplatesComponent,
     SearchSimpletypesComponent,
-    ElementtreeTabsComponent
+    ElementtreeTabsComponent,
+    ElementtreeTabdataComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
