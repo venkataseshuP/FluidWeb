@@ -4,6 +4,7 @@ import { ElementtreeComponent } from './elementtree/elementtree.component';
 import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
 import { RefferedcomponentsComponent } from './refferedcomponents/refferedcomponents.component';
 import { TemplateService } from '../shared/services/template.service'; 
+import { Typesrepo } from '../model/typesrepo.model';
 
 
 @Component({
@@ -87,6 +88,10 @@ export class TemplatedesignerComponent implements OnInit {
 
   addNewSimpletype(){
     this.templateService.addNewNativeComponent('ST');
+  }
+
+  openTypeTab(typedata:Typesrepo){
+    this.elementtree.opentab(typedata);
   }
 
 }

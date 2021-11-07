@@ -5,7 +5,7 @@ import { FluidDesignerComponent } from '../fluid-designer/fluid-designer.compone
 import { AuthService } from '../shared/services/auth-service';
 import { Router } from '@angular/router';
 import { SwaggereditorComponent } from '../swaggereditor/swaggereditor.component';
-import { TemplatedesignerComponent } from '../templatedesigner/templatedesigner.component';
+import { TemplatedesignerComponent } from '../TemplateDesigner/templatedesigner.component';
 import { AlertService } from '../shared/services/alert.service';
 import { ApidesignerComponent } from '../ApiDesigner/apidesigner/apidesigner.component';
 

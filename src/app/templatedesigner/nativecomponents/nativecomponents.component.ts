@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Typesrepo } from '../../model/typesrepo.model';
 import { TemplateService } from '../../shared/services/template.service'; 
 
 @Component({
@@ -8,6 +9,7 @@ import { TemplateService } from '../../shared/services/template.service';
 })
 export class NativecomponentsComponent implements OnInit {
 
+  @Output() openTypeTab = new EventEmitter<Typesrepo>();
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
   isPrimitivtypesOpen = true;
@@ -67,4 +69,7 @@ export class NativecomponentsComponent implements OnInit {
     return (this.editableTypeId == nativeComponent.id.typeId);
   }
   
+  openTab(typedata:Typesrepo){
+    this.openTypeTab.emit(typedata);
+  }
 }

@@ -56,7 +56,7 @@
         autocomplete="off" (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
       </ng-container>
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
-        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="templateService.stopPropagation()">
+        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="openTab(nativeComponent)">
           {{nativeComponent.typeName}}
         </div>
       </ng-container>      
