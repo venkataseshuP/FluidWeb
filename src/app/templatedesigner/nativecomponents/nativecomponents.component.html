@@ -10,7 +10,7 @@
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'RH' }"> </ng-container>
       <span class="bold"> Root </span>
       <ul *ngIf="isRootOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'R' }">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'R',hastab:true }">
         </ng-container>
       </ul>
     </li>
@@ -20,7 +20,7 @@
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
       <span class="bold"> Simple Types </span>
       <ul *ngIf="isSimpletypesOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'ST' }">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'ST',hastab:false }">
         </ng-container>
       </ul>
     </li>
@@ -30,7 +30,7 @@
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CTH' }"> </ng-container>
       <span class="bold"> Complex Types </span>
       <ul *ngIf="isComplextypesOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT' }">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'CT',hastab:true }">
         </ng-container>
       </ul>
     </li>
@@ -40,14 +40,14 @@
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'PTH' }"> </ng-container>
       <span class="bold"> Primitive Types </span>
       <ul *ngIf="isPrimitivtypesOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'PT' }">
+        <ng-container *ngTemplateOutlet="components; context:{ list: templateService.nativeComponents,type:'PT',hastab:false }">
         </ng-container>
       </ul>
     </li>
   </ul>
 </div>
 
-<ng-template #components let-list="list" let-type="type">
+<ng-template #components let-list="list" let-type="type" let-hastab="hastab">
   <ng-container *ngFor="let nativeComponent of list">
     <li class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
@@ -56,7 +56,7 @@
         autocomplete="off" (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
       </ng-container>
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
-        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="openTab(nativeComponent)">
+        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="openTab(nativeComponent,hastab)">
           {{nativeComponent.typeName}}
         </div>
       </ng-container>      

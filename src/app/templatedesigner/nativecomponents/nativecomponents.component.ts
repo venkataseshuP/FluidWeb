@@ -69,7 +69,9 @@ export class NativecomponentsComponent implements OnInit {
     return (this.editableTypeId == nativeComponent.id.typeId);
   }
   
-  openTab(typedata:Typesrepo){
-    this.openTypeTab.emit(typedata);
+  openTab(typedata:Typesrepo, hastab:boolean){
+    if(hastab){
+      this.openTypeTab.emit(typedata);
+    }
   }
 }
