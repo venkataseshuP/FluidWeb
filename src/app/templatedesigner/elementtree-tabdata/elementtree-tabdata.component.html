@@ -1,1 +1,60 @@
-<p>elementtree-tabdata works!</p>
+<ng-container *ngIf="getTabs().length>0">
+  <div class="parent header">
+    <div class="child" style="border-left: none;">Element Name</div>
+    <div class="child">Element Type</div>
+    <div class="child textalign_center">Min</div>
+    <div class="child textalign_center">Max</div>
+  </div>
+
+  <ng-container *ngIf="typeElements">
+    <div class="parent">
+      <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
+        <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
+      {{typeElements.typeName}}
+      </div>
+      <div class="child">{{typeElements.typeName}}</div>
+      <div class="child textalign_center">0</div>
+      <div class="child textalign_center">1</div>
+    </div>
+    <ng-container *ngIf="typeElements.typeelements && typeElements.typeelements.length>0">
+      <ng-container *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1}">
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+
+<ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level">
+  <ng-container *ngFor="let typeelement of typeelements">
+    <div [ngClass]="{'typeelementsblock': typeelement.typesrepo.type == 'CT'}">
+      <div class="parent">
+        <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
+          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
+          </ng-container>
+          {{typeelement.elementName}}
+        </div>
+        <div class="child">
+          <ng-container *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId}">
+          </ng-container>          
+          {{typeelement.typesrepo.typeName}}</div>
+        <div class="child textalign_center">{{typeelement.minOccurs}}</div>
+        <div class="child textalign_center">{{typeelement.maxOccurs}}</div>
+      </div>
+      <ng-container *ngIf="typeelement.typesrepo.typeelements && typeelement.typesrepo.typeelements.length>0">
+        <ng-container
+          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeelement.typesrepo.typeelements,level:level+1}">
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #iconImg let-type="type" let-isopen="isopen">
+  <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == 'CT' && !isopen">
+  <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == 'CT' && isopen">
+</ng-template>
+
+<ng-template #elementTypeImg let-native="native">
+  <span style="color: green;" class="native" *ngIf="native">N</span>
+  <span style="color: red;" class="refferred" *ngIf="!native">R</span>
+</ng-template>

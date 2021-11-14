@@ -1,0 +1,82 @@
+.parent{
+  display: flex;
+}
+
+.child{
+  flex: 1; 
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.parent .parent{
+  padding-left: 20px;
+}
+
+.header{
+  background: #1273eb;
+    color: white;
+}
+
+.parent .child:nth-child(1){
+  flex: 8 !important;
+  border-left: 1px dashed lightgray;
+  margin-left: 10px;
+}
+
+.parent .child:nth-child(2){
+  flex: 4 !important;
+}
+
+.textalign_center{
+  text-align: center;
+}
+
+.noborderleft{
+  border-left: none;
+  border-left: none !important;
+  margin-left: -4px !important;
+}
+
+.parent .child img{
+  width: 10px;
+}
+
+.typeelementsblock{
+  margin-left: 10px;
+  border-left: 1px dashed lightgray;
+}
+
+.mr1{
+  margin-right: -15px;
+}
+
+.mr2{
+  margin-right: -30px;
+}
+
+.mr3{
+  margin-right: -45px;
+}
+
+
+.mr4{
+  margin-right: -60px;
+}
+
+.native{
+  color: green;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.refferred{
+  color: red;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.pl10{
+  padding-left: 10px;
+}
