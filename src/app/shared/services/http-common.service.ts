@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ParentDataService } from 'src/app/dataService';
 
@@ -26,11 +26,21 @@ export class HttpCommonService {
   }
 
   httpPut(url:string, body:any){
-    return this.http.put(url,body);
+    let options = {};
+    let headers =  new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    options['headers'] = headers;
+    return this.http.put(url,body,options);
   }
 
   httpdelete(url:string){
-    return this.http.delete(url);
+    let options = {};
+    let headers =  new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    options['headers'] = headers;
+    return this.http.delete(url,options);
   }
 
 }

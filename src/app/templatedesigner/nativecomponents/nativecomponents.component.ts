@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ParentDataService } from '../../dataService';
 import { Typesrepo } from '../../model/typesrepo.model';
 import { TemplateService } from '../../shared/services/template.service'; 
 
@@ -18,6 +19,7 @@ export class NativecomponentsComponent implements OnInit {
   editableTypeId = '';
   constructor(
     public templateService:TemplateService,
+    public dataService:ParentDataService,
   ) { }
 
   ngOnInit(): void {
@@ -74,4 +76,17 @@ export class NativecomponentsComponent implements OnInit {
       this.openTypeTab.emit(typedata);
     }
   }
+
+  dragStart(nativeComponent:any){
+    this.dataService.getActiveTabContent()['dragcontent'] = nativeComponent;
+  }
+
+  dragEnd(event){
+    this.dataService.getActiveTabContent()['dragcontent']  = undefined;
+  }
+
+  dragOver(event){
+    event.preventDefault();
+  }
+  
 }

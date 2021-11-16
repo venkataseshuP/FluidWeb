@@ -1,3 +1,4 @@
+import { Typeelement } from "./typeelement.model";
 import { TypesrepoPK } from "./typesrepo-pk.model";
 
 export class Typesrepo {
@@ -6,5 +7,6 @@ export class Typesrepo {
   typeName:string;
   desc:string;
   type:string;
+  typeelements:Typeelement[];
 }
 

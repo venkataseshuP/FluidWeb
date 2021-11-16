@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from '../../dataService';
+import { Typeelement } from '../../model/typeelement.model';
 import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
@@ -164,5 +165,15 @@ export class TemplateService {
   getTypeElements(typeId:string){
     let url:any = this.httpCommonService.baseurl+'/template/typeelements/'+typeId;
     return this.httpCommonService.httpGet(url);
+  }
+
+  updateTypeElements(typeId:string, typeElements:Typeelement[]){
+    let url:any = this.httpCommonService.baseurl+'/template/typeelements/'+typeId;
+    return this.httpCommonService.httpPut(url,typeElements);
+  }
+
+  updateTypeElement(typeId:string, typeElement:Typeelement){
+    let url:any = this.httpCommonService.baseurl+'/template/typeelement/'+typeId;
+    return this.httpCommonService.httpPut(url,typeElement);
   }
 }
