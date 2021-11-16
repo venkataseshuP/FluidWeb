@@ -160,4 +160,9 @@ export class TemplateService {
     let url:any = this.httpCommonService.baseurl+'/'+this.authService.activeProjectId+'/findByTypeNameAndType/'+type+'/'+typeName.toLocaleUpperCase();
     return this.httpCommonService.httpGet(url);
   }
+
+  getTypeElements(typeId:string){
+    let url:any = this.httpCommonService.baseurl+'/template/typeelements/'+typeId;
+    return this.httpCommonService.httpGet(url);
+  }
 }

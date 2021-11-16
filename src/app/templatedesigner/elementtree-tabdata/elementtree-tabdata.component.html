@@ -10,7 +10,7 @@
     <div class="parent">
       <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
         <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
-      {{typeElements.typeName}}
+        <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
       </div>
       <div class="child">{{typeElements.typeName}}</div>
       <div class="child textalign_center">0</div>
@@ -31,7 +31,7 @@
         <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
           </ng-container>
-          {{typeelement.elementName}}
+          <span [ngClass]="typeelement.typesrepo.type === 'CT'?'pl5':'pl10'">{{typeelement.elementName}}</span>
         </div>
         <div class="child">
           <ng-container *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId}">

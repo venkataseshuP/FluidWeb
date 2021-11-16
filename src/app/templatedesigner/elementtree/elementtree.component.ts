@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Typesrepo } from '../../model/typesrepo.model';
 import { TemplateService } from '../../shared/services/template.service';
+import { ElementtreeTabdataComponent } from '../elementtree-tabdata/elementtree-tabdata.component';
 import { ElementtreeTabsComponent } from '../elementtree-tabs/elementtree-tabs.component';
 
 @Component({
@@ -11,6 +12,7 @@ import { ElementtreeTabsComponent } from '../elementtree-tabs/elementtree-tabs.c
 export class ElementtreeComponent implements OnInit {
 
   @ViewChild('tabs') tabs:ElementtreeTabsComponent;
+  @ViewChild('tabdata') tabdata:ElementtreeTabdataComponent;
   constructor(
     public templateService:TemplateService,
   ) { }
@@ -21,6 +23,10 @@ export class ElementtreeComponent implements OnInit {
 
   opentab(typedata:Typesrepo){
     this.tabs.open(typedata);
+  }
+
+  refresh(){
+    this.tabdata.refreshTypeelements();
   }
 
 }
