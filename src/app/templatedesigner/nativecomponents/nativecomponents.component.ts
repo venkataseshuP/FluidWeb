@@ -11,6 +11,7 @@ import { TemplateService } from '../../shared/services/template.service';
 export class NativecomponentsComponent implements OnInit {
 
   @Output() openTypeTab = new EventEmitter<Typesrepo>();
+  @Output() typeChanged = new EventEmitter<any>();
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
   isPrimitivtypesOpen = true;
@@ -53,7 +54,7 @@ export class NativecomponentsComponent implements OnInit {
     this.templateService.updateType(typeDetails).subscribe((data)=>{
       if(data){
         this.editableTypeId = '';
-        this.refreshNativeComponents();
+        this.typeChanged.emit();
       }
     });
   }
@@ -63,8 +64,8 @@ export class NativecomponentsComponent implements OnInit {
   }
 
   activateEdit(nativeComponent){
+    event.stopPropagation();
     this.editableTypeId=nativeComponent.id.typeId;
-    this.templateService.stopPropagation();
   }
 
   isTypeEditable(nativeComponent){
@@ -72,6 +73,7 @@ export class NativecomponentsComponent implements OnInit {
   }
   
   openTab(typedata:Typesrepo, hastab:boolean){
+    event.stopPropagation();
     if(hastab){
       this.openTypeTab.emit(typedata);
     }

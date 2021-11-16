@@ -1,6 +1,6 @@
 <div class="templatedesigner" (contextmenu)="openContextmenu($event)">
   <div class="nativecomponents">
-    <app-nativecomponents #nativecomponents (openTypeTab)="openTypeTab($event)"></app-nativecomponents>
+    <app-nativecomponents #nativecomponents (openTypeTab)="openTypeTab($event)" (typeChanged)="refreshTemplate()"></app-nativecomponents>
   </div>
   <div class="referredcomponents">
     <app-refferedcomponents #refferedcomponents></app-refferedcomponents>

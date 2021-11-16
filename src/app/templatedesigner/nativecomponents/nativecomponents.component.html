@@ -50,7 +50,7 @@
 <ng-template #components let-list="list" let-type="type" let-hastab="hastab">
   <ng-container *ngFor="let nativeComponent of list">
     <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)"
-        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
+        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (dblclick)="event.stopPropagation()" (click)="event.stopPropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
       <ng-container *ngIf="isTypeEditable(nativeComponent)">
         <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
