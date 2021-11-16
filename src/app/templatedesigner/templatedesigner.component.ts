@@ -46,6 +46,7 @@ export class TemplatedesignerComponent implements OnInit {
   refreshTemplate(){
     this.nativecomponents.refreshNativeComponents();
     this.refferedcomponents.refreshRefferedComponents();
+    this.elementtree.refresh();
   }
 
 
