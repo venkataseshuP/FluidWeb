@@ -13,8 +13,12 @@
         <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
       </div>
       <div class="child">{{typeElements.typeName}}</div>
-      <div class="child textalign_center">0</div>
-      <div class="child textalign_center">1</div>
+      <div class="child textalign_center">
+        <input class="elementName width25" type="text" value="0">
+      </div>
+      <div class="child textalign_center width25">
+        <input class="elementName width25" type="text" value="1">  
+      </div>
     </div>
     <ng-container *ngIf="typeElements.typeelements && typeElements.typeelements.length>0">
       <ng-container *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1}">
@@ -32,15 +36,19 @@
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
           </ng-container>
           <span [ngClass]="typeelement.typesrepo.type === 'CT'?'pl5':'pl10'">
-            <input class="elementName" type="text" [(ngModel)]="typeelement.elementName" (change)="updateTypeElement(typeelement)">            
+            <input [readonly]="level!='1'" class="elementName" type="text" [(ngModel)]="typeelement.elementName" (change)="updateTypeElement(typeelement)">            
           </span>
         </div>
         <div class="child">
           <ng-container *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
           </ng-container>          
           {{typeelement.typesrepo.typeName}}</div>
-        <div class="child textalign_center">{{typeelement.minOccurs}}</div>
-        <div class="child textalign_center">{{typeelement.maxOccurs}}</div>
+        <div class="child textalign_center">
+          <input [readonly]="level!='1'" class="elementName width25" type="text" [(ngModel)]="typeelement.minOccurs" (change)="updateTypeElement(typeelement)">            
+        </div>
+        <div class="child textalign_center">
+          <input [readonly]="level!='1'"  class="elementName width25" type="text" [(ngModel)]="typeelement.maxOccurs" (change)="updateTypeElement(typeelement)">
+        </div>
       </div>
       <ng-container *ngIf="typeelement.typesrepo.typeelements && typeelement.typesrepo.typeelements.length>0">
         <ng-container
