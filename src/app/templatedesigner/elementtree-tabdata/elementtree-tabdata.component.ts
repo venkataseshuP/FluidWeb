@@ -21,6 +21,7 @@ export class ElementtreeTabdataComponent implements OnInit {
     this.templateService.getTypeElements(typeId).subscribe((data)=>{
       if(data){
         this.typeElements = data;
+        this.templateId = this.typeElements['templateId'];
       }
     });
   }
