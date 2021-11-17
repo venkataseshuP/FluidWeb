@@ -121,5 +121,6 @@ export class ElementtreeTabdataComponent implements OnInit {
     }else{
       this.openElements.push(path);
     }
+    this.getActiveTabContent()['openElements'] = this.openElements;
   }
 }
