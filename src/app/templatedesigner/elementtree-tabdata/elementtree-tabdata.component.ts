@@ -61,9 +61,11 @@ export class ElementtreeTabdataComponent implements OnInit {
   }
 
   dragDrop(index:number, level:number){
+    event.stopPropagation();
     if(level != 1) return;
     let typerepo:any = this.dataService.getActiveTabContent()['dragcontent'];
-    if(typerepo.type){   
+    if(typerepo.type){  
+      if(this.typeElements.id.typeId == typerepo.id.typeId) return ; 
       let typeelement = new Typeelement();
       typeelement.elementName = typerepo.typeName;
       typeelement.elementTypeId = typerepo.id.typeId;
@@ -72,6 +74,9 @@ export class ElementtreeTabdataComponent implements OnInit {
       typeelement.typesrepo = typerepo;
       typeelement.id.typeId = this.typeElements.id.typeId;
       typeelement.id.namespaceId = this.typeElements.id.namespaceId;
+      if(index == -1){
+        index = this.typeElements.typeelements.length;
+      }
       this.typeElements.typeelements.splice(index+1,0,typeelement);
     }else if(!typerepo.type){
       let tempindex = typerepo.id['slNo'];

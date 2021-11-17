@@ -1,53 +1,62 @@
 <ng-container *ngIf="getTabs().length>0">
-  <div class="parent header">
-    <div class="child" style="border-left: none;">Element Name</div>
-    <div class="child">Element Type</div>
-    <div class="child textalign_center">Min</div>
-    <div class="child textalign_center">Max</div>
-  </div>
-
-  <ng-container *ngIf="typeElements">
-    <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
-      <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
-        <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
-        <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
-      </div>
-      <div class="child">{{typeElements.typeName}}</div>
-      <div class="child textalign_center">
-        <input class="elementName width25" type="text" value="0">
-      </div>
-      <div class="child textalign_center width25">
-        <input class="elementName width25" type="text" value="1">  
-      </div>
+    <div class="parent header">
+      <div class="child" style="border-left: none;">Element Name</div>
+      <div class="child">Element Type</div>
+      <div class="child textalign_center">Min</div>
+      <div class="child textalign_center">Max</div>
     </div>
-    <ng-container *ngIf="typeElements.typeelements && typeElements.typeelements.length>0">
-      <ng-container *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1}">
+    <div class="elementtreeMain" draggable="false" (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
+    <ng-container *ngIf="typeElements">
+      <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)"
+        (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
+        <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
+          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
+          <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
+        </div>
+        <div class="child">{{typeElements.typeName}}</div>
+        <div class="child textalign_center">
+          <input class="elementName width25" type="text" value="0">
+        </div>
+        <div class="child textalign_center width25">
+          <input class="elementName width25" type="text" value="1">
+        </div>
+      </div>
+      <ng-container *ngIf="typeElements.typeelements && typeElements.typeelements.length>0">
+        <ng-container
+          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1}">
+        </ng-container>
       </ng-container>
     </ng-container>
-  </ng-container>
+  </div>
 </ng-container>
 
 
 <ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level">
   <ng-container *ngFor="let typeelement of typeelements; let i = index">
     <div [ngClass]="{'typeelementsblock': typeelement.typesrepo.type == 'CT'}">
-      <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
+      <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)"
+        (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
         <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
           </ng-container>
           <span [ngClass]="typeelement.typesrepo.type === 'CT'?'pl5':'pl10'">
-            <input [readonly]="level!='1'" class="elementName" type="text" [(ngModel)]="typeelement.elementName" (change)="updateTypeElement(typeelement)">            
+            <input [readonly]="level!='1'" class="elementName" type="text" [(ngModel)]="typeelement.elementName"
+              (change)="updateTypeElement(typeelement)">
           </span>
         </div>
         <div class="child">
-          <ng-container *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
-          </ng-container>          
-          {{typeelement.typesrepo.typeName}}</div>
-        <div class="child textalign_center">
-          <input [readonly]="level!='1'" class="elementName width25" type="text" [(ngModel)]="typeelement.minOccurs" (change)="updateTypeElement(typeelement)">            
+          <ng-container
+            *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
+          </ng-container>
+          {{typeelement.typesrepo.typeName}}
         </div>
         <div class="child textalign_center">
-          <input [readonly]="level!='1'"  class="elementName width25" type="text" [(ngModel)]="typeelement.maxOccurs" (change)="updateTypeElement(typeelement)">
+          <input [readonly]="level!='1'" class="elementName width25" type="text" [(ngModel)]="typeelement.minOccurs"
+            (change)="updateTypeElement(typeelement)">
+        </div>
+        <div class="child textalign_center">
+          <input [readonly]="level!='1'" class="elementName width25" type="text" [(ngModel)]="typeelement.maxOccurs"
+            (change)="updateTypeElement(typeelement)">
         </div>
       </div>
       <ng-container *ngIf="typeelement.typesrepo.typeelements && typeelement.typesrepo.typeelements.length>0">
@@ -64,7 +73,7 @@
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == 'CT' && isopen">
 </ng-template>
 
-<ng-template #elementTypeImg let-native="native" let-type="type">  
+<ng-template #elementTypeImg let-native="native" let-type="type">
   <ng-container *ngIf="type != 'PT'">
     <span style="color: green;" class="native" *ngIf="native">N</span>
     <span style="color: red;" class="refferred" *ngIf="!native">R</span>

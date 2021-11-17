@@ -95,3 +95,11 @@
 .width25{
   width: 25px;
 }
+
+.elementtreeMain{
+  height: 91%;
+    position: absolute;
+    width: 62.5%;
+    overflow: hidden;
+    overflow-y: auto;
+}
