@@ -7,7 +7,7 @@
   </div>
 
   <ng-container *ngIf="typeElements">
-    <div class="parent" draggable="true" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(-1)">
+    <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
       <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
         <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
         <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
@@ -31,7 +31,7 @@
 <ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level">
   <ng-container *ngFor="let typeelement of typeelements; let i = index">
     <div [ngClass]="{'typeelementsblock': typeelement.typesrepo.type == 'CT'}">
-      <div class="parent" draggable="true" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(i)">
+      <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
         <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
           </ng-container>

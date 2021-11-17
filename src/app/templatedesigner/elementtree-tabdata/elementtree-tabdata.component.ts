@@ -60,17 +60,24 @@ export class ElementtreeTabdataComponent implements OnInit {
     event.preventDefault();
   }
 
-  dragDrop(index:number){
-    let typerepo:Typesrepo = this.dataService.getActiveTabContent()['dragcontent'];    
-    let typeelement = new Typeelement();
-    typeelement.elementName = typerepo.typeName;
-    typeelement.elementTypeId = typerepo.id.typeId;
-    typeelement.minOccurs = 0;
-    typeelement.maxOccurs = 1;
-    typeelement.typesrepo = typerepo;
-    typeelement.id.typeId = this.typeElements.id.typeId;
-    typeelement.id.namespaceId = this.typeElements.id.namespaceId;
-    this.typeElements.typeelements.splice(index+1,0,typeelement);
+  dragDrop(index:number, level:number){
+    if(level != 1) return;
+    let typerepo:any = this.dataService.getActiveTabContent()['dragcontent'];
+    if(typerepo.type){   
+      let typeelement = new Typeelement();
+      typeelement.elementName = typerepo.typeName;
+      typeelement.elementTypeId = typerepo.id.typeId;
+      typeelement.minOccurs = 0;
+      typeelement.maxOccurs = 1;
+      typeelement.typesrepo = typerepo;
+      typeelement.id.typeId = this.typeElements.id.typeId;
+      typeelement.id.namespaceId = this.typeElements.id.namespaceId;
+      this.typeElements.typeelements.splice(index+1,0,typeelement);
+    }else if(!typerepo.type){
+      let tempindex = typerepo.id['slNo'];
+      this.typeElements.typeelements.splice(index,0,typerepo);
+      this.typeElements.typeelements.splice(tempindex,1);
+    }
     this.updateSlNo();
     this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data=>{
       if(data){
