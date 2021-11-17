@@ -9,7 +9,8 @@ export class Typeelement {
   minOccurs:number;
   maxOccurs:number;
   typesrepo:Typesrepo;
-  type:'E';
+  type = 'E';
+  openchild = true; 
 
   constructor(){
     this.id = new TypeelementPK();

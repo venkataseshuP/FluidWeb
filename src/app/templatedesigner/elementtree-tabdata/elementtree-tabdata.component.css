@@ -3,9 +3,13 @@
 }
 
 .child{
-  flex: 1; 
+  flex: 0.7; 
   padding-left: 10px;
   font-size: 14px;
+}
+
+.child img{
+  cursor: pointer;
 }
 
 .parent .parent{
@@ -24,6 +28,10 @@
 }
 
 .parent .child:nth-child(2){
+  flex: 0.1 !important;
+}
+
+.parent .child:nth-child(3){
   flex: 4 !important;
 }
 
@@ -35,6 +43,7 @@
   border-left: none;
   border-left: none !important;
   margin-left: -4px !important;
+  margin-right: 4px;
 }
 
 .parent .child img{
@@ -47,20 +56,19 @@
 }
 
 .mr1{
-  margin-right: -15px;
 }
 
 .mr2{
-  margin-right: -30px;
+  margin-right: -10px;
 }
 
 .mr3{
-  margin-right: -45px;
+  margin-right: -25px;
 }
 
 
 .mr4{
-  margin-right: -60px;
+  margin-right: -40px;
 }
 
 .native{

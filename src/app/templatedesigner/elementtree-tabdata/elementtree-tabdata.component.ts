@@ -18,16 +18,23 @@ export class ElementtreeTabdataComponent implements OnInit {
     private alertService:AlertService) { }
   templateId = '';
   typeElements:Typesrepo;
+  openElements = [];
   ngOnInit(): void {
   }
 
   refreshTypeelements(){
+    this.openElements = [];
+    this.templateId = '';
     let activeelementTabId = this.getActiveTabContent()['activeTabId'];
     let typeId = this.getTabs()[activeelementTabId].id;
     this.templateService.getTypeElements(typeId).subscribe((data:Typesrepo)=>{
       if(data){
         this.typeElements = data;
         this.templateId = this.typeElements['templateId'];
+        this.openElements = this.getActiveTabContent()['openElements'];
+        if(!this.openElements){
+          this.openElements = [];
+        }
       }
     });
   }
@@ -104,5 +111,15 @@ export class ElementtreeTabdataComponent implements OnInit {
         this.refreshTypeelements();
       }
     });
+  }
+
+  openOrCloseElement(path:string){
+    event.stopPropagation();
+    let index = this.openElements.indexOf(path);
+    if(index>-1){
+      this.openElements.splice(index,1);
+    }else{
+      this.openElements.push(path);
+    }
   }
 }

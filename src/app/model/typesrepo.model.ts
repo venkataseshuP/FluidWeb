@@ -8,5 +8,6 @@ export class Typesrepo {
   desc:string;
   type:string;
   typeelements:Typeelement[];
+  openchild = true; 
 }
 

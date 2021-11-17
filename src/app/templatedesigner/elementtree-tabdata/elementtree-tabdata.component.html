@@ -1,6 +1,7 @@
 <ng-container *ngIf="getTabs().length>0">
     <div class="parent header">
       <div class="child" style="border-left: none;">Element Name</div>
+      <div class="child"></div>
       <div class="child">Element Type</div>
       <div class="child textalign_center">Min</div>
       <div class="child textalign_center">Max</div>
@@ -10,10 +11,11 @@
       <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)"
         (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
         <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
-          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,isopen:true }"> </ng-container>
+          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,path:typeElements.typeName }"> </ng-container>
           <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
         </div>
-        <div class="child">{{typeElements.typeName}}</div>
+        <div class="child"></div>
+        <div class="child" style="margin-left: 15px;">{{typeElements.typeName}}</div>
         <div class="child textalign_center">
           <input class="elementName width25" type="text" value="0">
         </div>
@@ -21,9 +23,9 @@
           <input class="elementName width25" type="text" value="1">
         </div>
       </div>
-      <ng-container *ngIf="typeElements.typeelements && typeElements.typeelements.length>0">
+      <ng-container *ngIf="typeElements.typeelements && openElements.indexOf(typeElements.typeName)==-1">
         <ng-container
-          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1}">
+          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeElements.typeelements, level:1, path:typeElements.typeName}">
         </ng-container>
       </ng-container>
     </ng-container>
@@ -31,13 +33,13 @@
 </ng-container>
 
 
-<ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level">
+<ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level" let-path="path">
   <ng-container *ngFor="let typeelement of typeelements; let i = index">
     <div [ngClass]="{'typeelementsblock': typeelement.typesrepo.type == 'CT'}">
       <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)"
         (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
         <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
-          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,isopen:true }">
+          <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,path:path+'.'+typeelement.elementName}">
           </ng-container>
           <span [ngClass]="typeelement.typesrepo.type === 'CT'?'pl5':'pl10'">
             <input [readonly]="level!='1'" class="elementName" type="text" [(ngModel)]="typeelement.elementName"
@@ -46,8 +48,10 @@
         </div>
         <div class="child">
           <ng-container
-            *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
-          </ng-container>
+          *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
+        </ng-container>
+        </div>
+        <div class="child">
           {{typeelement.typesrepo.typeName}}
         </div>
         <div class="child textalign_center">
@@ -59,18 +63,18 @@
             (change)="updateTypeElement(typeelement)">
         </div>
       </div>
-      <ng-container *ngIf="typeelement.typesrepo.typeelements && typeelement.typesrepo.typeelements.length>0">
+      <ng-container *ngIf="typeelement.typesrepo.typeelements && openElements.indexOf(path+'.'+typeelement.elementName)==-1">
         <ng-container
-          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeelement.typesrepo.typeelements,level:level+1}">
+          *ngTemplateOutlet="typeelementtemplate; context:{ typeelements: typeelement.typesrepo.typeelements,level:level+1,path:path+'.'+typeelement.elementName}">
         </ng-container>
       </ng-container>
     </div>
   </ng-container>
 </ng-template>
 
-<ng-template #iconImg let-type="type" let-isopen="isopen">
-  <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == 'CT' && !isopen">
-  <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == 'CT' && isopen">
+<ng-template #iconImg let-type="type" let-path="path">
+  <img src="../../assets/images/explorer/arrow-right.svg" (click)="openOrCloseElement(path)"  *ngIf="type == 'CT' && !(openElements.indexOf(path)==-1)">
+  <img src="../../assets/images/explorer/arrow-down.svg" (click)="openOrCloseElement(path)" *ngIf="type == 'CT' && (openElements.indexOf(path)==-1)">
 </ng-template>
 
 <ng-template #elementTypeImg let-native="native" let-type="type">

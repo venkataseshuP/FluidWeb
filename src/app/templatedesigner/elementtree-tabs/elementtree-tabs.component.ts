@@ -145,6 +145,7 @@ export class ElementtreeTabsComponent implements OnInit {
         "tabDesc":typedata.desc,
         "explorer":true,
         "list":false,
+        "openElements":[]
       }
   
       await this.getTabs().push(tabjson);
