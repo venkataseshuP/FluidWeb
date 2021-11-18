@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { Typeelement } from '../../model/typeelement.model';
+import { Typesrepo } from '../../model/typesrepo.model';
 import { AuthService } from './auth-service';
 import { HttpCommonService } from './http-common.service';
 
@@ -140,6 +141,11 @@ export class TemplateService {
   updateType(typeDetails){
     let url = this.getBasePath()+'/template/typesrep';
     return this.httpCommonService.httpPut(url,typeDetails);
+  }
+
+  updateRootElement(nativeType:Typesrepo){
+    let url = this.getBasePath()+'/template/'+this.getActiveTemplateCode();
+    return this.httpCommonService.httpPut(url,nativeType);
   }
 
   getNativeComponentSampleName(type:string){

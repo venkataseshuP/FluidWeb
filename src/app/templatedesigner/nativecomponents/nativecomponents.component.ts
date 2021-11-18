@@ -89,5 +89,14 @@ export class NativecomponentsComponent implements OnInit {
   dragOver(event){
     event.preventDefault();
   }
+
+  makeAsRoot(nativetypeDetails){
+    event.stopPropagation();
+    this.templateService.updateRootElement(nativetypeDetails).subscribe((data)=>{
+      if(data){
+        this.refreshNativeComponents();
+      }
+    });
+  }
   
 }

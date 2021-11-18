@@ -60,7 +60,13 @@
         <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="openTab(nativeComponent,hastab)">
           {{nativeComponent.typeName}}
         </div>
-      </ng-container>      
+      </ng-container> 
+      <div class="opitions">
+        <i class="fa fa-registered" (click)="makeAsRoot(nativeComponent)" *ngIf="nativeComponent.type == 'CT'" aria-hidden="true"></i>
+      </div>     
+      <div class="opitions">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </div>  
     </li>
   </ng-container>
 </ng-template>

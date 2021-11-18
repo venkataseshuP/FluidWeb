@@ -82,9 +82,10 @@ ul{
 }
 
 .directory-list li img{
-  width: 12px;
-  vertical-align: baseline;
+  flex: 0.1;
   margin-right: 5px;
+  height: 15px;
+  padding: 3px;
 }
 
 .directory-list li.folderclose:before {
@@ -119,6 +120,16 @@ ul{
   padding: 0;
   margin: 0;
   font-size: 13px;
+  display: flex;
+}
+
+.nativetype{
+  display: flex;
+  margin-right: 10px;
+}
+
+.nativetype:hover{
+  background: #e4eaf1;
 }
 
 .container {
@@ -154,9 +165,23 @@ input[readonly]:focus{
 
 .readonlytype{
   border: none;
-  width: 90%;
-  padding: 0;
   margin: 0;
   font-size: 13px;
-  display: contents;
+  flex: 8;
+}
+
+.nativetype:hover .opitions{
+  display: block;
+}
+
+.opitions{
+  flex: 1;
+  display: none;
+  font-size: 11px;
+  width: 10px;
+  color: gray;
+}
+
+.opitions:hover{
+  color: blue;
 }
