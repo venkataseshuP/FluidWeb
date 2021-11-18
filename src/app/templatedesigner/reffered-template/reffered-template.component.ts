@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { TemplateService } from '../../shared/services/template.service';
 
@@ -10,6 +10,7 @@ import { TemplateService } from '../../shared/services/template.service';
 export class RefferedTemplateComponent implements OnInit {
 
   @Input() template:any;
+  @Output() openTemplateTab = new EventEmitter<any>();
   isSimpletypesOpen = true;
   isComplextypesOpen = true;
   searchText = '';
@@ -43,6 +44,10 @@ export class RefferedTemplateComponent implements OnInit {
 
   dragOver(event){
     event.preventDefault();
+  }
+
+  openTemplate(templateDetails){
+    this.openTemplateTab.emit(templateDetails['details']);
   }
 
 }

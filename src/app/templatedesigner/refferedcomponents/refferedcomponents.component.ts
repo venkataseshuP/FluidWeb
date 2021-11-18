@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FileExplorerService } from '../../shared/services/file-explorer.service';
 import { TemplateService } from '../../shared/services/template.service';
 
@@ -9,6 +9,7 @@ import { TemplateService } from '../../shared/services/template.service';
 })
 export class RefferedcomponentsComponent implements OnInit {
 
+  @Output() openTemplateTab =  new EventEmitter<any>();
   constructor(
     public templateService:TemplateService,
     public fileExplorerService:FileExplorerService
@@ -58,6 +59,10 @@ export class RefferedcomponentsComponent implements OnInit {
 
   refreshRefferedComponents(){
     this.templateService.refreshRefferedTemplates();
+  }
+
+  openTemplate(templateDetails){
+    this.openTemplateTab.emit(templateDetails);
   }
 
 }

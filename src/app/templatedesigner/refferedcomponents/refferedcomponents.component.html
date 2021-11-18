@@ -22,7 +22,7 @@
       </div>
   </div>
   <ng-container *ngFor="let refferedTemplate of templateService.refferedTemplates">
-    <app-reffered-template [template]=refferedTemplate></app-reffered-template>
+    <app-reffered-template (openTemplateTab)="openTemplate($event)" [template]=refferedTemplate></app-reffered-template>
   </ng-container>
 </div>
 

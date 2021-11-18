@@ -3,7 +3,7 @@
     <app-nativecomponents #nativecomponents (openTypeTab)="openTypeTab($event)" (typeChanged)="refreshTemplate()"></app-nativecomponents>
   </div>
   <div class="referredcomponents">
-    <app-refferedcomponents #refferedcomponents></app-refferedcomponents>
+    <app-refferedcomponents #refferedcomponents (openTemplateTab)="openTemplate($event)"></app-refferedcomponents>
   </div>
   <div class="elementtree">
     <app-elementtree #elementtree></app-elementtree>

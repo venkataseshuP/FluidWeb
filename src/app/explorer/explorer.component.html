@@ -260,7 +260,7 @@
         <app-apps #apps></app-apps>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '2'">
-        <app-templatedesigner #templatedesigner></app-templatedesigner>
+        <app-templatedesigner #templatedesigner (openTemplateTab)="open($event)"></app-templatedesigner>
       </ng-container>
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '3'">
         <app-fluid-designer #designer></app-fluid-designer>

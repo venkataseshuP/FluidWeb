@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 import { ElementtreeComponent } from './elementtree/elementtree.component';
 import { NativecomponentsComponent } from './nativecomponents/nativecomponents.component';
@@ -17,7 +17,7 @@ export class TemplatedesignerComponent implements OnInit {
   @ViewChild('nativecomponents') nativecomponents :NativecomponentsComponent;
   @ViewChild('refferedcomponents') refferedcomponents :RefferedcomponentsComponent;
   @ViewChild('elementtree') elementtree :ElementtreeComponent;
-
+  @Output() openTemplateTab = new EventEmitter<any>();
   contextmenu = false;
   contextmenuX = 0;
   contextmenuY = 0;
@@ -93,6 +93,10 @@ export class TemplatedesignerComponent implements OnInit {
 
   openTypeTab(typedata:Typesrepo){
     this.elementtree.opentab(typedata);
+  }
+
+  openTemplate(templateDetails){
+    this.openTemplateTab.emit(templateDetails);
   }
 
 }

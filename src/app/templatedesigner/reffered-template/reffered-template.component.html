@@ -1,10 +1,14 @@
 <ng-container *ngFor="let isTemplateOpen of [templateService.checkReferredTemplateIsOpen(template['details']['id'])]">
 <div class="header" (click)="templateService.openRefferedTemplate(template['details']['id'])">
-  <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'Template' }"> </ng-container>
+  <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'Template', data:template }"> </ng-container>
   <div class="title">{{template['details']['name']}}</div>
+  <span class="arrow">
+    <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'delete' }"> </ng-container>
+</span>
   <span class="arrow">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: isTemplateOpen?'1':'0' }"> </ng-container>
   </span>
+
 </div>
 <div class="body" *ngIf="isTemplateOpen">
   <div class="search-hero">
@@ -50,10 +54,11 @@
     </li>
   </ng-container>
 </ng-template>
-<ng-template #iconImg let-type="type">
+<ng-template #iconImg let-type="type" let-data="data">
   <img src="../../assets/images/explorer/arrow-right.svg" *ngIf="type == '0'">
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">
   <img src="../../assets/images/templatedesigner/simpletype.svg" *ngIf="type == 'ST'">
   <img src="../../assets/images/templatedesigner/complextype.svg" *ngIf="type == 'CT'">
-  <img src="../../assets/images/explorer/Template.svg"  *ngIf="type == 'Template'">
+  <img (click)="openTemplate(data)" title="click to open in new tab" src="../../assets/images/explorer/Template.svg"  *ngIf="type == 'Template'">
+  <img src="../../assets/images/explorer/delete.svg"  *ngIf="type == 'delete'">
 </ng-template>

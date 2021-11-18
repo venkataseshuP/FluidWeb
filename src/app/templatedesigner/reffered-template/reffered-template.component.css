@@ -20,10 +20,15 @@
   flex: 8;
 }
 
+.header .arrow:hover{
+  background: white;
+  border-radius: 50%;
+}
+
 .header .arrow img{
   width: 10px;
     height: 10px;
-    margin: 5px 0px;
+    margin: 5px 3px;
     display: none;
 }
 
