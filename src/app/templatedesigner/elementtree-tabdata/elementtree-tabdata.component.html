@@ -10,7 +10,7 @@
     <div class="elementtreeMain" draggable="false" (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
     <ng-container *ngIf="typeElements">
       <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)"
-        (dragover)="dragOver($event)" (drop)="dragDrop(-1,1)">
+        (dragover)="dragOver($event)">
         <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,path:typeElements.typeName }"> </ng-container>
           <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>

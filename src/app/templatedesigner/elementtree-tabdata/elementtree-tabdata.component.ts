@@ -85,7 +85,7 @@ export class ElementtreeTabdataComponent implements OnInit {
         index = this.typeElements.typeelements.length;
       }
       this.typeElements.typeelements.splice(index+1,0,typeelement);
-    }else if(!typerepo.type){
+    }else if(!typerepo.type && index != -1){
       let tempindex = typerepo.id['slNo'];
       if(+tempindex>index){
         this.typeElements.typeelements.splice(index,0,typerepo);
