@@ -35,7 +35,7 @@
 
 <ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level" let-path="path">
   <ng-container *ngFor="let typeelement of typeelements; let i = index">
-    <div [ngClass]="typeelement.typesrepo.type == 'CT' ? 'typeelementsblock'+level : ''">
+    <div [ngClass]="typeelement.typesrepo.type == 'CT' ?(i==typeelements.length-1)?'typeelementsblock'+level+' closeline'+level:'typeelementsblock'+level : ''">
       <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)"
         (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
         <div class="child mr{{level}}" 

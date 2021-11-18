@@ -51,20 +51,20 @@
 }
 .closeline1{
   border-bottom: 1px solid rgb(255, 104, 104) !important;
-  border-image: linear-gradient(to right, rgb(255, 104, 104) 1.5%, #FFF 1.5%) 1;
+  border-image: linear-gradient(to right, rgb(255, 104, 104) 1%, #FFF 1%) 1;
 }
 
 .closeline2{
   border-bottom: 1px solid rgb(69, 69, 253) !important;
-  border-image: linear-gradient(to right, rgb(69, 69, 253) 1.5%, #FFF 1.5%) 1;
+  border-image: linear-gradient(to right, rgb(69, 69, 253) 1%, #FFF 1%) 1;
 }
 
 .typeelementsblock1{
   margin-left: 10px;
   border-left: 1px solid rgb(255, 104, 104);
-  border-bottom: 1px solid rgb(255, 104, 104) !important;
-  border-image: linear-gradient(to right, rgb(255, 104, 104) .8%, #FFF .8%) 1;
 }
+
+
 
 .typeelementsblock2{
   margin-left: 10px;
