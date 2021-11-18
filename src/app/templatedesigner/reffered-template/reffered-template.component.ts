@@ -50,4 +50,11 @@ export class RefferedTemplateComponent implements OnInit {
     this.openTemplateTab.emit(templateDetails['details']);
   }
 
+  deleterefferedTemplate(refferedTemplateDetails){
+    event.stopPropagation();
+    this.templateService.deleteRefferedTemplate(refferedTemplateDetails).subscribe(()=>{
+      this.templateService.refreshRefferedTemplates();
+    });
+  }
+
 }

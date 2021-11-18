@@ -82,6 +82,12 @@ export class TemplateService {
     return this.httpCommonService.httpGet(url);
   }
 
+  deleteRefferedTemplate(refferedTemplateDetails){
+    let templateId = this.getActiveTemplateCode();
+    let url = this.getBasePath()+'/refferedtemplate/'+templateId+'/'+refferedTemplateDetails.id.itemId;
+    return this.httpCommonService.httpdelete(url);
+  }
+
   addRefferedTemplate(refferedTemplateId:string){
     if(this.checkTemplateExistsInRefferedTemplates(refferedTemplateId)) return;
     let templateId = this.getActiveTemplateCode();
