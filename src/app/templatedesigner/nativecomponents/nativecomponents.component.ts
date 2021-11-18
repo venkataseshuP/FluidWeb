@@ -24,7 +24,6 @@ export class NativecomponentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.refreshNativeComponents();
   }
 
   openORcloseST(){

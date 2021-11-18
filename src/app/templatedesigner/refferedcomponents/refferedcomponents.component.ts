@@ -16,7 +16,6 @@ export class RefferedcomponentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.templateService.refreshRefferedTemplates();
   }
 
   filterdata:any = [];
