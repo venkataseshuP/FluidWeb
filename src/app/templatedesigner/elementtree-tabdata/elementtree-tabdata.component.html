@@ -35,10 +35,11 @@
 
 <ng-template #typeelementtemplate let-typeelements="typeelements" let-level="level" let-path="path">
   <ng-container *ngFor="let typeelement of typeelements; let i = index">
-    <div [ngClass]="{'typeelementsblock': typeelement.typesrepo.type == 'CT'}">
+    <div [ngClass]="typeelement.typesrepo.type == 'CT' ? 'typeelementsblock'+level : ''">
       <div class="parent" [draggable]="level=='1'" (dragstart)="dragStart(typeelement)" (dragend)="dragEnd($event)"
         (dragover)="dragOver($event)" (drop)="dragDrop(i,level)">
-        <div class="child mr{{level}}" [ngClass]="{'noborderleft': typeelement.typesrepo.type == 'CT'}">
+        <div class="child mr{{level}}" 
+            [ngClass]="typeelement.typesrepo.type == 'CT'?'noborderleft':(i==typeelements.length-1)?' closeline'+level:''">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeelement.typesrepo.type,path:path+'.'+typeelement.elementName}">
           </ng-container>
           <span [ngClass]="typeelement.typesrepo.type === 'CT'?'pl5':'pl10'">

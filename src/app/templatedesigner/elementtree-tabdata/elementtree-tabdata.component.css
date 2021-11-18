@@ -23,7 +23,7 @@
 
 .parent .child:nth-child(1){
   flex: 8 !important;
-  border-left: 1px dashed lightgray;
+  border-left: 1px solid lightgray;
   margin-left: 10px;
 }
 
@@ -49,21 +49,52 @@
 .parent .child img{
   width: 10px;
 }
+.closeline1{
+  border-bottom: 1px solid rgb(255, 104, 104) !important;
+  border-image: linear-gradient(to right, rgb(255, 104, 104) 1.5%, #FFF 1.5%) 1;
+}
 
-.typeelementsblock{
+.closeline2{
+  border-bottom: 1px solid rgb(69, 69, 253) !important;
+  border-image: linear-gradient(to right, rgb(69, 69, 253) 1.5%, #FFF 1.5%) 1;
+}
+
+.typeelementsblock1{
   margin-left: 10px;
-  border-left: 1px dashed lightgray;
+  border-left: 1px solid rgb(255, 104, 104);
+  border-bottom: 1px solid rgb(255, 104, 104) !important;
+  border-image: linear-gradient(to right, rgb(255, 104, 104) .8%, #FFF .8%) 1;
+}
+
+.typeelementsblock2{
+  margin-left: 10px;
+  border-left: 1px solid rgb(69, 69, 253);
+}
+
+.typeelementsblock3{
+  margin-left: 10px;
+  border-left: 1px solid lightcoral;
+}
+
+.typeelementsblock4{
+  margin-left: 10px;
+  border-left: 1px solid lightgray;
 }
 
 .mr1{
+
+  border-left-color: rgb(255, 104, 104) !important;
 }
+
 
 .mr2{
   margin-right: -10px;
+  border-left-color:rgb(69, 69, 253) !important;
 }
 
 .mr3{
   margin-right: -25px;
+  border-left-color: lightcoral !important;
 }
 
 
