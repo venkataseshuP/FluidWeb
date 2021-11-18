@@ -128,4 +128,13 @@ export class ElementtreeTabdataComponent implements OnInit {
     }
     this.getActiveTabContent()['openElements'] = this.openElements;
   }
+
+  deleteElement(index){
+    this.typeElements.typeelements.splice(index,1);
+    this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data=>{
+      if(data){
+        this.refreshTypeelements();
+      }
+    });
+  }
 }

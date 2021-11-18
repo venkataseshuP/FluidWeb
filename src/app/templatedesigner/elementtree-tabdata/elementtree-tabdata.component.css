@@ -28,10 +28,14 @@
 }
 
 .parent .child:nth-child(2){
-  flex: 0.1 !important;
+  flex: 1 !important;
 }
 
 .parent .child:nth-child(3){
+  flex: 0.1 !important;
+}
+
+.parent .child:nth-child(4){
   flex: 4 !important;
 }
 
@@ -141,4 +145,18 @@
     width: 62.5%;
     overflow: hidden;
     overflow-y: auto;
+}
+
+.parent .opitions img{
+  display: none;
+  margin-top: 5px;
+}
+
+
+.parent:hover .opitions img{
+  display: block;
+}
+
+.parent:hover{
+  background: #e4eaf1;
 }

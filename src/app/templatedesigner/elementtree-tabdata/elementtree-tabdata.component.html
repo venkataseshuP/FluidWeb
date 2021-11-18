@@ -2,6 +2,7 @@
     <div class="parent header">
       <div class="child" style="border-left: none;">Element Name</div>
       <div class="child"></div>
+      <div class="child"></div>
       <div class="child">Element Type</div>
       <div class="child textalign_center">Min</div>
       <div class="child textalign_center">Max</div>
@@ -14,6 +15,7 @@
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,path:typeElements.typeName }"> </ng-container>
           <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
         </div>
+        <div class="child"></div>
         <div class="child"></div>
         <div class="child" style="margin-left: 15px;">{{typeElements.typeName}}</div>
         <div class="child textalign_center">
@@ -47,6 +49,11 @@
               (change)="updateTypeElement(typeelement)">
           </span>
         </div>
+        <div class="child opitions">
+          <ng-container *ngIf="level == 1">
+            <ng-container *ngTemplateOutlet="iconImg; context:{ type:'delete', index:i}"></ng-container>
+          </ng-container>
+        </div>
         <div class="child">
           <ng-container
           *ngTemplateOutlet="elementTypeImg; context:{ native: templateId == typeelement.typesrepo.templateId, type:typeelement.typesrepo.type}">
@@ -73,9 +80,10 @@
   </ng-container>
 </ng-template>
 
-<ng-template #iconImg let-type="type" let-path="path">
+<ng-template #iconImg let-type="type" let-path="path" let-index="index">
   <img src="../../assets/images/explorer/arrow-right.svg" (click)="openOrCloseElement(path)"  *ngIf="type == 'CT' && !(openElements.indexOf(path)==-1)">
   <img src="../../assets/images/explorer/arrow-down.svg" (click)="openOrCloseElement(path)" *ngIf="type == 'CT' && (openElements.indexOf(path)==-1)">
+  <img src="../../assets/images/explorer/delete.svg" (click)="deleteElement(index)" *ngIf="type == 'delete'">
 </ng-template>
 
 <ng-template #elementTypeImg let-native="native" let-type="type">
@@ -86,4 +94,7 @@
   <ng-container *ngIf="type === 'PT'">
     <span style="color:gray;" class="native">P</span>
   </ng-container>
+  <span style="color:gray;" class="native" *ngIf="type == 'delete'">
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  </span>
 </ng-template>
