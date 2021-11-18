@@ -87,8 +87,13 @@ export class ElementtreeTabdataComponent implements OnInit {
       this.typeElements.typeelements.splice(index+1,0,typeelement);
     }else if(!typerepo.type){
       let tempindex = typerepo.id['slNo'];
-      this.typeElements.typeelements.splice(index,0,typerepo);
-      this.typeElements.typeelements.splice(tempindex,1);
+      if(+tempindex>index){
+        this.typeElements.typeelements.splice(index,0,typerepo);
+        this.typeElements.typeelements.splice(tempindex,1);
+      }else{
+        this.typeElements.typeelements.splice(index+1,0,typerepo);
+        this.typeElements.typeelements.splice(+tempindex-1,1);
+      }
     }
     this.updateSlNo();
     this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data=>{

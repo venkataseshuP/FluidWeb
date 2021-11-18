@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ParentDataService } from '../../dataService';
 import { TemplateService } from '../../shared/services/template.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class RefferedTemplateComponent implements OnInit {
   isComplextypesOpen = true;
   searchText = '';
   editableTypeId = '';
-  constructor(public templateService:TemplateService) { }
+  constructor(public templateService:TemplateService, private dataService:ParentDataService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,18 @@ export class RefferedTemplateComponent implements OnInit {
 
   isTypeEditable(nativeComponent){
     return (this.editableTypeId == nativeComponent.id.typeId);
+  }
+
+  dragStart(nativeComponent:any){
+    this.dataService.getActiveTabContent()['dragcontent'] = nativeComponent;
+  }
+
+  dragEnd(event){
+    this.dataService.getActiveTabContent()['dragcontent']  = undefined;
+  }
+
+  dragOver(event){
+    event.preventDefault();
   }
 
 }
