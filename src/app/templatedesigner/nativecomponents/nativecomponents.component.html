@@ -65,7 +65,7 @@
         <i class="fa fa-registered" (click)="makeAsRoot(nativeComponent)" *ngIf="nativeComponent.type == 'CT'" aria-hidden="true"></i>
       </div>     
       <div class="opitions">
-        <i class="fa fa-trash" aria-hidden="true"></i>
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteNativeComponent(nativeComponent)"></i>
       </div>  
     </li>
   </ng-container>

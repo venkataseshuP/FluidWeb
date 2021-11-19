@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ParentDataService } from '../../dataService';
+import { TypesrepoPK } from '../../model/typesrepo-pk.model';
 import { Typesrepo } from '../../model/typesrepo.model';
 import { TemplateService } from '../../shared/services/template.service'; 
 
@@ -95,8 +96,25 @@ export class NativecomponentsComponent implements OnInit {
     this.templateService.updateRootElement(nativetypeDetails).subscribe((data)=>{
       if(data){
         this.refreshNativeComponents();
+        this.typeChanged.emit();
       }
     });
+  }
+
+  deleteNativeComponent(nativetypeDetails:Typesrepo){
+    event.stopPropagation();
+    if(nativetypeDetails.type == 'R'){
+      let root = new Typesrepo();
+      root.id = new TypesrepoPK();
+      root.id.typeId = '';
+      root.id.namespaceId = '';
+      this.templateService.updateRootElement(root).subscribe((data)=>{
+        if(data){
+          this.refreshNativeComponents();
+          this.typeChanged.emit();
+        }
+      });
+    }
   }
   
 }
