@@ -29,6 +29,7 @@ export class ElementtreeTabdataComponent implements OnInit {
     let typeId = this.getTabs()[activeelementTabId].id;
     this.templateService.getTypeElements(typeId).subscribe((data:Typesrepo)=>{
       if(data){
+        this.updateTypeTabData(data);
         this.typeElements = data;
         this.templateId = this.typeElements['templateId'];
         this.openElements = this.getActiveTabContent()['openElements'];
@@ -37,6 +38,13 @@ export class ElementtreeTabdataComponent implements OnInit {
         }
       }
     });
+  }
+
+  updateTypeTabData(typesrep:Typesrepo){
+    let activeelementTabId = this.getActiveTabContent()['activeTabId'];
+    let acivetabdata = this.getTabs()[activeelementTabId];
+    this.getTabs()[activeelementTabId]['desc'] = typesrep.typeName;
+    this.getTabs()[activeelementTabId]['type'] = typesrep.type;
   }
 
   getActiveTabContent() {
