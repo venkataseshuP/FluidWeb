@@ -107,7 +107,7 @@ export class NativecomponentsComponent implements OnInit {
 
   deleteNativeComponent(nativetypeDetails:Typesrepo){
     event.stopPropagation();
-    if(nativetypeDetails.type == 'R'){
+    if(nativetypeDetails.roottype){
       let root = new Typesrepo();
       root.id = new TypesrepoPK();
       root.id.typeId = '';

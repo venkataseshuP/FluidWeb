@@ -7,6 +7,7 @@ export class Typesrepo {
   typeName:string;
   desc:string;
   type:string;
+  roottype:boolean;
   typeelements:Typeelement[];
   openchild = true; 
 }

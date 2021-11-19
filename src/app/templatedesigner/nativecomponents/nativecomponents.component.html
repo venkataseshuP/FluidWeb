@@ -50,7 +50,7 @@
 <ng-template #components let-list="list" let-type="type" let-hastab="hastab">
   <ng-container *ngFor="let nativeComponent of list">
     <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)"
-        class="nativetype" *ngIf="(nativeComponent.type == type || (type == 'R' && nativeComponent.type=='CT' && nativeComponent.roottype)) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" 
+        class="nativetype" *ngIf="((nativeComponent.type == type && !nativeComponent.roottype)  || (type == 'R' && nativeComponent.type=='CT' && nativeComponent.roottype)) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" 
         (dblclick)="stoppropagation()" (click)="stoppropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: (type == 'R' && nativeComponent.type=='CT' && nativeComponent.roottype)?'R':nativeComponent.type }"> </ng-container>
       <ng-container *ngIf="editableTypeId == nativeComponent.id.typeId">
@@ -63,7 +63,7 @@
         </div>
       </ng-container> 
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
-      <div class="opitions">
+      <div class="opitions" *ngIf="!nativeComponent.roottype">
         <i class="fa fa-registered" (click)="makeAsRoot(nativeComponent)" *ngIf="nativeComponent.type == 'CT'" aria-hidden="true"></i>
       </div>     
       <div class="opitions">
