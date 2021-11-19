@@ -66,6 +66,10 @@
   border-bottom: 1px solid rgb(69, 69, 253) !important;
   border-image: linear-gradient(to right, rgb(69, 69, 253) 1%, #FFF 1%) 1;
 }
+.closeline3{
+  border-bottom: 1px solid lightcoral !important;
+  border-image: linear-gradient(to right, lightcoral 1%, #FFF 1%) 1;
+}
 
 .typeelementsblock1{
   margin-left: 10px;

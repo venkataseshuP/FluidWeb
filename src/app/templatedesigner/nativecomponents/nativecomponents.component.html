@@ -50,9 +50,9 @@
 <ng-template #components let-list="list" let-type="type" let-hastab="hastab">
   <ng-container *ngFor="let nativeComponent of list">
     <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)"
-        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" 
+        class="nativetype" *ngIf="(nativeComponent.type == type || (type == 'R' && nativeComponent.type=='CT' && nativeComponent.roottype)) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" 
         (dblclick)="stoppropagation()" (click)="stoppropagation()"> 
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: (type == 'R' && nativeComponent.type=='CT' && nativeComponent.roottype)?'R':nativeComponent.type }"> </ng-container>
       <ng-container *ngIf="editableTypeId == nativeComponent.id.typeId">
         <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
         autocomplete="off" (blur)="editableTypeId = ''" (change)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="stoppropagation()" (click)="stoppropagation()">

@@ -82,7 +82,7 @@ export class ElementtreeTabdataComponent implements OnInit {
     if(typerepo.type){  
       if(this.typeElements.id.typeId == typerepo.id.typeId) return ; 
       let typeelement = new Typeelement();
-      typeelement.elementName = typerepo.typeName;
+      typeelement.elementName = this.transform(typerepo.typeName);
       typeelement.elementTypeId = typerepo.id.typeId;
       typeelement.minOccurs = 0;
       typeelement.maxOccurs = 1;
@@ -145,4 +145,10 @@ export class ElementtreeTabdataComponent implements OnInit {
       }
     });
   }
+
+  transform(value:string): string {
+    let first = value.substr(0,1).toLowerCase();
+    return first + value.substr(1); 
+  }
+
 }
