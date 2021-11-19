@@ -71,6 +71,10 @@ export class NativecomponentsComponent implements OnInit {
   isTypeEditable(nativeComponent){
     return (this.editableTypeId == nativeComponent.id.typeId);
   }
+
+  stoppropagation(){
+    event.stopPropagation();
+  }
   
   openTab(typedata:Typesrepo, hastab:boolean){
     event.stopPropagation();

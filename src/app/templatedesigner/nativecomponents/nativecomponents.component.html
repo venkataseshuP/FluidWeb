@@ -50,23 +50,26 @@
 <ng-template #components let-list="list" let-type="type" let-hastab="hastab">
   <ng-container *ngFor="let nativeComponent of list">
     <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)"
-        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (dblclick)="event.stopPropagation()" (click)="event.stopPropagation()"> 
+        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" 
+        (dblclick)="stoppropagation()" (click)="stoppropagation()"> 
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
-      <ng-container *ngIf="isTypeEditable(nativeComponent)">
+      <ng-container *ngIf="editableTypeId == nativeComponent.id.typeId">
         <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
-        autocomplete="off" (blur)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
+        autocomplete="off" (blur)="editableTypeId = ''" (change)="changeTypeName(nativeComponent,$event.target.value)" (dblclick)="stoppropagation()" (click)="stoppropagation()">
       </ng-container>
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
         <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="openTab(nativeComponent,hastab)">
           {{nativeComponent.typeName}}
         </div>
       </ng-container> 
+      <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
       <div class="opitions">
         <i class="fa fa-registered" (click)="makeAsRoot(nativeComponent)" *ngIf="nativeComponent.type == 'CT'" aria-hidden="true"></i>
       </div>     
       <div class="opitions">
         <i class="fa fa-trash" aria-hidden="true" (click)="deleteNativeComponent(nativeComponent)"></i>
       </div>  
+    </ng-container>
     </li>
   </ng-container>
 </ng-template>

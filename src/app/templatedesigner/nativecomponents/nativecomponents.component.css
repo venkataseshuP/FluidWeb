@@ -168,6 +168,9 @@ input[readonly]:focus{
   margin: 0;
   font-size: 13px;
   flex: 8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nativetype:hover .opitions{

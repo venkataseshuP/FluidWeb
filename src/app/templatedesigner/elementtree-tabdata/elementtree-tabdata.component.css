@@ -1,11 +1,15 @@
 .parent{
   display: flex;
+  cursor: pointer;
 }
 
 .child{
   flex: 0.7; 
   padding-left: 10px;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .child img{
@@ -32,7 +36,7 @@
 }
 
 .parent .child:nth-child(3){
-  flex: 0.1 !important;
+  flex: 0.3 !important;
 }
 
 .parent .child:nth-child(4){
