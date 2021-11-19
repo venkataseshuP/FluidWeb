@@ -11,9 +11,9 @@
     <ng-container *ngIf="typeElements">
       <div class="parent" draggable="false" (dragstart)="dragStart(typeElements)" (dragend)="dragEnd($event)"
         (dragover)="dragOver($event)">
-        <div class="child" [ngClass]="{'noborderleft': typeElements.type == 'CT'}">
+        <div class="child" [ngClass]="{'noborderleft': (typeElements.type === 'CT' || typeElements.type === 'R')}">
           <ng-container *ngTemplateOutlet="iconImg; context:{ type: typeElements.type,path:typeElements.typeName }"> </ng-container>
-          <span [ngClass]="typeElements.type === 'CT'?'pl5':'pl10'">{{typeElements.typeName}}</span>
+          <span [ngClass]="(typeElements.type === 'CT' || typeElements.type === 'R')?'pl5':'pl10'">{{typeElements.typeName}}</span>
         </div>
         <div class="child"></div>
         <div class="child"></div>
@@ -81,8 +81,8 @@
 </ng-template>
 
 <ng-template #iconImg let-type="type" let-path="path" let-index="index">
-  <img src="../../assets/images/explorer/arrow-right.svg" (click)="openOrCloseElement(path)"  *ngIf="type == 'CT' && !(openElements.indexOf(path)==-1)">
-  <img src="../../assets/images/explorer/arrow-down.svg" (click)="openOrCloseElement(path)" *ngIf="type == 'CT' && (openElements.indexOf(path)==-1)">
+  <img src="../../assets/images/explorer/arrow-right.svg" (click)="openOrCloseElement(path)"  *ngIf="(type == 'CT' || type == 'R') && !(openElements.indexOf(path)==-1)">
+  <img src="../../assets/images/explorer/arrow-down.svg" (click)="openOrCloseElement(path)" *ngIf="(type == 'CT' || type == 'R') && (openElements.indexOf(path)==-1)">
   <img src="../../assets/images/explorer/delete.svg" (click)="deleteElement(index)" *ngIf="type == 'delete'">
 </ng-template>
 
