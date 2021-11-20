@@ -25,9 +25,11 @@ export class ElementtreeTabsComponent implements OnInit {
   }
 
   async openTab(tabId){
-    this.getActiveTabContent()['activeTabId'] = tabId;
-    this.realignTabs();
-    this.refreshdata.emit();
+    if(this.getActiveTabContent()['activeTabId'] != tabId){
+      this.getActiveTabContent()['activeTabId'] = tabId;
+      this.realignTabs();
+      this.refreshdata.emit();
+    }
   }
 
   getActiveTabContent(){

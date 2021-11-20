@@ -67,10 +67,11 @@ export class ExplorerComponent implements OnInit {
   }
 
   async openTab(tabId){
-    await this.saveTabData();
-    this.dataService.activeTabId = tabId;
-    this.realignTabs();
-    this.refreshContent();
+    if(this.dataService.activeTabId  != tabId){
+      this.dataService.activeTabId = tabId;
+      this.realignTabs();
+      this.refreshContent();
+    }
   }
 
   async saveTabData(){
