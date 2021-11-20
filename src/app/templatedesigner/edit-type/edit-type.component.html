@@ -10,7 +10,37 @@
             </span>
           </div>
         </div>
-        body
+        <div class="apiname">
+          <label class="label">Name</label>
+          <input class="inputform" [(ngModel)]="nativeType.typeName" type="text">
+        </div>
+        <div class="desc">
+          <label class="label">Description</label>
+          <input class="inputform" [(ngModel)]="nativeType.desc" type="text" >
+        </div>
+        <div>
+          <div class="desc">
+            <label class="label">Pattern</label>
+            <input class="inputform" [(ngModel)]="nativeType.pattern" type="text" >
+          </div>
+        </div>
+        <div class="properties">
+          <div class=" enum">
+            <label class="label">Enum</label>
+            <input class="inputform" [(ngModel)]="nativeType.enums" type="text" >
+          </div>
+          <div class="desc">
+            <label class="label">Min Length</label>
+            <input class="inputform" [(ngModel)]="nativeType.minOccurs" type="text" >
+          </div>
+          <div class="desc">
+            <label class="label">Max Length</label>
+            <input class="inputform" [(ngModel)]="nativeType.maxOccurs" type="text" >
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="clsbtn" (click)="update()"> update </div>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -24,9 +54,19 @@
             </span>
           </div>
         </div>
-        <div class="apiname">
-          <label class="label">Name</label>
-          <input class="inputform" [(ngModel)]="nativeType.typeName" type="text">
+        <div class="properties">
+          <div class=" enum">
+            <label class="label">Name</label>
+            <input class="inputform" [(ngModel)]="nativeType.typeName" type="text" >
+          </div>
+          <div class="desc">
+            <label class="label">Min Occurs</label>
+            <input class="inputform" [(ngModel)]="nativeType.minOccurs" type="text" >
+          </div>
+          <div class="desc">
+            <label class="label">Max Occurs</label>
+            <input class="inputform" [(ngModel)]="nativeType.maxOccurs" type="text" >
+          </div>
         </div>
         <div class="desc">
           <label class="label">Description</label>

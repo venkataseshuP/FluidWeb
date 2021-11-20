@@ -10,5 +10,9 @@ export class Typesrepo {
   roottype:boolean;
   typeelements:Typeelement[];
   openchild = true; 
+  pattern:string;
+  enums:string;
+  minOccurs:string;
+  maxOccurs:string;
 }
 
