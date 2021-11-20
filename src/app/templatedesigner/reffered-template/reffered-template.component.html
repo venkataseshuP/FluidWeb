@@ -1,56 +1,61 @@
 <ng-container *ngFor="let isTemplateOpen of [templateService.checkReferredTemplateIsOpen(template['details']['id'])]">
-<div class="header" (click)="templateService.openRefferedTemplate(template['details']['id'])">
-  <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'Template', data:template }"> </ng-container>
-  <div class="title">{{template['details']['name']}}</div>
-  <span class="arrow">
-    <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'delete',data:template['details'] }"> </ng-container>
-</span>
-  <span class="arrow">
+  <div class="header" (click)="templateService.openRefferedTemplate(template['details']['id'])">
+    <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'Template', data:template }"> </ng-container>
+    <div class="title">{{template['details']['name']}}</div>
+    <span class="arrow">
+      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'delete',data:template['details'] }"> </ng-container>
+    </span>
+    <span class="arrow">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: isTemplateOpen?'1':'0' }"> </ng-container>
-  </span>
+    </span>
 
-</div>
-<div class="body" *ngIf="isTemplateOpen">
-  <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  search components">
   </div>
-  <ul class="directory-list">
-    <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
-      <span class="bold"> Simple Types </span>
-      <ul *ngIf="isSimpletypesOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: template.nativeComponents,type:'ST' }">
-        </ng-container>
-      </ul>
-    </li>
-  </ul>
-  <ul class="directory-list">
-    <li (click)="openORcloseCT()" [ngClass]="{'folderopen':(isComplextypesOpen),'folderclose':(!isComplextypesOpen)}">
-      <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CTH' }"> </ng-container>
-      <span class="bold"> Complex Types </span>
-      <ul *ngIf="isComplextypesOpen">
-        <ng-container *ngTemplateOutlet="components; context:{ list: template.nativeComponents,type:'CT' }">
-        </ng-container>
-      </ul>
-    </li>
-  </ul>
-</div>
+  <div class="body" *ngIf="isTemplateOpen">
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        placeholder="&#61442;  search components">
+    </div>
+    <ul class="directory-list">
+      <li (click)="openORcloseST()" [ngClass]="{'folderopen':(isSimpletypesOpen),'folderclose':(!isSimpletypesOpen)}">
+        <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'STH' }"> </ng-container>
+        <span class="bold"> Simple Types </span>
+        <ul *ngIf="isSimpletypesOpen">
+          <ng-container *ngTemplateOutlet="components; context:{ list: template.nativeComponents,type:'ST' }">
+          </ng-container>
+        </ul>
+      </li>
+    </ul>
+    <ul class="directory-list">
+      <li (click)="openORcloseCT()" [ngClass]="{'folderopen':(isComplextypesOpen),'folderclose':(!isComplextypesOpen)}">
+        <ng-container *ngTemplateOutlet="iconImg; context:{ type: 'CTH' }"> </ng-container>
+        <span class="bold"> Complex Types </span>
+        <ul *ngIf="isComplextypesOpen">
+          <ng-container *ngTemplateOutlet="components; context:{ list: template.nativeComponents,type:'CT' }">
+          </ng-container>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </ng-container>
 
 <ng-template #components let-list="list" let-type="type">
   <ng-container *ngFor="let nativeComponent of list">
-    <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)" (dragover)="dragOver($event)"
-        class="nativetype" *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)" (click)="templateService.stopPropagation()"> 
+    <li draggable="true" (dragstart)="dragStart(nativeComponent)" (dragend)="dragEnd($event)"
+      (dragover)="dragOver($event)" class="nativetype"
+      *ngIf="(nativeComponent.type == type) && (!searchText || searchText=='' ||  nativeComponent.typeName.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase())>-1)"
+      (click)="templateService.stopPropagation()">
       <ng-container *ngTemplateOutlet="iconImg; context:{ type: nativeComponent.type }"> </ng-container>
       <ng-container *ngIf="isTypeEditable(nativeComponent)">
-        <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}" value="{{nativeComponent.typeName}}"
-        autocomplete="off" (dblclick)="templateService.stopPropagation()" (click)="templateService.stopPropagation()">
+        <input class="nativetypes" title="{{nativeComponent.typeName}}" type="text" id="{{nativeComponent.typeName}}"
+          value="{{nativeComponent.typeName}}" autocomplete="off" (dblclick)="templateService.stopPropagation()"
+          (click)="templateService.stopPropagation()">
       </ng-container>
       <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
-        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)" (click)="templateService.stopPropagation()">
+        <div class="readonlytype bg-t" title="{{nativeComponent.typeName}}" (dblclick)="activateEdit(nativeComponent)"
+          (click)="templateService.stopPropagation()">
           {{nativeComponent.typeName}}
         </div>
-      </ng-container>      
+      </ng-container>
     </li>
   </ng-container>
 </ng-template>
@@ -59,6 +64,7 @@
   <img src="../../assets/images/explorer/arrow-down.svg" *ngIf="type == '1'">
   <img src="../../assets/images/templatedesigner/simpletype.svg" *ngIf="type == 'ST'">
   <img src="../../assets/images/templatedesigner/complextype.svg" *ngIf="type == 'CT'">
-  <img (click)="openTemplate(data)" title="click to open in new tab" src="../../assets/images/explorer/Template.svg"  *ngIf="type == 'Template'">
-  <img src="../../assets/images/explorer/delete.svg" (click)="deleterefferedTemplate(data)"  *ngIf="type == 'delete'">
+  <img (click)="openTemplate(data)" title="click to open in new tab" src="../../assets/images/explorer/Template.svg"
+    *ngIf="type == 'Template'">
+  <img src="../../assets/images/explorer/delete.svg" (click)="deleterefferedTemplate(data)" *ngIf="type == 'delete'">
 </ng-template>

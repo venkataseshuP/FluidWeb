@@ -67,6 +67,9 @@ export class ElementtreeTabsComponent implements OnInit {
       this.openTab( this.getActiveTabId()-1);
     }
       this.getTabs().splice(i,1);
+      if(this.getTabs().length == 0){
+        this.getActiveTabContent()['activeTabId'] = '-1';
+      }
   }
 
   dragEnter(Id){
@@ -147,7 +150,8 @@ export class ElementtreeTabsComponent implements OnInit {
         "tabDesc":typedata.desc,
         "explorer":true,
         "list":false,
-        "openElements":[]
+        "openElements":[],
+        "activeTabId":-1
       }
   
       await this.getTabs().push(tabjson);

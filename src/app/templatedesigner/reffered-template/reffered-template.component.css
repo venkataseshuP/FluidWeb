@@ -29,11 +29,13 @@
   width: 10px;
     height: 10px;
     margin: 5px 3px;
-    display: none;
+    display: block;
+    opacity: .2;
 }
 
 .header:hover .arrow img{
   display: block;
+  opacity: 1;
 }
 
 

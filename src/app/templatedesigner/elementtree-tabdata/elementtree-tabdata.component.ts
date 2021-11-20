@@ -14,33 +14,33 @@ import { TemplateService } from '../../shared/services/template.service';
 })
 export class ElementtreeTabdataComponent implements OnInit {
 
-  constructor(private dataService: ParentDataService, private templateService:TemplateService,
-    private alertService:AlertService) { }
+  constructor(private dataService: ParentDataService, private templateService: TemplateService,
+    private alertService: AlertService) { }
   templateId = '';
-  typeElements:Typesrepo;
+  typeElements: Typesrepo;
   openElements = [];
   ngOnInit(): void {
   }
 
-  refreshTypeelements(){
+  refreshTypeelements() {
     this.openElements = [];
     this.templateId = '';
     let activeelementTabId = this.getActiveTabContent()['activeTabId'];
-    let typeId = this.getTabs()[activeelementTabId].id;
-    this.templateService.getTypeElements(typeId).subscribe((data:Typesrepo)=>{
-      if(data){
-        this.updateTypeTabData(data);
-        this.typeElements = data;
-        this.templateId = this.typeElements['templateId'];
-        this.openElements = this.getActiveTabContent()['openElements'];
-        if(!this.openElements){
-          this.openElements = [];
+      let typeId = this.getTabs()[activeelementTabId].id;
+      this.templateService.getTypeElements(typeId).subscribe((data: Typesrepo) => {
+        if (data) {
+          this.updateTypeTabData(data);
+          this.typeElements = data;
+          this.templateId = this.typeElements['templateId'];
+          this.openElements = this.getActiveTabContent()['openElements'];
+          if (!this.openElements) {
+            this.openElements = [];
+          }
         }
-      }
-    });
+      });
   }
 
-  updateTypeTabData(typesrep:Typesrepo){
+  updateTypeTabData(typesrep: Typesrepo) {
     let activeelementTabId = this.getActiveTabContent()['activeTabId'];
     let acivetabdata = this.getTabs()[activeelementTabId];
     this.getTabs()[activeelementTabId]['desc'] = typesrep.typeName;
@@ -63,24 +63,24 @@ export class ElementtreeTabdataComponent implements OnInit {
     return this.dataService.getActiveTabContent()['activeTabId'];
   }
 
-  dragStart(element:any){
+  dragStart(element: any) {
     this.dataService.getActiveTabContent()['dragcontent'] = element;
   }
 
-  dragEnd(event){
-    this.dataService.getActiveTabContent()['dragcontent']  = undefined;
+  dragEnd(event) {
+    this.dataService.getActiveTabContent()['dragcontent'] = undefined;
   }
 
-  dragOver(event){
+  dragOver(event) {
     event.preventDefault();
   }
 
-  dragDrop(index:number, level:number){
+  dragDrop(index: number, level: number) {
     event.stopPropagation();
-    if(level != 1) return;
-    let typerepo:any = this.dataService.getActiveTabContent()['dragcontent'];
-    if(typerepo.type){  
-      if(this.typeElements.id.typeId == typerepo.id.typeId) return ; 
+    if (level != 1) return;
+    let typerepo: any = this.dataService.getActiveTabContent()['dragcontent'];
+    if (typerepo.type) {
+      if (this.typeElements.id.typeId == typerepo.id.typeId) return;
       let typeelement = new Typeelement();
       typeelement.elementName = this.transform(typerepo.typeName);
       typeelement.elementTypeId = typerepo.id.typeId;
@@ -89,66 +89,66 @@ export class ElementtreeTabdataComponent implements OnInit {
       typeelement.typesrepo = typerepo;
       typeelement.id.typeId = this.typeElements.id.typeId;
       typeelement.id.namespaceId = this.typeElements.id.namespaceId;
-      if(index == -1){
+      if (index == -1) {
         index = this.typeElements.typeelements.length;
       }
-      this.typeElements.typeelements.splice(index+1,0,typeelement);
-    }else if(!typerepo.type && index != -1){
+      this.typeElements.typeelements.splice(index + 1, 0, typeelement);
+    } else if (!typerepo.type && index != -1) {
       let tempindex = typerepo.id['slNo'];
-      if(+tempindex>index){
-        this.typeElements.typeelements.splice(index,0,typerepo);
-        this.typeElements.typeelements.splice(tempindex,1);
-      }else{
-        this.typeElements.typeelements.splice(index+1,0,typerepo);
-        this.typeElements.typeelements.splice(+tempindex-1,1);
+      if (+tempindex > index) {
+        this.typeElements.typeelements.splice(index, 0, typerepo);
+        this.typeElements.typeelements.splice(tempindex, 1);
+      } else {
+        this.typeElements.typeelements.splice(index + 1, 0, typerepo);
+        this.typeElements.typeelements.splice(+tempindex - 1, 1);
       }
     }
     this.updateSlNo();
-    this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data=>{
-      if(data){
+    this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data => {
+      if (data) {
         this.refreshTypeelements();
       }
     });
 
   }
-  updateSlNo(){
+  updateSlNo() {
     let index = 1;
-    this.typeElements.typeelements.forEach(element=>{
+    this.typeElements.typeelements.forEach(element => {
       element.id.slNo = index++;
     });
   }
 
-  updateTypeElement(typeelement:Typeelement){
-    this.templateService.updateTypeElement(this.typeElements.id.typeId,typeelement).subscribe(data=>{
-      if(data){
+  updateTypeElement(typeelement: Typeelement) {
+    this.templateService.updateTypeElement(this.typeElements.id.typeId, typeelement).subscribe(data => {
+      if (data) {
         this.refreshTypeelements();
       }
     });
   }
 
-  openOrCloseElement(path:string){
+  openOrCloseElement(path: string) {
     event.stopPropagation();
     let index = this.openElements.indexOf(path);
-    if(index>-1){
-      this.openElements.splice(index,1);
-    }else{
+    if (index > -1) {
+      this.openElements.splice(index, 1);
+    } else {
       this.openElements.push(path);
     }
     this.getActiveTabContent()['openElements'] = this.openElements;
   }
 
-  deleteElement(index){
-    this.typeElements.typeelements.splice(index,1);
-    this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data=>{
-      if(data){
+  deleteElement(index) {
+    this.typeElements.typeelements.splice(index, 1);
+    this.templateService.updateTypeElements(this.typeElements.id.typeId, this.typeElements.typeelements).subscribe(data => {
+      if (data) {
         this.refreshTypeelements();
       }
     });
   }
 
-  transform(value:string): string {
-    let first = value.substr(0,1).toLowerCase();
-    return first + value.substr(1); 
+  transform(value: string): string {
+    let first = value.substr(0, 1).toLowerCase();
+    return first + value.substr(1);
   }
 
 }
