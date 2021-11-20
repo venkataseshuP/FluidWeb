@@ -1,0 +1,41 @@
+<i class="fa fa-pencil-square-o" aria-hidden="true" *ngIf="!enableModal" (click)="enableModal = true"></i>
+<div class="requestTemplatemodal" *ngIf="enableModal">
+  <ng-container *ngIf="nativeType.type == 'ST'">
+    <div class="modalbody">
+      <div class="search-hero">
+        <div class="header">
+          <div class="title">Update Simple Type
+            <span class="arrow" (click)="enableModal = false">
+              X
+            </span>
+          </div>
+        </div>
+        body
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="nativeType.type == 'CT'">
+    <div class="modalbody">
+      <div class="search-hero">
+        <div class="header">
+          <div class="title">Update Complex Type
+            <span class="arrow" (click)="enableModal = false">
+              X
+            </span>
+          </div>
+        </div>
+        <div class="apiname">
+          <label class="label">Name</label>
+          <input class="inputform" [(ngModel)]="nativeType.typeName" type="text">
+        </div>
+        <div class="desc">
+          <label class="label">Description</label>
+          <input class="inputform" [(ngModel)]="nativeType.desc" type="text" >
+        </div>
+        <div class="bottom">
+          <div class="clsbtn" (click)="update()"> update </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

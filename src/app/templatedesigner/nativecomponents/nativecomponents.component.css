@@ -125,7 +125,7 @@ ul{
 
 .nativetype{
   display: flex;
-  margin-right: 10px;
+  padding-right: 10px;
 }
 
 .nativetype:hover{
@@ -174,17 +174,17 @@ input[readonly]:focus{
 }
 
 .nativetype:hover .opitions{
-  display: block;
+  color: gray;
 }
 
 .opitions{
   flex: 1;
-  display: none;
+  display: block;
   font-size: 11px;
   width: 10px;
-  color: gray;
+  color: rgb(221 221 221 / 50%);
 }
 
-.opitions:hover{
-  color: blue;
+.nativetype:hover .opitions:hover{
+  color: #1273eb;
 }

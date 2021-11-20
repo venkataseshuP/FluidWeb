@@ -1,0 +1,167 @@
+.requestTemplatemodal{
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    background: #0000007a;
+}
+
+.modalbody{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 15%;
+  left: 25%;
+  background: white;
+}
+
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  color: #405065;
+}
+
+.search-hero {
+  margin: 10px;
+}
+
+.form-control {
+  height: 30px;
+  margin: 0;
+}
+
+.form-control::placeholder  {
+  font-family: FontAwesome;
+}
+.searchresults{
+  max-height: 250px;
+  width: 97%;
+  font-size: 12px;
+  z-index: 1;
+  border: 1px solid lightgray;
+  border-radius: 0px 0px 5px 5px;
+  background: white;
+  margin-top: 7px;
+  overflow: hidden;
+  overflow-y: auto;
+  position: absolute;
+}
+
+.filterdata{
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filterdataimage{
+  width: 20px;
+  margin: 10px;
+}
+
+.filterdatapathandname{
+  width: 80%;
+}
+
+.filterdataname{
+
+}
+
+.filterdatapath{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header{
+  background: #1273eb;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.header img{
+  width: 12px;
+  flex: 1;
+  margin: 3px 0px;
+}
+
+.header .title{
+  flex: 8;
+}
+
+.header .arrow img{
+  width: 10px;
+    height: 10px;
+    margin: 5px 0px;
+}
+
+.arrow{
+  position: absolute;
+    right: 4%;
+    cursor: pointer;
+}
+
+.arrow:hover{
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.apiname{
+  flex: 1;
+  margin-right: 3px;
+}
+
+.desc{
+  flex: 2;
+}
+
+.label{
+  padding-bottom: 0;
+  margin-bottom: 3px;
+  background: none;
+  color: #343434;
+  font-size: 13px;
+  font-weight: 100;
+}
+
+.inputform{
+  width: 100%;
+  height: 35px;
+  border: 0.5px solid lightgray;
+}
+
+.clsbtn{
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 30px;
+    background: #1273eb;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+.bottom{
+  position: absolute;
+    bottom: 0;
+    width: 97%;
+    padding: 10px 30px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    margin: 10px 0px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    height: 60px;
+}

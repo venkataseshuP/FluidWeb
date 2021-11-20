@@ -57,6 +57,7 @@ import { SearchTemplatesComponent } from './search-templates/search-templates.co
 import { SearchSimpletypesComponent } from './search-simpletypes/search-simpletypes.component';
 import { ElementtreeTabsComponent } from './TemplateDesigner/elementtree-tabs/elementtree-tabs.component';
 import { ElementtreeTabdataComponent } from './TemplateDesigner/elementtree-tabdata/elementtree-tabdata.component';
+import { EditTypeComponent } from './TemplateDesigner/edit-type/edit-type.component';
 
 
 
@@ -102,7 +103,8 @@ import { ElementtreeTabdataComponent } from './TemplateDesigner/elementtree-tabd
     SearchTemplatesComponent,
     SearchSimpletypesComponent,
     ElementtreeTabsComponent,
-    ElementtreeTabdataComponent
+    ElementtreeTabdataComponent,
+    EditTypeComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({
