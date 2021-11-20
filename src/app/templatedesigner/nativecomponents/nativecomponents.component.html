@@ -62,7 +62,7 @@
           {{nativeComponent.typeName}}
         </div>
       </ng-container> 
-      <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId">
+      <ng-container *ngIf="editableTypeId != nativeComponent.id.typeId && nativeComponent.type != 'PT'">
       <div class="opitions" *ngIf="!nativeComponent.roottype">
         <i class="fa fa-registered" (click)="makeAsRoot(nativeComponent)" *ngIf="nativeComponent.type == 'CT'" aria-hidden="true"></i>
       </div>     
