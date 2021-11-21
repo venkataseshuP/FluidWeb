@@ -59,16 +59,16 @@
 }
 .closeline1{
   border-bottom: 1px solid rgb(255, 104, 104) !important;
-  border-image: linear-gradient(to right, rgb(255, 104, 104) 1%, #FFF 1%) 1;
+  border-image: linear-gradient(to right, rgb(255, 104, 104) 7px, #FFF 7px) 1;
 }
 
 .closeline2{
   border-bottom: 1px solid rgb(69, 69, 253) !important;
-  border-image: linear-gradient(to right, rgb(69, 69, 253) 1%, #FFF 1%) 1;
+  border-image: linear-gradient(to right, rgb(69, 69, 253) 7px, #FFF 7px) 1;
 }
 .closeline3{
   border-bottom: 1px solid lightcoral !important;
-  border-image: linear-gradient(to right, lightcoral 1%, #FFF 1%) 1;
+  border-image: linear-gradient(to right, lightcoral 7px, #FFF 7px) 1;
 }
 
 .typeelementsblock1{
