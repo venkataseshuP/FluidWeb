@@ -156,13 +156,12 @@
 }
 
 .parent .opitions img{
-  display: none;
-  margin-top: 5px;
+  opacity: .2;
 }
 
 
 .parent:hover .opitions img{
-  display: block;
+  opacity: 1;
 }
 
 .parent:hover{

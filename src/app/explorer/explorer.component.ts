@@ -291,8 +291,6 @@ export class ExplorerComponent implements OnInit {
 
   }
 
-
-
   openItem(itemDetails){
     event.stopPropagation();
     itemDetails.showChildren = !itemDetails.showChildren;
