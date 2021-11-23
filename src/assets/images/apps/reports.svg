@@ -1,8 +1,8 @@
-<svg width="524" height="487" viewBox="0 0 524 487" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="524" height="487" viewBox="0 0 524 487" fill="none">
 <circle cx="179" cy="179" r="179" fill="#FFF281"/>
 <ellipse cx="412.747" cy="376" rx="110.521" ry="110.734" transform="rotate(0.138263 412.747 376)" fill="#B6FF6C"/>
 <circle cx="419" cy="203" r="50" fill="#EB6DFF"/>
-<rect x="162" y="307" width="40" height="180" fill="#D7D7D7"/>
-<rect x="232" y="307" width="40" height="180" fill="#FF6D6D"/>
-<rect x="108" y="387" width="40" height="100" fill="#75BDFF"/>
+<rect x="162" y="307" width="40" height="180" fill="#D7D7D7" style="&#10;    display: none;&#10;"/>
+<rect x="232" y="307" width="40" height="180" fill="#FF6D6D" style="&#10;    display: none;&#10;"/>
+<rect x="108" y="387" width="40" height="100" fill="#75BDFF" style="&#10;    display: none;&#10;"/>
 </svg>

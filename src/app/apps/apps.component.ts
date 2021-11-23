@@ -24,9 +24,19 @@ export class AppsComponent implements OnInit {
         tabdetails.path = '/Home';
         tabdetails.type = '1';
         tabdetails.desc = 'Home';
+        this.openTab.emit(tabdetails);
+        break;
+      }
+      case "admin":{
+        tabdetails.id.itemId = 'FE_0000002';
+        tabdetails.name = 'Admin';
+        tabdetails.path = '/Admin';
+        tabdetails.type = '6';
+        tabdetails.desc = 'Admin';
+        this.openTab.emit(tabdetails);
+        break;
       }
     }
-    this.openTab.emit(tabdetails);
   }
 
 }

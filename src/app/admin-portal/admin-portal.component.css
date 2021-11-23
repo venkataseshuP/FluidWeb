@@ -1,0 +1,30 @@
+.leftpanel{
+  min-width: 5%;
+  padding: 15px 0px;
+  border-right: 1px solid #e0dbdb;
+}
+
+.leftpanel .navmenu img{
+  width: 30px;
+  height: 30px;
+  margin: 0px 15px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  padding: 3px;
+}
+
+.leftpanel .navmenu img:hover{
+  background: #e7e6e6;
+  padding: 5px;
+  border-radius: 50%;
+}
+.rightpanel{
+  flex-grow: 1;
+}
+
+.adminportal{
+  width: 100%;
+  height: calc(100% - 78px);
+  position: absolute;
+  display: flex;
+}

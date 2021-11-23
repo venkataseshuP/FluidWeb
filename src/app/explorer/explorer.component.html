@@ -271,6 +271,9 @@
       <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '5'">
         <app-apidesigner #apiDesigner></app-apidesigner>
       </ng-container>
+      <ng-container *ngIf="dataService.tabs[dataService.activeTabId]['type'] == '6'">
+        <app-admin-portal #adminportal></app-admin-portal>
+      </ng-container>
     </div>
     <!-- explorer html end -->
   </div>
