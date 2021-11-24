@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPortalComponent implements OnInit {
 
+  activeTabId = 1;
   constructor() { }
 
   ngOnInit(): void {

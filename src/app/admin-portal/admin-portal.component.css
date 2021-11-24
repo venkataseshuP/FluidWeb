@@ -11,6 +11,11 @@
   cursor: pointer;
   margin-bottom: 30px;
   padding: 3px;
+  filter: grayscale(1) opacity(50%);
+}
+
+.active{
+  filter: grayscale(0) opacity(100%) !important;
 }
 
 .leftpanel .navmenu img:hover{

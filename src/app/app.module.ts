@@ -59,6 +59,7 @@ import { ElementtreeTabsComponent } from './TemplateDesigner/elementtree-tabs/el
 import { ElementtreeTabdataComponent } from './TemplateDesigner/elementtree-tabdata/elementtree-tabdata.component';
 import { EditTypeComponent } from './TemplateDesigner/edit-type/edit-type.component';
 import { AdminPortalComponent } from './admin-portal/admin-portal.component';
+import { ProjectsComponent } from './Dashboard/projects/projects.component';
 
 
 
@@ -106,7 +107,8 @@ import { AdminPortalComponent } from './admin-portal/admin-portal.component';
     ElementtreeTabsComponent,
     ElementtreeTabdataComponent,
     EditTypeComponent,
-    AdminPortalComponent
+    AdminPortalComponent,
+    ProjectsComponent
   ],
   imports: [
     BackButtonDisableModule.forRoot({

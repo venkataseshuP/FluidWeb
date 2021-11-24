@@ -1,0 +1,77 @@
+
+<div class="dashboard">
+  <div class="card">
+    <div class="value">
+      {{projects.length}}
+    </div>
+    <div class="header">
+      Total
+    </div>
+  </div>
+  <div class="card" style="background-image: linear-gradient( 45deg, #4caf50, #ffeb3b);">
+    <div class="value">
+      {{activeprojectsCount()}}
+    </div>
+    <div class="header">
+      Active
+    </div>
+  </div>
+  <div class="card" style="background-image: linear-gradient( 45deg, #f44336, #f5b453);">
+    <div class="value">
+      {{unactiveprojectsCount()}}
+    </div>
+    <div class="header">
+      UnActive
+    </div>
+  </div>
+</div>
+
+<table>
+  <tr>
+    <th class="borderleftNone width10" (click)="addProject()">+</th>
+    <th class="borderleftNone width10 textaligncenter">Active</th>
+    <th class="borderleftNone width10 textaligncenter">Init</th>
+    <th class="w10">Project Name</th>
+    <th class="borderrightnone">URL</th>
+    <th class="borderrightnone w10">User Name</th>
+    <th class="borderrightnone w10">Password</th>
+    <th class="borderrightnone">Driver Class</th>
+  </tr>
+  <ng-container *ngFor="let project of projects">
+    <tr class="rowdata">
+      <td class="borderleftNone borderrightnone paddingNone paddingleft10 o-btn fontsize14" (click)="deleteProject(project)">x</td>
+      <td class="borderleftNone width10 textaligncenter paddingNone">
+        <input autocomplete="off" name="active" (change)="updateProjectDetails(project)" type="checkbox"
+          [(ngModel)]="project.active" style="margin: 0;">
+      </td>
+      <td class="borderleftNone width10 textaligncenter paddingNone">
+        <ng-container *ngIf="!project.init">
+          <i class="fa fa-refresh" aria-hidden="true" (click)="inItProject(project)"></i>
+        </ng-container>
+        <ng-container *ngIf="project.init">
+          <i class="fa fa-check-circle" aria-hidden="true" style="color: #8bc34a;"></i>
+        </ng-container>
+      </td>
+      <td class="paddingNone" [ngClass]="{'borderRed': !project.projectName}">
+        <input autocomplete="off" class="pathparamInput" name="name" 
+        (change)="updateProjectDetails(project)" type="text" placeholder="Project name" [(ngModel)]="project.projectName">
+      </td>
+      <td class="paddingNone" [ngClass]="{'borderRed': !project.properties.url}">
+        <input autocomplete="off" class="pathparamInput" name="url" 
+        (change)="updateProjectDetails(project)" type="text" placeholder="DB Url" [(ngModel)]="project.properties.url">
+      </td>
+      <td class="paddingNone" [ngClass]="{'borderRed': !project.properties.userName}">
+        <input autocomplete="off" class="pathparamInput" name="userName" 
+        (change)="updateProjectDetails(project)" type="text" placeholder="DB User Name" [(ngModel)]="project.properties.userName">
+      </td>
+      <td class="paddingNone" [ngClass]="{'borderRed': !project.properties.password}">
+        <input autocomplete="off" class="pathparamInput" name="password" 
+        (change)="updateProjectDetails(project)" type="text" placeholder="DB Password" [(ngModel)]="project.properties.password">
+      </td>
+      <td class="paddingNone" [ngClass]="{'borderRed': !project.properties.driverClass}">
+        <input autocomplete="off" class="pathparamInput" name="driverClass" 
+        (change)="updateProjectDetails(project)" type="text" placeholder="DB Driver Class" [(ngModel)]="project.properties.driverClass">
+      </td>
+    </tr>
+  </ng-container>
+</table>

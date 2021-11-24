@@ -1,22 +1,22 @@
 <div class="adminportal">
   <div class="leftpanel">
     <div class="navmenu" title="Fluid">
-      <img style="margin-bottom: 100px;" src="../../assets/images/signin/nature.svg">
+      <img style="margin-bottom: 100px;" class="active" src="../../assets/images/signin/nature.svg">
     </div>
-    <div class="navmenu" title="dashboard">
-      <img src="../../assets/images/apps/dashboard.svg">
+    <div class="navmenu" title="dashboard" (click)="activeTabId = 1">
+      <img src="../../assets/images/apps/dashboard.svg" [ngClass]="{'active': activeTabId == 1}">
     </div>
-    <div class="navmenu" title="projects">
-      <img src="../../assets/images/apps/projects.svg">
+    <div class="navmenu" title="projects" (click)="activeTabId = 2">
+      <img src="../../assets/images/apps/projects.svg" [ngClass]="{'active': activeTabId == 2}">
     </div>
-    <div class="navmenu" title="Users">
-      <img src="../../assets/images/apps/users.svg">
+    <div class="navmenu" title="Users" (click)="activeTabId = 3">
+      <img src="../../assets/images/apps/users.svg" [ngClass]="{'active': activeTabId == 3}">
     </div>
-    <div class="navmenu" title="reports">
-      <img src="../../assets/images/apps/reports.svg">
+    <div class="navmenu" title="reports" (click)="activeTabId = 4">
+      <img src="../../assets/images/apps/reports.svg" [ngClass]="{'active': activeTabId == 4}">
     </div>
   </div>
   <div class="rightpanel">
-  
+  <app-projects *ngIf="activeTabId == 2"></app-projects>
   </div>
 </div>

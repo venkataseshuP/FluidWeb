@@ -1,6 +1,6 @@
 import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ParentDataService } from 'src/app/dataService';
+import { ParentDataService } from '../../dataService';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,19 @@ export class HttpCommonService {
   }
 
   httpGet(url:string){
-    return this.http.get(url);
+    return this.http.get(url,{headers:{
+      'tenantId':this.dataService.activeProjectId
+    }});
   }
 
   httpPost(url:string, body:any){
-    return this.http.post(url,body);
+    let options = {};
+    let headers =  new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    headers.append('tenantId', this.dataService.activeProjectId);
+    options['headers'] = headers;
+    return this.http.post(url,body,options);
   }
 
   httpPut(url:string, body:any){
@@ -30,6 +38,7 @@ export class HttpCommonService {
     let headers =  new HttpHeaders();
     headers.append('Access-Control-Allow-Origin','*');
     headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    headers.append('tenantId', this.dataService.activeProjectId);
     options['headers'] = headers;
     return this.http.put(url,body,options);
   }
@@ -39,6 +48,7 @@ export class HttpCommonService {
     let headers =  new HttpHeaders();
     headers.append('Access-Control-Allow-Origin','*');
     headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
+    headers.append('tenantId', this.dataService.activeProjectId);
     options['headers'] = headers;
     return this.http.delete(url,options);
   }

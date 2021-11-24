@@ -1,0 +1,114 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  color: #444444;
+  font-size: 14px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.borderleftNone{
+  border-left: none;
+}
+
+.borderrightnone{
+  border-right: none;;
+}
+
+.width10{
+  width: 10px;
+}
+
+.width72{
+  width: 72px;
+}
+
+.w10{
+  width: 10%;
+}
+
+.width20p{
+  width: 20%;
+}
+
+.borderRed{
+  border-bottom-color: red;
+}
+
+
+.textaligncenter{
+  text-align: center;
+}
+
+
+.pathparamInput{
+  width: 100%;
+  height: 30px;
+  border: none;
+  background: transparent;
+  padding: 5px;
+  margin: 0px;
+  box-shadow: none;
+}
+
+.paddingNone{
+  padding: 0;
+}
+
+
+.paddingright10{
+  padding-right: 10px;
+}
+
+.o-btn{
+  color: transparent;
+}
+
+.rowdata:hover .o-btn{
+  color: gray;
+}
+
+.fontsize14{
+  font-size: 14px;
+}
+
+.paddingleft10{
+  padding-left: 10px;
+}
+
+
+.dashboard{
+  display: flex;
+}
+
+.card{
+  width: 220px;
+    height: 120px;
+    margin: 10px;
+    background-image: linear-gradient( 45deg, #8797ef, #df7c98);}
+
+.value{
+  position: absolute;
+  font-size: 110px;
+  font-weight: 600;
+  color: #fdfdfd;
+  right: 0;
+}
+
+.header{
+  position: absolute;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fdfdfd;
+  left: 0;
+  top: 0;
+  opacity: .5;
+  margin: 5px;
+}
