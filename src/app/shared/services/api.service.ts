@@ -26,7 +26,7 @@ export class ApiService {
     apidetails.endpointId = 'E0001';
     apidetails.method = method;
     apidetails.id.apidocId = this.dataService.getActiveTabContent().id;
-    apidetails.id.pid = this.authservice.activeProjectId;
+    apidetails.id.pid = this.dataService.activeProjectId;
     apidetails.url = '/api/url/here';
     apidetails.desc = '';
     apidetails.apiName = 'API name here';
@@ -38,7 +38,7 @@ export class ApiService {
   }
 
   refreshAPIs(){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/apis/'+this.dataService.getActiveTabContent().id;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/apis/'+this.dataService.getActiveTabContent().id;
     this.httpCommonservice.httpGet(url).subscribe((data:APIRepo[])=>{
       if(data){
         this.apislist = data;
@@ -51,12 +51,12 @@ export class ApiService {
     return this.httpCommonservice.httpPut(url,apiData);
   }
   getAPIDetails(apiId){
-    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId;
+    let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId;
     return this.httpCommonservice.httpGet(url);
   }
 
   getPathParams(apiId){
-    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/pathparams';
+    let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/pathparams';
     return this.httpCommonservice.httpGet(url);
   }
 
@@ -81,7 +81,7 @@ export class ApiService {
   // ------------------ query params ---------------------------------
 
   getQueryParams(apiId){
-    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/queryparams';
+    let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/queryparams';
     return this.httpCommonservice.httpGet(url);
   }
 
@@ -106,7 +106,7 @@ export class ApiService {
   // ------------------ header params ---------------------------------
 
   getHeaderParams(apiId){
-    let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/headerparams';
+    let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/headerparams';
     return this.httpCommonservice.httpGet(url);
   }
 
@@ -132,7 +132,7 @@ export class ApiService {
     // ------------------ Request Templates ---------------------------------
 
     getRequestTemplates(apiId){
-      let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/requesttemplates';
+      let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/requesttemplates';
       return this.httpCommonservice.httpGet(url);
     }
   
@@ -156,7 +156,7 @@ export class ApiService {
         // ------------------ Response Templates ---------------------------------
 
         getResponseTemplates(apiId){
-          let url = this.httpCommonservice.baseurl+'/'+this.authservice.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/responsetemplates';
+          let url = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/api/'+this.dataService.getActiveTabContent().id+'/'+apiId+'/responsetemplates';
           return this.httpCommonservice.httpGet(url);
         }
       

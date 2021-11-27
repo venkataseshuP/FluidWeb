@@ -9,37 +9,37 @@ import { AuthService } from './auth-service';
 export class FileExplorerService {
 
   constructor(private httpCommonservice:HttpCommonService,
-    private parentDataService:ParentDataService,
+    private dataService:ParentDataService,
     private authService:AuthService) { }
 
   refreshExplorerMenu(){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/'+'FE_0000001';
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file/'+'FE_0000001';
     this.httpCommonservice.httpGet(url).subscribe(data=>{
-      this.parentDataService.explorerMenu =  [];
-      this.parentDataService.explorerMenu.push(data);
+      this.dataService.explorerMenu =  [];
+      this.dataService.explorerMenu.push(data);
     });
   }
 
   getFiles(id:string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/'+id;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file/'+id;
     this.httpCommonservice.httpGet(url).subscribe(data=>{
       return data;
     });
   }
 
   getFilesBySamplePath(samplepath:string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/filesByPath/';
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/filesByPath/';
     return this.httpCommonservice.httpPost(url,samplepath.toUpperCase());
   }
 
   getFilesByTypeAndSamplePath(type:string, samplepath:string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/filesByType/'+type;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/filesByType/'+type;
     return this.httpCommonservice.httpPost(url,samplepath.toUpperCase());
   }
 
   createFile(fileDetails:any){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file';
-    fileDetails['pid'] = this.authService.activeProjectId;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file';
+    fileDetails['pid'] = this.dataService.activeProjectId;
     this.httpCommonservice.httpPost(url,fileDetails).subscribe(data=>{
       this.refreshExplorerMenu();
       return data;
@@ -47,8 +47,8 @@ export class FileExplorerService {
   }
 
   updateFile(fileDetails:any){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file';
-    fileDetails['pid'] = this.authService.activeProjectId;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file';
+    fileDetails['pid'] = this.dataService.activeProjectId;
     this.httpCommonservice.httpPut(url,fileDetails).subscribe(data=>{
       this.refreshExplorerMenu();
       return data;
@@ -56,26 +56,26 @@ export class FileExplorerService {
   }
 
   deleteFile(fileDetails: any){
-    let url: any = this.httpCommonservice.baseurl + "/" + this.authService.activeProjectId + '/file/' + fileDetails.id.itemId;
+    let url: any = this.httpCommonservice.baseurl + "/" + this.dataService.activeProjectId + '/file/' + fileDetails.id.itemId;
     return this.httpCommonservice.httpdelete(url).subscribe(() => {
       this.refreshExplorerMenu();
     });
   }
 
   setFilePath(itemId: string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/path/'+itemId;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file/path/'+itemId;
     this.httpCommonservice.httpGet(url).subscribe(data=>{
-      this.parentDataService.tabs[this.parentDataService.activeTabId]['path'] = data['path'];
+      this.dataService.tabs[this.dataService.activeTabId]['path'] = data['path'];
     });
   }
 
   getParentDetails(itemId: string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/file/parent/'+itemId;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/file/parent/'+itemId;
     return this.httpCommonservice.httpGet(url);
   }
 
   getFavouriteFiles(){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.userData.uid+'/'+this.authService.activeProjectId+'/favourites';
+    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.userData.uid+'/'+this.dataService.activeProjectId+'/favourites';
     return this.httpCommonservice.httpGet(url);
   }
 
@@ -84,7 +84,7 @@ export class FileExplorerService {
     let body = {
       id:{
         userid:this.authService.userData.uid,
-        pid:this.authService.activeProjectId,
+        pid:this.dataService.activeProjectId,
         itemid:itemId,
       }
     }
@@ -94,14 +94,14 @@ export class FileExplorerService {
   removeFavourite(itemId:string){
     let url:any = this.httpCommonservice.baseurl
                   +'/'+this.authService.userData.uid
-                  +'/'+this.authService.activeProjectId
+                  +'/'+this.dataService.activeProjectId
                   +'/favourite'
                   +'/'+itemId;
     return this.httpCommonservice.httpdelete(url);
   }
 
   getSpecDetails(specId:string){
-    let url:any = this.httpCommonservice.baseurl+'/'+this.authService.activeProjectId+'/spec/'+specId;
+    let url:any = this.httpCommonservice.baseurl+'/'+this.dataService.activeProjectId+'/spec/'+specId;
     return this.httpCommonservice.httpGet(url);
   }
 
@@ -109,7 +109,7 @@ export class FileExplorerService {
     let specDetails = {
       id:{
         itemId:itemId,
-        pid:this.authService.activeProjectId,
+        pid:this.dataService.activeProjectId,
       },
       spec : spec
     }

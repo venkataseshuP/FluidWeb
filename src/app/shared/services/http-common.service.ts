@@ -24,33 +24,21 @@ export class HttpCommonService {
   }
 
   httpPost(url:string, body:any){
-    let options = {};
-    let headers =  new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin','*');
-    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
-    headers.append('tenantId', this.dataService.activeProjectId);
-    options['headers'] = headers;
-    return this.http.post(url,body,options);
+    return this.http.post(url,body,{headers:{
+      'tenantId':this.dataService.activeProjectId
+    }});
   }
 
   httpPut(url:string, body:any){
-    let options = {};
-    let headers =  new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin','*');
-    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
-    headers.append('tenantId', this.dataService.activeProjectId);
-    options['headers'] = headers;
-    return this.http.put(url,body,options);
+    return this.http.put(url,body,{headers:{
+      'tenantId':this.dataService.activeProjectId
+    }});
   }
 
   httpdelete(url:string){
-    let options = {};
-    let headers =  new HttpHeaders();
-    headers.append('Access-Control-Allow-Origin','*');
-    headers.append('Access-Control-Allow-Methods','GET, POST, OPTIONS, PUT, DELETE');
-    headers.append('tenantId', this.dataService.activeProjectId);
-    options['headers'] = headers;
-    return this.http.delete(url,options);
+    return this.http.delete(url,{headers:{
+      'tenantId':this.dataService.activeProjectId
+    }});
   }
 
 }

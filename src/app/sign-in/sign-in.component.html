@@ -5,11 +5,20 @@
           <div class="authBlock">
             <h3>Sign In</h3>
             <div class="formGroup">
-              <input type="text" class="formControl" placeholder="Email" #userName required>
+              <input type="text" class="formControl" [(ngModel)]="email" placeholder="Email" #userName required (blur)="getProjects()">
             </div>
       
             <div class="formGroup">
               <input type="password" class="formControl" placeholder="Password" #userPassword required>
+            </div>
+
+            <div class="formGroup">
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="dataService.activeProjectId" style="height: 35px;">
+                <option value="-1">select project</option>
+                <ng-container *ngFor="let project of projects">
+                  <option [value]="project.pid">{{project.projectName}}</option>
+                </ng-container>
+              </select>
             </div>
       
             <!-- Calling SignIn Api from AuthService -->
@@ -17,17 +26,17 @@
               <input style="height: 50px;" type="button" class="btn btnPrimary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
             </div>
       
-            <div class="formGroup">
+            <!-- <div class="formGroup">
               <span class="or"><span class="orInner">Or</span></span>
-            </div>
+            </div> -->
       
             <!-- Calling GoogleAuth Api from AuthService -->
-            <div class="formGroup">
+            <!-- <div class="formGroup">
               <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
                 <i class="fab fa-google-plus-g"></i>
                 Log in with Google
               </button>
-            </div>
+            </div> -->
       
             <div class="forgotPassword">
               <span routerLink="/forgot-password">Forgot Password?</span>

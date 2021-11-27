@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { ParentDataService } from '../../dataService';
 import { ExplorerComponent } from '../../explorer/explorer.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,6 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class AuthService {
   userData: any; // Save logged in user data
   projects:any;
-  activeProjectId:string = "0419af5f-bf7d-4135-ac2b-ae1c7e23e17a";
   @ViewChild('explorer') explorer: ExplorerComponent;
 
   constructor(
@@ -26,7 +26,8 @@ export class AuthService {
     public ngZone: NgZone,
     public dataService: ParentDataService, // NgZone service to remove outside scope warning
     public deviceService: DeviceDetectorService,
-    public userService:UserService
+    public userService:UserService,
+    private alertService:AlertService
   ) {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
@@ -45,6 +46,10 @@ export class AuthService {
 
   // Sign in with email/password
   async SignIn(email, password) {
+    if(!this.dataService.activeProjectId || this.dataService.activeProjectId == '-1'){
+      this.alertService.showAlert(2,'please select project');
+      return;
+    }
     this.dataService.load = true;
     return await this.afAuth.signInWithEmailAndPassword(email, password)
       .then(async (result) => {

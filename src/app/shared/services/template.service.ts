@@ -79,7 +79,7 @@ export class TemplateService {
 
   getRefferedTemplates(){
     let templateCode = this.getActiveTemplateCode();
-    let url = this.getBasePath()+'/'+this.authService.activeProjectId+'/referredtemplates/'+templateCode;
+    let url = this.getBasePath()+'/'+this.dataService.activeProjectId+'/referredtemplates/'+templateCode;
     return this.httpCommonService.httpGet(url);
   }
 
@@ -170,7 +170,7 @@ export class TemplateService {
   }
 
   getTyesByTypeNameAndType(typeName:string, type:string){
-    let url:any = this.httpCommonService.baseurl+'/'+this.authService.activeProjectId+'/findByTypeNameAndType/'+type+'/'+typeName.toLocaleUpperCase();
+    let url:any = this.httpCommonService.baseurl+'/'+this.dataService.activeProjectId+'/findByTypeNameAndType/'+type+'/'+typeName.toLocaleUpperCase();
     return this.httpCommonService.httpGet(url);
   }
 
