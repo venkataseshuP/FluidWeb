@@ -5,6 +5,8 @@ import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { isConstructorDeclaration } from 'typescript';
 import { AuthService } from '../services/auth-service';
 import { auth, firestore } from 'firebase/app';
+import { ParentDataService } from '../../dataService';
+import { UserService } from '../services/user.service';
 
 
 @Injectable({
@@ -16,6 +18,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     public authService: AuthService,
     public router: Router,
     public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public dataService:ParentDataService,
+    public userService:UserService
   ){ }
 
   canActivate(
@@ -23,7 +27,19 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       this.afAuth.authState.subscribe(user => {
         if (user) {
-          this.router.navigate(['home']);
+          if(!this.dataService.activeProjectId){
+            this.userService.getUserDetails(user).subscribe((user)=>{
+              if(user['prefferedProject']){
+                this.dataService.activeProjectId = user['prefferedProject'];
+                this.router.navigate(['home']);
+              }else{
+                this.authService.SignOut();
+                this.router.navigate(['sign-in']);
+              }
+            })
+          }else{
+            this.router.navigate(['home']);
+          }          
         } else {
           this.router.navigate(['sign-in']);
         }

@@ -17,9 +17,7 @@ export class UserService {
 
   getUserDetails(userDetails:any){
     let url:any = this.httpCommonservice.baseurl+'/user/'+userDetails.uid;
-    this.httpCommonservice.httpGet(url).subscribe(data=>{
-      return data;
-    });
+    return this.httpCommonservice.httpCommonGet(url);
   }
 
 }

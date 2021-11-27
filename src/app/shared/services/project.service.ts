@@ -17,7 +17,7 @@ export class ProjectService {
 
   getProjects(){
     let url = this.getBasePath()+'/projects';
-    return this.httpCommonService.httpGet(url);
+    return this.httpCommonService.httpCommonGet(url);
   }
 
   updateProject(projectDetails:Project){

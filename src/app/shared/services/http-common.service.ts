@@ -17,27 +17,33 @@ export class HttpCommonService {
      this.dataService.load = false;
   }
 
+  httpCommonGet(url:string){
+    return this.http.get(url,{headers:{
+      'tenantId':'common'
+    }});
+  }
+
   httpGet(url:string){
     return this.http.get(url,{headers:{
-      'tenantId':this.dataService.activeProjectId
+      'tenantId':this.dataService.activeProjectId?this.dataService.activeProjectId:''
     }});
   }
 
   httpPost(url:string, body:any){
     return this.http.post(url,body,{headers:{
-      'tenantId':this.dataService.activeProjectId
+      'tenantId':this.dataService.activeProjectId?this.dataService.activeProjectId:''
     }});
   }
 
   httpPut(url:string, body:any){
     return this.http.put(url,body,{headers:{
-      'tenantId':this.dataService.activeProjectId
+      'tenantId':this.dataService.activeProjectId?this.dataService.activeProjectId:''
     }});
   }
 
   httpdelete(url:string){
     return this.http.delete(url,{headers:{
-      'tenantId':this.dataService.activeProjectId
+      'tenantId':this.dataService.activeProjectId?this.dataService.activeProjectId:''
     }});
   }
 
