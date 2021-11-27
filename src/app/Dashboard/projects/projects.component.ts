@@ -63,10 +63,14 @@ export class ProjectsComponent implements OnInit {
   }
 
   inItProject(projectDetails:Project){
+    if(!projectDetails.projectName || !projectDetails.properties.driverClass || !projectDetails.properties.password || !projectDetails.properties.url ||  !projectDetails.properties.userName ){
+      this.alertService.showAlert(2,'All the Details are mandatory');
+      return;
+    }
     this.projectService.inItProject(projectDetails).subscribe((data)=>{
       if(data){
       }else{
-        this.alertService.showAlert(2,'Failed to InIt Project, check all the correct details are provided');
+        this.alertService.showAlert(2,'Failed to InIt Project');
       }
       this.refresh();
     });

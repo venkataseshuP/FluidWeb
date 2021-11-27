@@ -16,7 +16,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class AuthService {
   userData: any; // Save logged in user data
   projects:any;
-  activeProjectId:string = "P_0000001";
+  activeProjectId:string = "0419af5f-bf7d-4135-ac2b-ae1c7e23e17a";
   @ViewChild('explorer') explorer: ExplorerComponent;
 
   constructor(
