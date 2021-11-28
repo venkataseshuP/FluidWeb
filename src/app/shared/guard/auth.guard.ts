@@ -28,15 +28,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
       this.afAuth.authState.subscribe(user => {
         if (user) {
           if(!this.dataService.activeProjectId){
-            this.userService.getUserDetails(user).subscribe((user)=>{
-              if(user['prefferedProject']){
-                this.dataService.activeProjectId = user['prefferedProject'];
-                this.router.navigate(['home']);
-              }else{
-                this.authService.SignOut();
-                this.router.navigate(['sign-in']);
-              }
-            })
+            this.authService.SignOut();
           }else{
             this.router.navigate(['home']);
           }          

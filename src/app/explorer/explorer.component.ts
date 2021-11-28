@@ -271,6 +271,8 @@ export class ExplorerComponent implements OnInit {
     }
     else if(type == '2'){
       this.templatedesigner.refreshTemplate();
+    }else if(type == '3'){
+      this.designer.refresh();
     }else if(type == '4'){
       this.swaggerEditor.loadEdiorSwaggerSpec();
     }else if(type == '5'){
@@ -405,7 +407,6 @@ export class ExplorerComponent implements OnInit {
     let fileDetails = {
       name : name,
       type :"3",
-      id:this.getId(),
       parentId:this.dataService.tabs[this.dataService.activeTabId].id,
       showChildren:false,
       children:[]
