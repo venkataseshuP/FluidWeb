@@ -229,14 +229,16 @@ export class ExplorerComponent implements OnInit {
     return details == null? []:details;
   }
 
-  getFileChildrens(itemDetails:any, itemId:any){
-    for(let i = 0;i<itemDetails.length;i++){
-      if(itemDetails[i].id.itemId == itemId){
-        return itemDetails[i].children;
-      }
-      let details  = this.getFileChildrens(itemDetails[i].children,itemId);
-      if(details != null){
-        return details;
+  getFileChildrens(itemDetails: any, itemId: any) {
+    for (let i = 0; i < itemDetails.length; i++) {
+      if (itemDetails[i]) {
+        if (itemDetails[i].id.itemId == itemId) {
+          return itemDetails[i].children;
+        }
+        let details = this.getFileChildrens(itemDetails[i].children, itemId);
+        if (details != null) {
+          return details;
+        }
       }
     }
     return null;
@@ -319,7 +321,7 @@ export class ExplorerComponent implements OnInit {
       "list":false,
     }
 
-    if(type == '2'){
+    if(type == '3'){
       tabjson['leftTabId'] = '0'
       tabjson['rightTabId'] = '0'
       tabjson['componentName'] = name;

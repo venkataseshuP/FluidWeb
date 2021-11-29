@@ -5,21 +5,21 @@
               <div class="tab">
                 <div class="tab-menu">
                   <button 
-                    (click)="dataService.tabs[dataService.activeTabId]['leftTabId'] = '0'"
-                    class="tab-menu-link" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['leftTabId'] == '0'}" data-content="first">
+                    (click)="activeTabContent['leftTabId'] = '0'"
+                    class="tab-menu-link" [ngClass]="{'active':activeTabContent['leftTabId'] == '0'}" data-content="first">
                     <span data-title="first">Palette</span>
                   </button>
                   <button 
-                    (click)="dataService.tabs[dataService.activeTabId]['leftTabId'] = '1'"
-                    class="tab-menu-link" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['leftTabId'] == '1'}"data-content="second">
+                    (click)="activeTabContent['leftTabId'] = '1'"
+                    class="tab-menu-link" [ngClass]="{'active':activeTabContent['leftTabId'] == '1'}"data-content="second">
                     <span data-title="second">User Assets</span>
                   </button>
                 </div>
                 <div class="tab-bar">
-                  <div class="tab-bar-content" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['leftTabId'] == '0'}" *ngIf="dataService.tabs[dataService.activeTabId]['leftTabId'] == '0'">
+                  <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['leftTabId'] == '0'}" *ngIf="activeTabContent['leftTabId'] == '0'">
                     <app-left-menu #leftMenu></app-left-menu>
                   </div>
-                  <div class="tab-bar-content" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['leftTabId'] == '1'}" *ngIf="dataService.tabs[dataService.activeTabId]['leftTabId'] == '1'">
+                  <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['leftTabId'] == '1'}" *ngIf="activeTabContent['leftTabId'] == '1'">
                     <app-assets #assets></app-assets>
                   </div>
               </div>
@@ -28,11 +28,11 @@
           </main>
     </div>
     <div class="middle">
-      <div  [ngClass]="{'designerspace':dataService.tabs[dataService.activeTabId]['backgroundVisible'],'transdesignerspace':!dataService.tabs[dataService.activeTabId]['backgroundVisible']}"
-            (click)="dataService.tabs[dataService.activeTabId]['activeelement'] = '-1'"
+      <div  [ngClass]="{'designerspace':activeTabContent['backgroundVisible'],'transdesignerspace':!activeTabContent['backgroundVisible']}"
+            (click)="activeTabContent['activeelement'] = '-1'"
             [ngStyle]="{
-            'background':dataService.tabs[dataService.activeTabId]['backgroundColor'],
-            'opacity': dataService.tabs[dataService.activeTabId]['backgroundOpacity']+'%'}">
+            'background':activeTabContent['backgroundColor'],
+            'opacity': activeTabContent['backgroundOpacity']+'%'}">
             <app-designer></app-designer>
       </div>
       
@@ -43,21 +43,21 @@
           <div class="tab">
             <div class="tab-menu">
               <button 
-                (click)="dataService.tabs[dataService.activeTabId]['rightTabId'] = '0'"
-                class="tab-menu-link " [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['rightTabId'] == '0'}" data-content="first">
+                (click)="activeTabContent['rightTabId'] = '0'"
+                class="tab-menu-link " [ngClass]="{'active':activeTabContent['rightTabId'] == '0'}" data-content="first">
                 <span data-title="first">Design</span>
               </button>
               <button 
-                (click)="dataService.tabs[dataService.activeTabId]['rightTabId'] = '1'"
-                class="tab-menu-link" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['rightTabId'] == '1'}" data-content="second">
+                (click)="activeTabContent['rightTabId'] = '1'"
+                class="tab-menu-link" [ngClass]="{'active':activeTabContent['rightTabId'] == '1'}" data-content="second">
                 <span data-title="second">CSS</span>
               </button>
             </div>
             <div class="tab-bar">
-                <div class="tab-bar-content" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['rightTabId'] == '0'}" *ngIf="dataService.tabs[dataService.activeTabId]['rightTabId'] == '0'">
+                <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['rightTabId'] == '0'}" *ngIf="activeTabContent['rightTabId'] == '0'">
                   <app-right-menu #rightMenu></app-right-menu>
                 </div>
-                <div class="tab-bar-content" [ngClass]="{'active':dataService.tabs[dataService.activeTabId]['rightTabId'] == '1'}" *ngIf="dataService.tabs[dataService.activeTabId]['rightTabId'] == '1'">
+                <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['rightTabId'] == '1'}" *ngIf="activeTabContent['rightTabId'] == '1'">
                   <app-code #code></app-code>
                 </div>
             </div>

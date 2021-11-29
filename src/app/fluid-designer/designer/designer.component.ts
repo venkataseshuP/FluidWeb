@@ -11,25 +11,25 @@ export class DesignerComponent implements OnInit {
 
   @ViewChild('rightMenu') rightMenu:RightMenuComponent;
   dragOver = '-1';
+  activeTabContent = {};
   constructor(public dataService:ParentDataService) { 
+    this.activeTabContent = this.dataService.getActiveTabContent();
   }
   ngOnInit(): void {
-    
+    this.activeTabContent = this.dataService.getActiveTabContent();
   }
 
   drop(index){
     event.stopPropagation();
-      this.dataService.load = true;
-      this.dataService.tabs[this.dataService.activeTabId]['save'] = true;
-      let type = this.dataService.tabs[this.dataService.activeTabId]['dragelement']['elementtype'];
+      this.activeTabContent['save'] = true;
+      let type = this.activeTabContent['dragelement']['elementtype'];
       if(index == -1){
-        this.dataService.tabs[this.dataService.activeTabId]['elements'].push(this.dataService.getTypeJson(type));
+        this.activeTabContent['elements'].push(this.dataService.getTypeJson(type));
       }else{
-        this.dataService.tabs[this.dataService.activeTabId]['elements'].splice(index+1,0,this.dataService.getTypeJson(type));
+        this.activeTabContent['elements'].splice(index+1,0,this.dataService.getTypeJson(type));
       }
 
       this.dragOver = '-3';
-      this.dataService.load = false;
   }
 
   dragStart(value){

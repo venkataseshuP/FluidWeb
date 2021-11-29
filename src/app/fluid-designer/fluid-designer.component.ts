@@ -17,18 +17,18 @@ export class FluidDesignerComponent implements OnInit {
   @ViewChild('rightMenu') rightMenu:RightMenuComponent;
   @ViewChild('code') code:CodeComponent;
   
-  transparentbackgroundurl="url('../../assets/images/fluiddesigner/transparentbackground.png')"
+  transparentbackgroundurl="url('../../assets/images/fluiddesigner/transparentbackground.png')";
+  activeTabContent = {};
   constructor(public dataService:ParentDataService) {
    }
 
   ngOnInit(): void {
+    this.activeTabContent = this.dataService.getActiveTabContent();
   }
 
   refresh(){
-    
-    let id = this.dataService.tabs[this.dataService.activeTabId]['id'];
-    if(this.dataService.ui[id])
-      this.dataService.tabs[this.dataService.activeTabId]['elements'] = this.dataService.ui[id]['elements']
+    // call the API and assign the data to this.dataService.tabs[this.dataService.activeTabId]['elements']
+    this.activeTabContent = this.dataService.getActiveTabContent();
   }
 
 }

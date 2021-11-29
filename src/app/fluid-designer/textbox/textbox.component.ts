@@ -7,44 +7,45 @@ import { ParentDataService } from '../../dataService';
   styleUrls: ['./textbox.component.css']
 })
 export class TextboxComponent implements OnInit {
-
-  dragOver = '-1';
-  constructor(public dataService:ParentDataService) { 
-  }
-  
   @Input() element:any;
   @Input() i:any;
-
-  ngOnInit(): void {
+  dragOver = '-1';
+  activeTabContent = {};
+  constructor(public dataService:ParentDataService) { 
+    this.activeTabContent = this.dataService.getActiveTabContent();
   }
+  ngOnInit(): void {
+    this.activeTabContent = this.dataService.getActiveTabContent();
+  }
+
 
   drop(index){
     event.stopPropagation();
-    if(!this.dataService.tabs[this.dataService.activeTabId]['internalDrag']){
+    if(!this.activeTabContent['internalDrag']){
     this.dataService.load = true;
-    this.dataService.tabs[this.dataService.activeTabId]['save'] = true;
-      let type = this.dataService.tabs[this.dataService.activeTabId]['dragelement']['elementtype'];
+    this.activeTabContent['save'] = true;
+      let type = this.activeTabContent['dragelement']['elementtype'];
       if(index == -1){
-        this.dataService.tabs[this.dataService.activeTabId]['elements'].push(this.dataService.getTypeJson(type));
+        this.activeTabContent['elements'].push(this.dataService.getTypeJson(type));
       }else{
-        this.dataService.tabs[this.dataService.activeTabId]['elements'].splice(index+1,0,this.dataService.getTypeJson(type));
+        this.activeTabContent['elements'].splice(index+1,0,this.dataService.getTypeJson(type));
       }
 
       this.dragOver = '-3';
       this.dataService.load = false;
     }else{
 
-      this.dataService.tabs[this.dataService.activeTabId]['elements'].splice(this.dataService.tabs[this.dataService.activeTabId]['internalDragIndex'],1);
-      this.dataService.tabs[this.dataService.activeTabId]['elements'].splice(index,0,this.dataService.tabs[this.dataService.activeTabId]['dragelement']);
+      this.activeTabContent['elements'].splice(this.activeTabContent['internalDragIndex'],1);
+      this.activeTabContent['elements'].splice(index,0,this.activeTabContent['dragelement']);
 
     }
   }
 
   dragStart(index,elementDetails){
     event.stopPropagation();
-    this.dataService.tabs[this.dataService.activeTabId]['dragelement'] = elementDetails;
-    this.dataService.tabs[this.dataService.activeTabId]['internalDrag'] = true;  
-    this.dataService.tabs[this.dataService.activeTabId]['internalDragIndex'] = index;  
+    this.activeTabContent['dragelement'] = elementDetails;
+    this.activeTabContent['internalDrag'] = true;  
+    this.activeTabContent['internalDragIndex'] = index;  
 
   }
 
@@ -54,8 +55,8 @@ export class TextboxComponent implements OnInit {
 
   dragEnd(value){
     this.dragOver = '-1';
-    this.dataService.tabs[this.dataService.activeTabId]['internalDrag'] = false; 
-    this.dataService.tabs[this.dataService.activeTabId]['internalDragIndex'] = -1;   
+    this.activeTabContent['internalDrag'] = false; 
+    this.activeTabContent['internalDragIndex'] = -1;   
   }
 
   addcustomcss(id,customcss){
