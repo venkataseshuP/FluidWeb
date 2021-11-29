@@ -157,8 +157,7 @@ export class LeftMenuComponent implements OnInit {
     this.dataService.tabs[this.dataService.activeTabId]['internalDrag'] = false;  
   }
 
-  dragend(elementDetails){
-    // this.tabs[this.dataService.activeTabId]['dragelement'] = undefined;
+  dragend(){
     this.drag = false;
     this.dataService.tabs[this.dataService.activeTabId]['internalDrag'] = false;  
 
