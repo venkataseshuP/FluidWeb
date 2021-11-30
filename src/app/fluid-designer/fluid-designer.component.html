@@ -33,7 +33,7 @@
             [ngStyle]="{
             'background':activeTabContent['backgroundColor'],
             'opacity': activeTabContent['backgroundOpacity']+'%'}">
-            <app-designer></app-designer>
+            <app-designer (refresh)="refresh($event)"></app-designer>
       </div>
       
     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="tab-bar">
                 <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['rightTabId'] == '0'}" *ngIf="activeTabContent['rightTabId'] == '0'">
-                  <app-right-menu #rightMenu></app-right-menu>
+                  <app-right-menu #rightMenu [elementData]="elementData"></app-right-menu>
                 </div>
                 <div class="tab-bar-content" [ngClass]="{'active':activeTabContent['rightTabId'] == '1'}" *ngIf="activeTabContent['rightTabId'] == '1'">
                   <app-code #code></app-code>

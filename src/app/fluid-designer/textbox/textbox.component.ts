@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 
 @Component({
@@ -9,6 +9,7 @@ import { ParentDataService } from '../../dataService';
 export class TextboxComponent implements OnInit {
   @Input() element:any;
   @Input() i:any;
+  @Output() refresh = new EventEmitter<any>();
   dragOver = '-1';
   activeTabContent = {};
   constructor(public dataService:ParentDataService) { 
@@ -77,6 +78,12 @@ export class TextboxComponent implements OnInit {
     }
 
     return true;
+  }
+
+  activateElement(){
+    event.stopPropagation();
+    this.activeTabContent['activeelement'] = this.i;
+    this.refresh.emit(this.element);
   }
 
 

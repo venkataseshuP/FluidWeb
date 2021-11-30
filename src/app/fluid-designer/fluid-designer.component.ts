@@ -19,6 +19,7 @@ export class FluidDesignerComponent implements OnInit {
   
   transparentbackgroundurl="url('../../assets/images/fluiddesigner/transparentbackground.png')";
   activeTabContent = {};
+  elementData:any = {};
   constructor(public dataService:ParentDataService) {
    }
 
@@ -26,9 +27,11 @@ export class FluidDesignerComponent implements OnInit {
     this.activeTabContent = this.dataService.getActiveTabContent();
   }
 
-  refresh(){
+  refresh(elementdata){
     // call the API and assign the data to this.dataService.tabs[this.dataService.activeTabId]['elements']
     this.activeTabContent = this.dataService.getActiveTabContent();
+    this.elementData = elementdata;
+    this.rightMenu.refresh(elementdata);
   }
 
 }

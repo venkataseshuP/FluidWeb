@@ -157,6 +157,19 @@ export class ParentDataService {
     return this.tabs[this.activeTabId];
   }
 
+  drop(index){
+    event.stopPropagation();
+    this.loadSpinner();
+      let type = this.getActiveTabContent()['dragelement']['elementtype'];
+      if(index == -1){
+        this.getActiveTabContent()['elements'].push(this.getTypeJson(type));
+      }else{
+        this.getActiveTabContent()['elements'].splice(index+1,0,this.getTypeJson(type));
+      }
+
+      this.stopSpinner();
+  }
+
   loadSpinner(){
     this.load = true;
   }

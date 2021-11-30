@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 
 @Component({
@@ -8,6 +8,7 @@ import { ParentDataService } from '../../dataService';
 })
 export class RightMenuComponent implements OnInit {
 
+  @Input() elementdata;
   constructor(public dataService: ParentDataService) {
   }
 
@@ -29,5 +30,7 @@ export class RightMenuComponent implements OnInit {
     this.dataService.tabs[this.dataService.activeTabId]['save'] = true;
   }
 
-
+  refresh(elementdata){
+    this.elementdata = elementdata;
+  }
 }

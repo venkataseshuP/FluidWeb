@@ -1,4 +1,4 @@
-<div (click)="activeTabContent['activeelement'] = i;$event.stopPropagation()"
+<div (click)="activateElement()"
     draggable="true" (dragstart)="dragStart(i,element)" (drop)="drop(i)" (dragend)="dragEnd(element)"
     (dragover)="dragOver = i" (dragleave)="dragOver = '-1'"
     [ngClass]="element.width==undefined ? 'col-5 col-sm-5 col-md-5 ' : 'col-'+element.width+' col-sm-'+element.width+' col-md-'+element.width+' '+(activeTabContent['activeelement'] == i?'active':'notactive')+' '+(dragOver == i?'dragOver':'nothing')">
@@ -6,18 +6,18 @@
         <!-- <input *ngIf="!element.label" [type]="text" readonly> -->
         <span class="mandatoryspan" *ngIf="element.mandatory && element.label">*</span>
         <input [ngStyle]="{'text-align':element['label-align']}" *ngIf="element.label" type="text"
-            placeholder="enter the label" [value]="element.name" [(ngModel)]="element.name"
-            (focus)="activeTabContent['activeelement'] = i">
+            placeholder="enter the label" [value]="element.name"
+            >
     </label>
     <input [id]="'element'+i" [ngStyle]="{'background':(element.readonly)?'lightgray':'white'}"
         [type]="element.typedesc" [value]="element.placeholder" placeholder="enter the placeholder"
-        [(ngModel)]="element.placeholder" (focus)="activeTabContent['activeelement'] = i">
+         >
     <label *ngIf="element.align == '2'">
         <!-- <input *ngIf="!element.label" [type]="text" readonly> -->
         <span class="mandatoryspan" *ngIf="element.mandatory && element.label">*</span>
         <input [ngStyle]="{'text-align':element['label-align']}" *ngIf="element.label" type="text"
-            placeholder="enter the label" [value]="element.name" [(ngModel)]="element.name"
-            (focus)="activeTabContent['activeelement'] = i">
+            placeholder="enter the label" [value]="element.name" 
+            >
     </label>
     <ng-container *ngIf="addcustomcss('element'+i,element.customcss) && enablereadonly('element'+i,element.readonly)">
     </ng-container>

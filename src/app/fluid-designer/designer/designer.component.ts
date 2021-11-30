@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { RightMenuComponent } from '../right-menu/right-menu.component';
 
@@ -10,6 +10,7 @@ import { RightMenuComponent } from '../right-menu/right-menu.component';
 export class DesignerComponent implements OnInit {
 
   @ViewChild('rightMenu') rightMenu:RightMenuComponent;
+  @Output() refresh = new EventEmitter<any>();
   dragOver = '-1';
   activeTabContent = {};
   constructor(public dataService:ParentDataService) { 
@@ -21,15 +22,8 @@ export class DesignerComponent implements OnInit {
 
   drop(index){
     event.stopPropagation();
-      this.activeTabContent['save'] = true;
-      let type = this.activeTabContent['dragelement']['elementtype'];
-      if(index == -1){
-        this.activeTabContent['elements'].push(this.dataService.getTypeJson(type));
-      }else{
-        this.activeTabContent['elements'].splice(index+1,0,this.dataService.getTypeJson(type));
-      }
-
-      this.dragOver = '-3';
+    this.dataService.drop(index);
+    this.dragOver = '-3';
   }
 
   dragStart(value){
@@ -50,6 +44,8 @@ export class DesignerComponent implements OnInit {
     element.setAttribute("style",customcss);
   }
 
-
+  refreshData(elementData){
+    this.refresh.emit(elementData);
+  }
 
 }

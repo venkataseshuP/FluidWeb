@@ -274,7 +274,7 @@ export class ExplorerComponent implements OnInit {
     else if(type == '2'){
       this.templatedesigner.refreshTemplate();
     }else if(type == '3'){
-      this.designer.refresh();
+      this.designer.refresh({});
     }else if(type == '4'){
       this.swaggerEditor.loadEdiorSwaggerSpec();
     }else if(type == '5'){
