@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 
 @Component({
   selector: 'app-textbox',
   templateUrl: './textbox.component.html',
-  styleUrls: ['./textbox.component.css']
+  styleUrls: ['./textbox.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextboxComponent implements OnInit {
   @Input() element:any;
@@ -40,6 +41,8 @@ export class TextboxComponent implements OnInit {
       this.activeTabContent['elements'].splice(index,0,this.activeTabContent['dragelement']);
 
     }
+
+    this.dragEnd(index)
   }
 
   dragStart(index,elementDetails){
@@ -50,8 +53,9 @@ export class TextboxComponent implements OnInit {
 
   }
 
-  dragOverElement(value){
+  dragOverElement(index){
     event.preventDefault();
+    this.dragOver = index;
   }
 
   dragEnd(value){

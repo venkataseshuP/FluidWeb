@@ -1,23 +1,20 @@
 <div (click)="activateElement()"
-    draggable="true" (dragstart)="dragStart(i,element)" (drop)="drop(i)" (dragend)="dragEnd(element)"
-    (dragover)="dragOver = i" (dragleave)="dragOver = '-1'"
+    draggable="true" (dragstart)="dragStart(i,element)" (dragover)="dragOverElement(i)" (drop)="drop(i)"
     [ngClass]="element.width==undefined ? 'col-5 col-sm-5 col-md-5 ' : 'col-'+element.width+' col-sm-'+element.width+' col-md-'+element.width+' '+(activeTabContent['activeelement'] == i?'active':'notactive')+' '+(dragOver == i?'dragOver':'nothing')">
-    <label *ngIf="element.align == '1'">
-        <!-- <input *ngIf="!element.label" [type]="text" readonly> -->
+    <label *ngIf="element.align == '1'">        
         <span class="mandatoryspan" *ngIf="element.mandatory && element.label">*</span>
         <input [ngStyle]="{'text-align':element['label-align']}" *ngIf="element.label" type="text"
-            placeholder="enter the label" [value]="element.name"
+            placeholder="enter the label" [value]="element.name" [(ngModel)]="element.name"
             >
     </label>
     <input [id]="'element'+i" [ngStyle]="{'background':(element.readonly)?'lightgray':'white'}"
         [type]="element.typedesc" [value]="element.placeholder" placeholder="enter the placeholder"
-         >
-    <label *ngIf="element.align == '2'">
-        <!-- <input *ngIf="!element.label" [type]="text" readonly> -->
+        [(ngModel)]="element.placeholder">
+    <label *ngIf="element.align == '2'">        
         <span class="mandatoryspan" *ngIf="element.mandatory && element.label">*</span>
         <input [ngStyle]="{'text-align':element['label-align']}" *ngIf="element.label" type="text"
             placeholder="enter the label" [value]="element.name" 
-            >
+            [(ngModel)]="element.name">
     </label>
     <ng-container *ngIf="addcustomcss('element'+i,element.customcss) && enablereadonly('element'+i,element.readonly)">
     </ng-container>

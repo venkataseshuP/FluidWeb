@@ -29,13 +29,12 @@
     </div>
     <div class="middle">
       <div  [ngClass]="{'designerspace':activeTabContent['backgroundVisible'],'transdesignerspace':!activeTabContent['backgroundVisible']}"
-            (click)="activeTabContent['activeelement'] = '-1'"
+            (click)="activeTabContent['activeelement'] = '-1';refresh({})"
             [ngStyle]="{
             'background':activeTabContent['backgroundColor'],
             'opacity': activeTabContent['backgroundOpacity']+'%'}">
             <app-designer (refresh)="refresh($event)"></app-designer>
-      </div>
-      
+      </div>      
     </div>
     <div class="right">
       <main class="main">

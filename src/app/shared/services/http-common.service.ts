@@ -23,6 +23,12 @@ export class HttpCommonService {
     }});
   }
 
+  httpCommonPut(url:string, body:any){
+    return this.http.put(url,body,{headers:{
+      'tenantId':'common'
+    }});
+  }
+
   httpGet(url:string){
     return this.http.get(url,{headers:{
       'tenantId':this.dataService.activeProjectId?this.dataService.activeProjectId:''

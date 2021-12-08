@@ -82,6 +82,7 @@ export class ParentDataService {
     switch (type) {
       case 'F1':
         tempJson = {
+          'id':this.getId(),
           'type': 'F1',
           'typedesc': 'text',
           'desc': '',
@@ -98,6 +99,7 @@ export class ParentDataService {
         return tempJson;
       case 'H2':
         tempJson = {
+          'id':this.getId(),
           'type': 'H2',
           'typedesc': 'text',
           'desc': '',
@@ -120,6 +122,7 @@ export class ParentDataService {
         return tempJson;
       case 'H3':
         tempJson = {
+          'id':this.getId(),
           'type': 'H3',
           'desc': '',
           'height': 1,
@@ -130,6 +133,7 @@ export class ParentDataService {
         return tempJson;
       case 'H4':
         tempJson = {
+          'id':this.getId(),
           'type': 'H4',
           'desc': '',
           'height': 20,
@@ -139,6 +143,7 @@ export class ParentDataService {
         return tempJson;
       case 'H5':
         tempJson = {
+          'id':this.getId(),
           'type': 'H5',
           'desc': '',
           'width': 4,
@@ -176,6 +181,16 @@ export class ParentDataService {
 
   stopSpinner(){
     this.load = false;
+  }
+
+  getId(){
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 10; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 
 };

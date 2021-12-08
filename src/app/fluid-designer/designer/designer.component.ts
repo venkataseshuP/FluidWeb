@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ParentDataService } from '../../dataService';
 import { RightMenuComponent } from '../right-menu/right-menu.component';
 
@@ -9,43 +9,47 @@ import { RightMenuComponent } from '../right-menu/right-menu.component';
 })
 export class DesignerComponent implements OnInit {
 
-  @ViewChild('rightMenu') rightMenu:RightMenuComponent;
+  @ViewChild('rightMenu') rightMenu: RightMenuComponent;
   @Output() refresh = new EventEmitter<any>();
   dragOver = '-1';
   activeTabContent = {};
-  constructor(public dataService:ParentDataService) { 
+  constructor(public dataService: ParentDataService) {
     this.activeTabContent = this.dataService.getActiveTabContent();
   }
   ngOnInit(): void {
     this.activeTabContent = this.dataService.getActiveTabContent();
   }
 
-  drop(index){
+  drop(index) {
     event.stopPropagation();
     this.dataService.drop(index);
     this.dragOver = '-3';
   }
 
-  dragStart(value){
+  dragStart(value) {
 
   }
 
-  dragOverElement(value){
+  dragOverElement(value) {
     event.preventDefault();
   }
 
-  dragEnd(value){
+  dragEnd(value) {
 
   }
 
-  addcustomcss(id,customcss){
+  addcustomcss(id, customcss) {
     let element = document.getElementById(id);
-    if(element != null)
-    element.setAttribute("style",customcss);
+    if (element != null)
+      element.setAttribute("style", customcss);
   }
 
-  refreshData(elementData){
+  refreshData(elementData) {
     this.refresh.emit(elementData);
+  }
+
+  trackById(index: number, item) {
+    return item['id'];
   }
 
 }

@@ -22,7 +22,7 @@ export class ProjectService {
 
   updateProject(projectDetails:Project){
     let url = this.getBasePath()+'/project';
-    return this.httpCommonService.httpPut(url,projectDetails);
+    return this.httpCommonService.httpCommonPut(url,projectDetails);
   }
 
   inItProject(projectDetails:Project){

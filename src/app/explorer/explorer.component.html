@@ -106,9 +106,9 @@
       <div id="address-bar" class="-selected">
         <div (click)="lockTab()" id="info" class="address-bar-button -show-special" data-ripple>
           <img src="../../assets/images/tabs/lock.svg" alt=""
-            [ngClass]="{'https':true,'hide':dataService.tabs[dataService.activeTabId]['locked'] == true}">
+            [ngClass]="{'https':true,'hide':(!dataService.tabs[dataService.activeTabId]['locked'] || dataService.tabs[dataService.activeTabId]['locked'] == true)}">
           <img src="../../assets/images/tabs/unlock.svg" alt=""
-            [ngClass]="{'https':true,'hide':dataService.tabs[dataService.activeTabId]['locked'] == false}">
+            [ngClass]="{'https':true,'hide':(dataService.tabs[dataService.activeTabId]['locked'] && dataService.tabs[dataService.activeTabId]['locked'] == false)}">
 
           <!-- <svg viewBox="0 0 16 16" [ngClass]="{'error':true,'hide':tabs[dataService.activeTabId]['error'] == false}">
             <path d="M7.2,10.4h1.6V12H7.2V10.4z M7.2,4h1.6v4.8H7.2V4z M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8c4.4,0,8-3.6,8-8S12.4,0,8,0z M8,14.4
