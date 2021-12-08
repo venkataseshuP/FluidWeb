@@ -13,11 +13,11 @@
             </div>
 
             <div class="formGroup">
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="dataService.activeProjectId" style="height: 35px;">
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="dataService.activeProject" style="height: 35px;">
                 <option value="-1">select project</option>
-                <ng-container *ngFor="let project of projects">
-                  <option [value]="project.pid">{{project.projectName}}</option>
-                </ng-container>
+                <option *ngFor="let project of projects" [ngValue]="project">
+                  {{project.projectName}}
+              </option>
               </select>
             </div>
       

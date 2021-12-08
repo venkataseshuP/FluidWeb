@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ParentDataService {
   activeProjectId:string;
+  activeProject:any;
   activeTabId = 0;
   alert = false;
   alertmsg = '';

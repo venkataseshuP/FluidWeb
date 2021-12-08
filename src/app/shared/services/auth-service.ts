@@ -46,7 +46,8 @@ export class AuthService {
 
   // Sign in with email/password
   async SignIn(email, password) {
-    if(!this.dataService.activeProjectId || this.dataService.activeProjectId == '-1'){
+    console.log(this.dataService.activeProject);
+    if(!this.dataService.activeProject.pid){
       this.alertService.showAlert(2,'please select project');
       return;
     }
@@ -55,6 +56,7 @@ export class AuthService {
       .then(async (result) => {
           // await this.getUserProperties(result.user);
           await this.ngZone.run(() => {
+            this.dataService.activeProjectId = this.dataService.activeProject.pid;
             this.router.navigate(['home']);
           });
           this.dataService.load = false;
